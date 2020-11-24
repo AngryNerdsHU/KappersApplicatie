@@ -20,6 +20,7 @@ const renderCalendar = () => {
     "Oktober",
     "November",
     "December",
+    "october"
   ];
 
   // weeknummerfunctie
