@@ -1,11 +1,9 @@
-
-
 const date = new Date();
 
 const renderCalendar = () => {
   date.setDate(1);
 
-  const monthDays = document.querySelector(".days");
+  const monthDays = document.querySelector(".calenderHours");
 
   const maanden = [
     "Januari",
