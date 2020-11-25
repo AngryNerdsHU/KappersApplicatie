@@ -1,5 +1,3 @@
-
-
 const date = new Date();
 
 const monthDays = document.querySelector(".days");
