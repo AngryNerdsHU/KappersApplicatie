@@ -28,6 +28,7 @@
     text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
     font-family: "Quicksand", sans-serif;
     padding: 0 .5rem;
+    user-select: none;
   }
   .weekDisplay svg {
     width: 40px;
@@ -39,6 +40,7 @@
   .weekDisplay img {
     width: 40px;
     height: 40px;
+    cursor: pointer;
   }
   .weekDisplay h1 {
     font-size: 1.2rem;

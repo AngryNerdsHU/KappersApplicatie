@@ -1,6 +1,6 @@
 const date = new Date();
 
-const monthDays = document.querySelector(".calenderHours");
+const calenderHours = document.querySelector(".calenderHours");
 
 const maanden = [
   "Januari",
@@ -14,26 +14,8 @@ const maanden = [
   "September",
   "Oktober",
   "November",
-  "December",
+  "December"
 ];
-
-// weeknummerfunctie
-const getWeekNumber = d => {
-  d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-  var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-  var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
-  return weekNo;
-}
-
-var weeknummer = getWeekNumber(new Date());
-
-document.querySelector(".prev").addEventListener("click", () => {
-  weeknummer+=1;
-});
-console.log(weeknummer)
-
-document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
 
 const dagen = [
   "Zo",
@@ -43,45 +25,78 @@ const dagen = [
   "Do",
   "Vrij",
   "Za"
-]
+];
 
-document.querySelector(".date p").innerHTML = dagen[new Date().getDay()] + " " + new Date().getDate() + " " + maanden[date.getMonth()] + " " + date.getFullYear();
+// weeknummerfunctie
+function getWeekNumber(d) {
+  d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
+  var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+  var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+  return weekNo;
+}
 
-let days = "";
+var weeknummer = getWeekNumber(new Date());
+
+document.querySelector(".next").addEventListener("click", () => {
+  weeknummer++;
+  console.log("click");
+  console.log(weeknummer)
+  if (weeknummer > 52) {
+    weeknummer = 1;
+  }
+  document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
+});
+document.querySelector(".prev").addEventListener("click", () => {
+  weeknummer--;
+  console.log("click");
+  console.log(weeknummer)
+  if (weeknummer < 1) {
+    weeknummer = 52;
+  }
+  document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
+});
+
+document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
+
+document.querySelector(".date p").innerHTML = dagen[date.getDay()] + " " + date.getDate() + " " + maanden[date.getMonth()] + " " + date.getFullYear();
+
+// Uren
+let hour = "";
 
 for (let j = 1; j <= 63; j++) {
   if(j<8) {
-    days += '<div>9:00-10:00</div>';
+    hour += '<div>9:00-10:00</div>';
   }
   else if(j<15) {
-    days += '<div>10:00-11:00</div>';
+    hour += '<div>10:00-11:00</div>';
   }
   else if(j<22) {
-    days += '<div>11:00-12:00</div>';
+    hour += '<div>11:00-12:00</div>';
   }
   else if(j<29) {
-    days += '<div>12:00-13:00</div>';
+    hour += '<div>12:00-13:00</div>';
   }
   else if(j<36) {
-    days += '<div>13:00-14:00</div>';
+    hour += '<div>13:00-14:00</div>';
   }
   else if(j<43) {
-    days += '<div>14:00-15:00</div>';
+    hour += '<div>14:00-15:00</div>';
   }
   else if(j<50) {
-    days += '<div>15:00-16:00</div>';
+    hour += '<div>15:00-16:00</div>';
   }
   else if(j<57) {
-    days += '<div>16:00-17:00</div>';
+    hour += '<div>16:00-17:00</div>';
   }
   else if(j<64) {
-    days += '<div>17:00-18:00</div>';
+    hour += '<div>17:00-18:00</div>';
   }
-  else days += `<div>hoi</div>`;
-  monthDays.innerHTML = days;
+  else hour += '<div>hoi</div>';
+  calenderHours.innerHTML = hour;
 }
 
-
-
-
-
+function doStuff() {
+  console.log(weeknummer);
+}
+setInterval(doStuff, 1000);
