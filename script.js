@@ -40,8 +40,6 @@ var weeknummer = getWeekNumber(new Date());
 
 document.querySelector(".next").addEventListener("click", () => {
   weeknummer++;
-  console.log("click");
-  console.log(weeknummer)
   if (weeknummer > 52) {
     weeknummer = 1;
   }
@@ -49,8 +47,6 @@ document.querySelector(".next").addEventListener("click", () => {
 });
 document.querySelector(".prev").addEventListener("click", () => {
   weeknummer--;
-  console.log("click");
-  console.log(weeknummer)
   if (weeknummer < 1) {
     weeknummer = 52;
   }
@@ -96,7 +92,4 @@ for (let j = 1; j <= 63; j++) {
   calenderHours.innerHTML = hour;
 }
 
-function doStuff() {
-  console.log(weeknummer);
-}
-setInterval(doStuff, 1000);
+
