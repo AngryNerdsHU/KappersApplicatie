@@ -1,7 +1,5 @@
 const date = new Date();
 
-const calenderHours = document.querySelector(".calenderHours");
-
 const maanden = [
   "Januari",
   "Februari",
@@ -58,6 +56,9 @@ document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
 document.querySelector(".date p").innerHTML = dagen[date.getDay()] + " " + date.getDate() + " " + maanden[date.getMonth()] + " " + date.getFullYear();
 
 // Uren
+
+const calenderHours = document.querySelector(".calenderHours");
+
 let hour = "";
 
 for (let j = 1; j <= 63; j++) {
@@ -88,8 +89,8 @@ for (let j = 1; j <= 63; j++) {
   else if(j<64) {
     hour += '<div>17:00-18:00</div>';
   }
-  else hour += '<div>hoi</div>';
   calenderHours.innerHTML = hour;
 }
+
 
 
