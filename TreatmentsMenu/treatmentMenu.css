@@ -1,0 +1,37 @@
+/*#region Main*/
+@import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: snow;
+}
+/*#endregion*/
+
+.infoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.iconBlue {
+  height: 40px;
+  width: 40px;
+  filter: invert(41%) sepia(70%) saturate(548%) hue-rotate(153deg)
+    brightness(90%) contrast(88%);
+  z-index: 1;
+}
+.iconBorder {
+  height: 36px;
+  width: 36px;
+  background-color: black;
+  position: absolute;
+  border-radius: 50%;
+}
