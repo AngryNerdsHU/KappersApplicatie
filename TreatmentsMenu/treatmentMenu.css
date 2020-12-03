@@ -15,11 +15,38 @@ body {
 }
 /*#endregion*/
 
-.infoIcon {
+#infoPopup {
+  width: 25%;
+  height: 80%;
+  border-radius: 20px;
+  border: 2px solid black;
+  background-image: linear-gradient(to bottom right, snow, darkgrey);
+  position: absolute;
+  z-index: 0;
+}
+#infoPopup header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem 1rem 1rem;
+}
+#closeIcon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+#description {
+  margin: 1rem;
+}
+
+/*#region InfoIcon*/
+#infoIcon {
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: absolute;
+  right: 450px;
 }
 .iconBlue {
   height: 40px;
@@ -35,3 +62,4 @@ body {
   position: absolute;
   border-radius: 50%;
 }
+/*#endregion*/
