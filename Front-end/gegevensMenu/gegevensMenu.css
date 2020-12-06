@@ -7,11 +7,33 @@
   box-sizing: border-box;
 }
 body {
-  width: 100vw;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: #ffffff;
 }
+
+/*title*/
+.title_gegevensmenu {
+  padding: 3em;
+  
+}
+
+/*region clickarea*/
+.gender {
+  text-align: center;
+}
+
+/*region arrows*/
+
+
+.fa-chevron-left, .fa-chevron-right {
+  font-size: 5em;
+  padding: .5em 1em .5em 1em;
+}
+
+
+
+
+

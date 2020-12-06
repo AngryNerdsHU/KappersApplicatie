@@ -8,11 +8,71 @@
 body {
   width: 100vw;
   height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background-color: snow;
 }
+
+/*#titleregion*/
+#title_handelingsmenu {
+  display: block;
+  text-align: center;
+  padding: 1em;
+}
+
+/*#behandelingen*/
+.behandelingen {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  display: block;
+  padding: .2em;
+}
+
+
+.behandeling {
+  display: inline-block;
+  width: 32%;
+}
+
+.behandeling_image {
+  width: 100%;
+  height: auto;
+  padding: .5em;
+  margin-left: auto;
+}
+
+.behandelingstitel {
+  text-align: center;
+}
+ 
+
+.fa-caret-down {
+  display: block;
+  position: fixed;
+  text-align: center;
+  font-size: 4em;
+}
+
+.aantal_behandelingen{
+  display: inline-block;
+  margin-left: 2em;
+}
+
+
+
+.fa-chevron-left, .fa-chevron-right {
+  font-size: 4em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.arrows {
+  display: block;
+  text-align: center;
+}
+
 /*#endregion*/
 
 #infoPopup {
