@@ -12,7 +12,7 @@ body {
   align-items: center;
   flex-direction: column;
   background-color: snow;
-  overflow: hidden;
+  overflow: scroll;
 }
 /*#endregion*/
 
@@ -50,8 +50,39 @@ body {
   height: auto;
   padding: .5em;
   margin-left: auto;
+  z-index: -1;
+}
+
+.behandeling_container {
+  position: relative;
 }
  
+/*#region InfoIcon*/
+#infoIcon {
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+}
+.iconBlue {
+  height: 30%;
+  width: auto;
+  filter: invert(41%) sepia(70%) saturate(548%) hue-rotate(153deg)
+    brightness(90%) contrast(88%);
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  top: 0px;
+  right: 0px;
+}
+
+.iconBorder {
+  height: 36px;
+  width: 36px;
+  background-color: black;
+  position: absolute;
+  border-radius: 50%;
+}
 
 .fa-caret-down {
   font-size: 4em;
@@ -111,27 +142,5 @@ body {
   margin: 1rem;
 }
 
-/*#region InfoIcon*/
-#infoIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  right: 450px;
-}
-.iconBlue {
-  height: 40px;
-  width: 40px;
-  filter: invert(41%) sepia(70%) saturate(548%) hue-rotate(153deg)
-    brightness(90%) contrast(88%);
-  z-index: 1;
-}
-.iconBorder {
-  height: 36px;
-  width: 36px;
-  background-color: black;
-  position: absolute;
-  border-radius: 50%;
-}
+
 /*#endregion*/
