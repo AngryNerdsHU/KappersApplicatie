@@ -1,4 +1,4 @@
-const infoIcon = document.getElementById("infoIcon");
+const infoIcon = document.getElementById("Knippen_baard");
 const closeIcon = document.getElementById("closeIcon");
 const infoPopup = document.getElementById("infoPopup");
 

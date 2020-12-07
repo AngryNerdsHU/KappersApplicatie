@@ -74,6 +74,7 @@ body {
   display: flex;
   top: 0px;
   right: 0px;
+  cursor: pointer;
 }
 
 .iconBorder {
@@ -125,7 +126,8 @@ body {
   border: 2px solid black;
   background-image: linear-gradient(to bottom right, snow, darkgrey);
   position: absolute;
-  z-index: 0;
+  z-index: 2;
+  margin: 5% 38%;
 }
 #infoPopup header {
   display: flex;
