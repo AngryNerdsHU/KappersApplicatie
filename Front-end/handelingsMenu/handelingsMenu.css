@@ -12,14 +12,17 @@ body {
   align-items: center;
   flex-direction: column;
   background-color: snow;
+  overflow: scroll;
 }
+/*#endregion*/
 
-/*#titleregion*/
+/*#region titleregion*/
 #title_handelingsmenu {
   display: block;
   text-align: center;
-  padding: 1em;
+  padding: 3rem;
 }
+/*#endregion*/
 
 /*#behandelingen*/
 
@@ -33,6 +36,7 @@ body {
   width: 40%;
   display: block;
   padding: .2em;
+  position: relative;
 }
 
 
@@ -46,32 +50,71 @@ body {
   height: auto;
   padding: .5em;
   margin-left: auto;
+  z-index: -1;
+}
+
+.behandeling_container {
+  position: relative;
 }
  
+/*#region InfoIcon*/
+#infoIcon {
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+}
+.iconBlue {
+  height: 30%;
+  width: auto;
+  filter: invert(41%) sepia(70%) saturate(548%) hue-rotate(153deg)
+    brightness(90%) contrast(88%);
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.iconBorder {
+  height: 36px;
+  width: 36px;
+  background-color: black;
+  position: absolute;
+  border-radius: 50%;
+}
 
 .fa-caret-down {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
   font-size: 4em;
+}
+
+.downArrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 50px;
 }
 
 .aantal_behandelingen{
   display: block;
   text-align: right;
-  margin-right: 20%;
+  margin-right: 32%;
 }
 
 .fa-chevron-left, .fa-chevron-right {
   font-size: 4em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: 0rem 4rem 0rem 4rem;
+  margin-top: 40px;
+  text-decoration: none;
+  color: black;
 }
 
 .arrows {
-  display: block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*#endregion*/
@@ -83,7 +126,8 @@ body {
   border: 2px solid black;
   background-image: linear-gradient(to bottom right, snow, darkgrey);
   position: absolute;
-  z-index: 0;
+  z-index: 2;
+  margin: 5% 38%;
 }
 #infoPopup header {
   display: flex;
@@ -100,27 +144,5 @@ body {
   margin: 1rem;
 }
 
-/*#region InfoIcon*/
-#infoIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  right: 450px;
-}
-.iconBlue {
-  height: 40px;
-  width: 40px;
-  filter: invert(41%) sepia(70%) saturate(548%) hue-rotate(153deg)
-    brightness(90%) contrast(88%);
-  z-index: 1;
-}
-.iconBorder {
-  height: 36px;
-  width: 36px;
-  background-color: black;
-  position: absolute;
-  border-radius: 50%;
-}
+
 /*#endregion*/
