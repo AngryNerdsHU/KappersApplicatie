@@ -50,11 +50,12 @@ body {
  
 
 .fa-caret-down {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
   font-size: 4em;
+  margin-top: -100px;
+}
+
+.downArrow {
+  top: 50px;
 }
 
 .aantal_behandelingen{
@@ -65,13 +66,14 @@ body {
 
 .fa-chevron-left, .fa-chevron-right {
   font-size: 4em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: 1.5rem;
+  margin-top: 40px;
 }
 
 .arrows {
-  display: block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*#endregion*/
