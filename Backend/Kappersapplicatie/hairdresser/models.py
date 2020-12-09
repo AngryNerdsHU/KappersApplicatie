@@ -14,6 +14,15 @@ class Leeftijd(models.Model):
     zesentwintigvijftig = models.CharField(max_length=1)
     vijftigplus = models.CharField(max_length=1)
 
+class Kapper(models.Model):
+    naam = models.CharField("Voornaam", max_length=30)
+
+class Behandeling(models.Model):
+    behandeltype = models.CharField("type", max_length=30)
+    tijdsduur = models.DurationField()
+    prijs = models.FloatField()
+    kapper = models.ForeignKey(Kapper, on_delete=models.CASCADE)
+
 class Author(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()

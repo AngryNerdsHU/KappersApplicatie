@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import ArticleView, AuthorView, AppointmentView, CustomerView, KlantView
+from .views import ArticleView, AuthorView, AppointmentView, CustomerView, KlantView, LeeftijdView, KapperView, BehandelingView
 
 
 app_name = "articles"
@@ -17,4 +17,11 @@ urlpatterns = [
     path('customers/<int:pk>', CustomerView.as_view()),
     path('klant/', KlantView.as_view()),
     path('klant/<int:pk>', KlantView.as_view()),
+    path('leeftijd/', LeeftijdView.as_view()),
+    path('leeftijd/<int:pk>', LeeftijdView.as_view()),
+    path('kapper/', KapperView.as_view()),
+    path('kapper/<int:pk>', KapperView.as_view()),
+    path('behandeling/', BehandelingView.as_view()),
+    path('behandeling/<int:pk>', BehandelingView.as_view()),
+
 ]
