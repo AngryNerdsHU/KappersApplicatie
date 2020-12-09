@@ -5,7 +5,7 @@ class Klant(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     geslacht = models.CharField(max_length=1)
-    leeftijdscategorie = models.CharField(max_length=25)
+    leeftijdscategorie = models.CharField(max_length=25, default='')
 
 class Leeftijd(models.Model):
     nulelf = models.CharField(max_length=1)
