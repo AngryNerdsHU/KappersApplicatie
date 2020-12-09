@@ -7,11 +7,11 @@ class Klant(models.Model):
     geslacht = models.CharField(max_length=1)
     leeftijdscategorie = models.CharField(max_length=25)
 
-class leeftijd(models.Model):
+class Leeftijd(models.Model):
     nulelf = models.CharField(max_length=1)
-    elfachtien = models.CharField(max_length=1)
+    twaalfachtien = models.CharField(max_length=1)
     negentienvijfentwintig = models.CharField(max_length=1)
-    vijfentwintigvijftig = models.CharField(max_length=1)
+    zesentwintigvijftig = models.CharField(max_length=1)
     vijftigplus = models.CharField(max_length=1)
 
 class Author(models.Model):
