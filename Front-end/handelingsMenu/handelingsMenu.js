@@ -31,8 +31,6 @@ item_knippen_baard.addEventListener("click", () => {
   aantal_behandelingen.innerHTML = behandelingsAantal;
 });
 
-
-
 item_wassen.addEventListener("click", () => {
   if (item_wassen.style.background != "rgb(56, 129, 72)") {
     item_wassen.style.background = "rgb(56, 129, 72)";
