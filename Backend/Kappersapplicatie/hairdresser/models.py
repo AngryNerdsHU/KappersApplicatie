@@ -6,10 +6,6 @@ class Klant(models.Model):
     email = models.EmailField()
     geslacht = models.CharField(max_length=1)
 
-
-
-
-
 class Author(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
@@ -21,11 +17,9 @@ class Article(models.Model):
     author = models.ForeignKey(
         'Author', related_name='articles', on_delete=models.PROTECT)
 
-
 class Customer(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
-
 
 class Appointment(models.Model):
     date = models.DateField()

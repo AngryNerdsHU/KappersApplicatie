@@ -1,7 +1,14 @@
 from rest_framework import serializers
-from .models import Article, Author, Appointment, Customer
+from .models import Article, Author, Appointment, Customer, Klant
 
+class KlantSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Klant
+        fields = ('id',
+                  'name',
+                  'email',
+                  'geslacht',)
 
 
 
