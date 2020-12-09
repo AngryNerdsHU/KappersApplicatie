@@ -5,6 +5,14 @@ class Klant(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     geslacht = models.CharField(max_length=1)
+    leeftijdscategorie = models.CharField(max_length=25)
+
+class leeftijd(models.Model):
+    nulelf = models.CharField(max_length=1)
+    elfachtien = models.CharField(max_length=1)
+    negentienvijfentwintig = models.CharField(max_length=1)
+    vijfentwintigvijftig = models.CharField(max_length=1)
+    vijftigplus = models.CharField(max_length=1)
 
 class Author(models.Model):
     name = models.CharField(max_length=255)
