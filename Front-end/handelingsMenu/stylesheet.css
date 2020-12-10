@@ -1,0 +1,195 @@
+/*#region Main*/
+@import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap);
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: snow;
+  overflow: hidden;
+}
+
+/*#endregion*/
+/*#region titleregion*/
+#title_handelingsmenu {
+  display: block;
+  text-align: center;
+  padding: 1rem;
+}
+
+/*#endregion*/
+/*#behandelingen*/
+.behandelingstitel {
+  text-align: center;
+}
+
+.behandelingen {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: 64%;
+  display: block;
+  padding: .2em;
+  position: relative;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.behandelingen::-webkit-scrollbar {
+  width: 0;
+}
+
+.simplebar-scrollbar:before {
+  background-color: #668dad;
+}
+
+.behandeling {
+  display: inline-block;
+  width: 32%;
+  padding: 0 0 2% 0;
+}
+
+.behandeling_image:hover {
+  background: #cfe6b9;
+}
+
+.behandeling_image {
+  width: 100%;
+  height: auto;
+  padding: .5em;
+  margin-left: auto;
+  z-index: -1;
+}
+
+.behandeling_container {
+  position: relative;
+}
+
+/*#region InfoIcon*/
+#infoIcon_baard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+}
+
+.iconBlue {
+  height: 30%;
+  width: auto;
+  -webkit-filter: invert(41%) sepia(70%) saturate(548%) hue-rotate(153deg) brightness(90%) contrast(88%);
+          filter: invert(41%) sepia(70%) saturate(548%) hue-rotate(153deg) brightness(90%) contrast(88%);
+  z-index: 1;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.fa-caret-down {
+  font-size: 4em;
+}
+
+.downArrow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  height: 50px;
+}
+
+.aantal_behandelingen {
+  display: block;
+  text-align: right;
+  margin-right: 32%;
+  padding: .5em;
+}
+
+#behandelingsAantal {
+  color: green;
+  font-weight: bold;
+}
+
+.fa-chevron-left, .fa-chevron-right {
+  font-size: 4em;
+  padding: 0rem 4rem 0rem 4rem;
+  margin-top: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.arrows {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/*#endregion*/
+#infoPopup_baard {
+  width: 25%;
+  height: 80%;
+  border-radius: 20px;
+  border: 2px solid black;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(snow), to(darkgrey));
+  background-image: linear-gradient(to bottom right, snow, darkgrey);
+  position: absolute;
+  z-index: 2;
+  margin: 5% 38%;
+}
+
+#infoPopup_baard header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+#closeIcon_baard {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+#description_baard {
+  margin: 1rem;
+}
+
+/*#endregion*/
+/*# sourceMappingURL=stylesheet_test.css.map */
