@@ -8,7 +8,8 @@ class KlantSerializer(serializers.ModelSerializer):
         fields = ('id',
                   'name',
                   'email',
-                  'geslacht',)
+                  'geslacht',
+                  'leeftijdscategorie',)
 
 class LeeftijdSerializer(serializers.ModelSerializer):
 
