@@ -21,7 +21,7 @@ class Behandeling(models.Model):
     behandeltype = models.CharField("type", max_length=30)
     tijdsduur = models.DurationField()
     prijs = models.FloatField()
-    kapper = models.ForeignKey(Kapper, on_delete=models.CASCADE)
+    kapper = models.ForeignKey(Kapper, on_delete=models.PROTECT)
 
 class Author(models.Model):
     name = models.CharField(max_length=255)
