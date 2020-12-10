@@ -5,7 +5,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.http.response import JsonResponse
 
-from .models import Article, Author, Appointment, Customer, Klant
+from .models import Article, Author, Appointment, Customer, Klant, Leeftijd, Behandeling, Kapper
 from .serializers import ArticleSerializer, AuthorSerializer, ArticleSerializer, AppointmentSerializer, CustomerSerializer, KlantSerializer, LeeftijdSerializer, KapperSerializer, BehandelingSerializer
 
 class KlantView(APIView):
