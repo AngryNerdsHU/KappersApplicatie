@@ -11,6 +11,7 @@ const kind = document.querySelector("#kind");
 const jongvolwassene = document.querySelector("#jongvolwassene");
 const volwassene = document.querySelector("#volwassene");
 const senior = document.querySelector("#senior");
+const ageImage = document.querySelectorAll(".ageImage");
 
 let nextCheck = 0;
 let ageClickable = 0;
@@ -18,6 +19,10 @@ let manCheck = 0;
 let vrouwCheck = 0;
 let arrowCheck = 0;
 let speed = 1;
+let kindCheck = 0;
+let jongvolwasseneCheck = 0;
+let volwasseneCheck = 0;
+let seniorCheck = 0;
 
 age.style.display = "none";
 breakLine.style.display = "none";
@@ -63,12 +68,13 @@ vrouw.addEventListener("click", () => {
 });
 rightArrow.addEventListener("click", () => {
   if (arrowCheck == 1) {
+    tl.fromTo(rightArrow, speed, {opacity: "1"}, {opacity: ".5"})
     man.style.width = "240px";
     man.style.height = "240px";
     vrouw.style.width = "240px";
     vrouw.style.height = "240px";
     if (manCheck == 1) {
-      tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"})
+      tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
       tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"}, "-=1")
     } else {
       tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"})
@@ -77,7 +83,9 @@ rightArrow.addEventListener("click", () => {
     tl.fromTo(man, speed, {x: "-80px"}, {x: "0px"}, "-=1")
     tl.fromTo(vrouw, speed, {x: "60px"}, {x: "0px"}, "-=1")
     age.style.display = "flex";
-    tl.fromTo(age, speed, {transform: "scale(0)", opacity: "0"}, {transform: "scale(1)", opacity: ".5"}, "-=1")
+    for (var i = 0; i < ageImage.length; i++) {
+      tl.fromTo(ageImage[i], speed, {transform: "scale(0)", opacity: "0"}, {transform: "scale(1)", opacity: ".5"}, "-=1");
+    }
     tl.fromTo(gender, speed, {y: "0%"}, {y: "-40%"})
     tl.fromTo(age, speed, {y: "0%"}, {y: "40%"}, "-=1")
     setTimeout(function() {
@@ -92,22 +100,53 @@ rightArrow.addEventListener("click", () => {
 
 
 
-// function checkArrow() {
-//   if (arrowCheck == 1) {
-//     rightArrow.style.cursor = "pointer";
-//     tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=1")
-//     arrowCheck = 2;
-//   }
-// }
-// function checkOption(option) {
-//   if (vrouwCheck == 1) {
-//     tl.fromTo(option, .5, {transform: "scale(1.05)", opacity: 1}, {transform: "scale(1)", opacity: .5}, "-=.5")
-//     vrouwCheck = 0;
-//   }
-// }
+function selectOption(option, optionCheck) {
+  tl.fromTo(option, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
+  let optionNumber = optionCheck;
+  console.log(optionNumber);
+}
+function checkOption(option, optionCheck) {
+  if (optionCheck == 1) {
+    tl.fromTo(option, .5, {transform: "scale(1.05)", opacity: 1}, {transform: "scale(1)", opacity: .5}, "-=.5")
+    optionCheck = 0;
+  }
+}
+function checkArrow() {
+  if (arrowCheck == 1) {
+    rightArrow.style.cursor = "pointer";
+    tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1})
+    arrowCheck = 2;
+  }
+}
 
-// kind.addEventListener("click", () => {
-//   tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
-//   manCheck = 1;
-//   checkArrow();
-// });
+kind.addEventListener("click", () => {
+  selectOption(kind, 1);
+  checkOption(jongvolwassene, 2);
+  checkOption(volwassene, 3);
+  checkOption(senior, 4);
+  checkArrow();
+});
+jongvolwassene.addEventListener("click", () => {
+  selectOption(jongvolwassene, 2);
+  checkOption(kind, kindCheck);
+  checkOption(volwassene, volwasseneCheck);
+  checkOption(senior, seniorCheck);
+  checkArrow();
+});
+volwassene.addEventListener("click", () => {
+  selectOption(volwassene, 3);
+  checkOption(kind, kindCheck);
+  checkOption(jongvolwassene, jongvolwasseneCheck);
+  checkOption(senior, seniorCheck);
+  checkArrow();
+});
+senior.addEventListener("click", () => {
+  selectOption(senior, 4);
+  checkOption(kind, kindCheck);
+  checkOption(jongvolwassene, jongvolwasseneCheck);
+  checkOption(volwassene, volwasseneCheck);
+  checkArrow();
+});
+setInterval(function() {
+  console.log(kindCheck);
+}, 1000);
