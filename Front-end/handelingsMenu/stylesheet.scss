@@ -58,7 +58,7 @@ body {
 }
 
 .behandeling_image:hover {
-  background: rgb(207, 230, 185);
+  background: rgb(72, 111, 155);
 }
 
 .behandeling_image {
@@ -67,6 +67,7 @@ body {
   padding: .5em;
   margin-left: auto;
   z-index: -1;
+  border-radius: 50%;
 }
 
 
@@ -81,17 +82,17 @@ body {
   position: absolute;
   z-index: 1;
 }
-.iconBlue {
-  height: 30%;
-  width: auto;
-  filter: invert(41%) sepia(70%) saturate(548%) hue-rotate(153deg)
-    brightness(90%) contrast(88%);
+.fa-info-circle {
+  font-size: 2em;
+  color: rgb(112, 166, 190);
   z-index: 1;
   position: absolute;
   display: flex;
-  top: 0px;
-  right: 0px;
+  top: 5%;
+  right: 5%;
   cursor: pointer;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
 }
 
 
