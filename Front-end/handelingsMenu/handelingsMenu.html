@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kappersapp</title>
-    <link rel="stylesheet" href="handelingsMenu.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+    <link rel="stylesheet" href="stylesheet.css"/>
     <script src="https://kit.fontawesome.com/00ddc597e2.js" crossorigin="anonymous"></script>
     <script src="handelingsMenu.js" defer></script>
   </head>
@@ -21,7 +22,49 @@
     <div id="title_handelingsmenu">
       <h1>Kies uw behandeling</h1>
     </div>
-    <div class="behandelingen">
+    <div class="behandelingen" data-simplebar data-simplebar-auto-hide="false">
+      <div class="behandeling" >
+        <div class="behandeling_container">
+          <img src="../../Resources/haircuts/rounded_images/Knippen_baard.png" id="item_knippen_baard" class="behandeling_image">
+          <img src="../../Resources/icons/info-black-18dp.svg" class="iconBlue" id="Knippen_baard">
+        </div>
+          <h3 class="behandelingstitel">Knippen baard</h3>
+      </div>
+      <div class="behandeling">
+        <div class="behandeling_container">
+          <img src="../../Resources/haircuts/rounded_images/Wassen.png" id="item_wassen" class="behandeling_image">
+          <img src="../../Resources/icons/info-black-18dp.svg" class="iconBlue" id="Wassen">
+        </div>
+        <h3 class="behandelingstitel">Wassen</h3>
+      </div>
+      <div class="behandeling">
+        <div class="behandeling_container">
+          <img src="../../Resources/haircuts/rounded_images/Bijknippen.png" id="item_bijknippen" class="behandeling_image">
+          <img src="../../Resources/icons/info-black-18dp.svg" class="iconBlue" id="Bijknippen">
+        </div>
+        <h3 class="behandelingstitel">Bijknippen</h3>
+      </div>
+      <div class="behandeling">
+        <div class="behandeling_container">
+          <img src="../../Resources/haircuts/rounded_images/Knippen_kort.png" id="item_knippen_kort" class="behandeling_image">
+          <img src="../../Resources/icons/info-black-18dp.svg" class="iconBlue" id="Knippen_kort">
+        </div>
+        <h3 class="behandelingstitel">Knippen kort</h3>
+      </div>
+      <div class="behandeling">
+        <div class="behandeling_container">
+          <img src="../../Resources/haircuts/rounded_images/Knippen_krullen.png" id="item_knippen_krullen" class="behandeling_image">
+          <img src="../../Resources/icons/info-black-18dp.svg" class="iconBlue" id="Knippen_krullen">
+        </div>
+        <h3 class="behandelingstitel">Knippen krullen</h3>
+      </div>
+      <div class="behandeling">
+        <div class="behandeling_container">
+          <img src="../../Resources/haircuts/rounded_images/Knippen_lang.png" id="item_knippen_lang" class="behandeling_image">
+          <img src="../../Resources/icons/info-black-18dp.svg" class="iconBlue" id="Knippen_lang">
+        </div>
+        <h3 class="behandelingstitel">Knippen lang</h3>
+      </div>
       <div class="behandeling">
         <div class="behandeling_container">
           <img src="../../Resources/haircuts/rounded_images/Knippen_baard.png" id="item_knippen_baard" class="behandeling_image">
@@ -62,18 +105,15 @@
           <img src="../../Resources/haircuts/rounded_images/Knippen_lang.png" id="item_knippen_lang" class="behandeling_image">
           <img src="../../Resources/icons/info-black-18dp.svg" class="iconBlue" id="Knippen_lang">
         </div>
-      <h3 class="behandelingstitel">Knippen lang</h3>
+        <h3 class="behandelingstitel">Knippen lang</h3>
       </div>
     </div>
-    <div class="downArrow">
-      <i class="fas fa-caret-down"></i>
-    </div>
-
     <p class="aantal_behandelingen">U heeft <span id="behandelingsAantal">x</span> behandelingen geselecteerd</p>
     
     <div class="arrows">
       <a href="../gegevensMenu/gegevensMenu.html"><i alt="This is an arrow" class="fas fa-chevron-left"></i></a> 
       <a href="../calender/calender.html"><i alt="This is an arrow" class="fas fa-chevron-right"></i></a>
     </div>
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.js"></script>
   </body>
 </html>
