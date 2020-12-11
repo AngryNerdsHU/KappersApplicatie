@@ -65,7 +65,7 @@ body {
 }
 
 .behandeling_image:hover {
-  background: #cfe6b9;
+  background: #486f9b;
 }
 
 .behandeling_image {
@@ -74,6 +74,7 @@ body {
   padding: .5em;
   margin-left: auto;
   z-index: -1;
+  border-radius: 50%;
 }
 
 .behandeling_container {
@@ -90,19 +91,19 @@ body {
   z-index: 1;
 }
 
-.iconBlue {
-  height: 30%;
-  width: auto;
-  -webkit-filter: invert(41%) sepia(70%) saturate(548%) hue-rotate(153deg) brightness(90%) contrast(88%);
-          filter: invert(41%) sepia(70%) saturate(548%) hue-rotate(153deg) brightness(90%) contrast(88%);
+.fa-info-circle {
+  font-size: 2em;
+  color: #70a6be;
   z-index: 1;
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  top: 0px;
-  right: 0px;
+  top: 5%;
+  right: 5%;
   cursor: pointer;
+  border-radius: 50%;
+  background: white;
 }
 
 .fa-caret-down {
@@ -192,4 +193,4 @@ body {
 }
 
 /*#endregion*/
-/*# sourceMappingURL=stylesheet_test.css.map */
+/*# sourceMappingURL=stylesheet.css.map */
