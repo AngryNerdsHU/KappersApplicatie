@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Article, Author, Appointment, Customer, Klant, Leeftijd, Kapper, Behandeling
+from .models import Article, Author, Appointment, Customer, Klant, Leeftijd, Kapper, Behandeling, Reservering
 
 class KlantSerializer(serializers.ModelSerializer):
 
@@ -38,6 +38,15 @@ class BehandelingSerializer(serializers.ModelSerializer):
                   'tijdsduur',
                   'prijs',
                   'kapper',)
+
+class ReserveringSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Reservering
+        fields = ('id',
+                  'gehelebehandeling',
+                  'behandeling',
+                  'klant')
 
 
 class AuthorSerializer(serializers.ModelSerializer):
