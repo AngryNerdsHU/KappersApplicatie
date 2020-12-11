@@ -99,4 +99,10 @@ closeIcon_baard.addEventListener("click", () => {
   infoPopup_baard.style.display = "none";
 });
 
+leftArrow.addEventListener("click", () => {
+  infoPopup_baard.style.display = "none";
+});
 
+// import { myUrl } from "../gegevensMenu/gegevensMenu.js";
+
+// console.log(myUrl);

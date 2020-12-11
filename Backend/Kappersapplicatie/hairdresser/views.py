@@ -5,8 +5,8 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.http.response import JsonResponse
 
-from .models import Article, Author, Appointment, Customer, Klant, Leeftijd, Behandeling, Kapper
-from .serializers import ArticleSerializer, AuthorSerializer, ArticleSerializer, AppointmentSerializer, CustomerSerializer, KlantSerializer, LeeftijdSerializer, KapperSerializer, BehandelingSerializer
+from .models import Article, Author, Appointment, Customer, Klant, Leeftijd, Behandeling, Kapper, Reservering
+from .serializers import ArticleSerializer, AuthorSerializer, ArticleSerializer, AppointmentSerializer, CustomerSerializer, KlantSerializer, LeeftijdSerializer, KapperSerializer, BehandelingSerializer, ReserveringSerializer
 
 class KlantView(APIView):
     def get(self, request):
@@ -140,6 +140,40 @@ class BehandelingView(APIView):
         try:
             data = Behandeling.objects.get(pk=pk)
         except Behandeling.DoesNotExist:
+            return JsonResponse({'message': 'Item does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        data.delete()
+        return JsonResponse({'message': 'Item deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+class ReserveringView(APIView):
+    def get(self, request):
+        data = Reservering.objects.all()
+        serializer = ReserveringSerializer(data, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    def post(self, request):
+        json = JSONParser().parse(request)
+        serializer = ReserveringSerializer(data=json)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk):
+        try:
+            data = Reservering.objects.get(pk=pk)
+        except Reservering.DoesNotExist:
+            return JsonResponse({'message': 'Item does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        json = JSONParser().parse(request)
+        serializer = ReserveringSerializer(data, data=json)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        try:
+            data = Reservering.objects.get(pk=pk)
+        except Reservering.DoesNotExist:
             return JsonResponse({'message': 'Item does not exist'}, status=status.HTTP_404_NOT_FOUND)
         data.delete()
         return JsonResponse({'message': 'Item deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
