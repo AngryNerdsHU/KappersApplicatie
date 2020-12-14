@@ -23,6 +23,11 @@ class Behandeling(models.Model):
     prijs = models.FloatField()
     kapper = models.ForeignKey(Kapper, on_delete=models.PROTECT)
 
+class Reservering(models.Model):
+    behandeling = models.ForeignKey(Behandeling, on_delete=models.PROTECT)
+    klant = models.ForeignKey(Klant, on_delete=models.PROTECT)
+    geheletijdsduur = models.DurationField(default='')
+
 class Author(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()

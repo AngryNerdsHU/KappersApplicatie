@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import ArticleView, AuthorView, AppointmentView, CustomerView, KlantView, LeeftijdView, KapperView, BehandelingView
+from .views import ArticleView, AuthorView, AppointmentView, CustomerView, KlantView, LeeftijdView, KapperView, BehandelingView, ReserveringView
 
 
 app_name = "articles"
@@ -23,5 +23,6 @@ urlpatterns = [
     path('kapper/<int:pk>', KapperView.as_view()),
     path('behandeling/', BehandelingView.as_view()),
     path('behandeling/<int:pk>', BehandelingView.as_view()),
-
+    path('reservering/', BehandelingView.as_view()),
+    path('reservering/<int:pk>', BehandelingView.as_view()),
 ]
