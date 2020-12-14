@@ -19,6 +19,27 @@ infoPopup_baard.style.display = "none";
 
 aantal_behandelingen.innerHTML = behandelingsAantal;
 
+function save(treat) {
+  var newData = treat;
+
+  if (localStorage.getItem("data") == null) {
+    localStorage.setItem("data", "[]");
+  }
+
+  var oldData = JSON.parse(localStorage.getItem("data"));
+  oldData.push(newData);
+
+  localStorage.setItem("data", JSON.stringify(oldData));
+}
+
+let array = ["string1", "string2", "string1", "string3", "string1", "string2"];
+let uniqueArray = [...new Set(array)];
+document.getElementById("button").addEventListener("click", () => {
+  localStorage.removeItem("data");
+  console.log(array, uniqueArray)
+});
+
+
 item_knippen_baard.addEventListener("click", () => {
   if (item_knippen_baard.style.background != "rgb(56, 129, 72)") {
     item_knippen_baard.style.background = "rgb(56, 129, 72)";
@@ -29,6 +50,7 @@ item_knippen_baard.addEventListener("click", () => {
     behandelingsAantal--;
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("knippenBaard");
 });
 
 item_wassen.addEventListener("click", () => {
@@ -41,6 +63,7 @@ item_wassen.addEventListener("click", () => {
     behandelingsAantal--;
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("wassen");
 });
 
 item_bijknippen.addEventListener("click", () => {
@@ -53,6 +76,7 @@ item_bijknippen.addEventListener("click", () => {
     behandelingsAantal--;
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("bijknippen");
 });
 
 item_knippen_kort.addEventListener("click", () => {
@@ -65,6 +89,7 @@ item_knippen_kort.addEventListener("click", () => {
     behandelingsAantal--;
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("knippenKort");
 });
 
 item_knippen_krullen.addEventListener("click", () => {
@@ -77,6 +102,7 @@ item_knippen_krullen.addEventListener("click", () => {
     behandelingsAantal--;
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("knippenKrullen");
 });
 
 item_knippen_lang.addEventListener("click", () => {
@@ -89,6 +115,7 @@ item_knippen_lang.addEventListener("click", () => {
     behandelingsAantal--;
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("knippenLang");
 });
 
 infoIcon_baard.addEventListener("click", () => {
@@ -100,9 +127,10 @@ closeIcon_baard.addEventListener("click", () => {
 });
 
 leftArrow.addEventListener("click", () => {
-  infoPopup_baard.style.display = "none";
+  window.location.assign("../gegevensMenu/gegevensMenu.html");
 });
 
-// import { myUrl } from "../gegevensMenu/gegevensMenu.js";
 
-// console.log(myUrl);
+setInterval(() => {
+  console.log(localStorage);
+}, 2000);
