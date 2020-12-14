@@ -1,5 +1,3 @@
-export {myUrl}; 
-
 const man = document.querySelector("#man");
 const vrouw = document.querySelector("#vrouw");
 const title = document.querySelector("#title");
@@ -15,7 +13,7 @@ const volwassene = document.querySelector("#volwassene");
 const senior = document.querySelector("#senior");
 const ageImage = document.querySelectorAll(".ageImage");
 
-let myUrl = "test"; // new URL("http://127.0.0.1:5500/Front-end/gegevensMenu/gegevensMenu.html");
+let myUrl = new URL("http://127.0.0.1:5500/Front-end/gegevensMenu/gegevensMenu.html");
 let nextCheck = 0;
 let ageClickable = 0;
 let manCheck = 0;
@@ -56,7 +54,7 @@ man.addEventListener("click", () => {
     tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=1")
     arrowCheck = 1;
   }
-  // myUrl.searchParams.set("gender", "man");
+  myUrl.searchParams.set("gender", "man");
 });
 vrouw.addEventListener("click", () => {
   tl.fromTo(vrouw, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
@@ -69,7 +67,7 @@ vrouw.addEventListener("click", () => {
     tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=1")
     arrowCheck = 1;
   }
-  // myUrl.searchParams.set("gender", "vrouw");
+  myUrl.searchParams.set("gender", "vrouw");
 });
 rightArrow.addEventListener("click", () => {
   if (arrowCheck == 1) {
