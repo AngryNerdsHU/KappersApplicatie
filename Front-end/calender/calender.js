@@ -92,5 +92,7 @@ for (let j = 1; j <= 63; j++) {
   calenderHours.innerHTML = hour;
 }
 
-
+setInterval(() => {
+  console.log(localStorage)
+}, 3000)
 
