@@ -10,154 +10,112 @@ const item_knippen_krullen = document.getElementById("item_knippen_krullen");
 const item_knippen_lang = document.getElementById("item_knippen_lang");
 
 const aantal_behandelingen = document.getElementById("behandelingsAantal");
-let behandelingsAantal = 0;
-let behandelingenArr = [];
+var behandelingsAantal = 0;
 
 const leftArrow = document.getElementById("leftArrow");
 const rightArrow = document.getElementById("rightArrow");
 
-aantal_behandelingen.innerHTML = behandelingsAantal;
-
 infoPopup_baard.style.display = "none";
 
+aantal_behandelingen.innerHTML = behandelingsAantal;
 
+function save(treat) {
+  var newData = treat;
 
-
-function mouseOver_unclicked () {
-  item_knippen_baard.style.background = "blue";
-}
-
-function mouseOver_clicked () {
-  item_knippen_baard.style.background = "green";
-}
-
-function mouseOut_clicked() {
-  item_knippen_baard.style.background = "green";
-}
-function mouseOut_unclicked() {
-  item_knippen_baard.style.background = "white";
-}
-
-if (behandelingenArr.indexOf("knippen_baard") == -1) {
-  item_knippen_baard.onmouseover = function() {mouseOver_unclicked()};
-  item_knippen_baard.onmouseout = function() {mouseOut_unclicked()}
-}
-if (behandelingenArr.indexOf("knippen_baard") != -1) {
-  item_knippen_baard.onmouseout = function() {mouseOut_clicked()}
-  item_knippen_baard.onmouseover = function() {mouseOver_clicked()}
-
-}
-
-
-rightArrow.addEventListener("click", () => {
-  if (behandelingenArr.length != 0) {
-    localStorage.setItem("behandelingen", JSON.stringify(behandelingenArr));
+  if (localStorage.getItem("data") == null) {
+    localStorage.setItem("data", "[]");
   }
+
+  var oldData = JSON.parse(localStorage.getItem("data"));
+  oldData.push(newData);
+
+  localStorage.setItem("data", JSON.stringify(oldData));
+}
+
+let array = ["string1", "string2", "string1", "string3", "string1", "string2"];
+let uniqueArray = [...new Set(array)];
+document.getElementById("button").addEventListener("click", () => {
+  localStorage.removeItem("data");
+  console.log(array, uniqueArray)
 });
+
 
 item_knippen_baard.addEventListener("click", () => {
-  if (behandelingenArr.indexOf("knippen_baard") == -1) {
-    item_knippen_baard.style.background = "green";
+  if (item_knippen_baard.style.background != "rgb(56, 129, 72)") {
+    item_knippen_baard.style.background = "rgb(56, 129, 72)";
     behandelingsAantal++;
-    behandelingenArr.push("knippen_baard")
   }
   else {
+    item_knippen_baard.style.background = "none";
     behandelingsAantal--;
-    const index = behandelingenArr.indexOf("knippen_baard");
-    if (index > -1) {
-      behandelingenArr.splice(index, 1);
-    } 
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("knippenBaard");
 });
-
-setInterval(() => {
-  console.log(behandelingenArr.indexOf("knippen_baard") == -1)
-}, 3000)
 
 item_wassen.addEventListener("click", () => {
   if (item_wassen.style.background != "rgb(56, 129, 72)") {
     item_wassen.style.background = "rgb(56, 129, 72)";
     behandelingsAantal++;
-    behandelingenArr.push("wassen")
   }
   else {
     item_wassen.style.background = "none";
     behandelingsAantal--;
-    const index = behandelingenArr.indexOf("wassen");
-    if (index > -1) {
-      behandelingenArr.splice(index, 1);
-    }
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("wassen");
 });
 
 item_bijknippen.addEventListener("click", () => {
   if (item_bijknippen.style.background != "rgb(56, 129, 72)") {
     item_bijknippen.style.background = "rgb(56, 129, 72)"
     behandelingsAantal++;
-    behandelingenArr.push("bijknippen")
   }
   else {
     item_bijknippen.style.background = "none"
     behandelingsAantal--;
-    const index = behandelingenArr.indexOf("bijknippen");
-    if (index > -1) {
-      behandelingenArr.splice(index, 1);
-    }
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("bijknippen");
 });
 
 item_knippen_kort.addEventListener("click", () => {
   if (item_knippen_kort.style.background != "rgb(56, 129, 72)") {
     item_knippen_kort.style.background = "rgb(56, 129, 72)";
     behandelingsAantal++;
-    behandelingenArr.push("knippen_kort")
   }
   else {
     item_knippen_kort.style.background = "none";
     behandelingsAantal--;
-    const index = behandelingenArr.indexOf("knippen_kort");
-    if (index > -1) {
-      behandelingenArr.splice(index, 1);
-    }
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("knippenKort");
 });
 
 item_knippen_krullen.addEventListener("click", () => {
   if (item_knippen_krullen.style.background != "rgb(56, 129, 72)") {
     item_knippen_krullen.style.background = "rgb(56, 129, 72)";
     behandelingsAantal++;
-    behandelingenArr.push("knippen_krullen")
   }
   else {
     item_knippen_krullen.style.background = "none";
     behandelingsAantal--;
-    const index = behandelingenArr.indexOf("knippen_krullen");
-    if (index > -1) {
-      behandelingenArr.splice(index, 1);
-    }
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("knippenKrullen");
 });
 
 item_knippen_lang.addEventListener("click", () => {
   if (item_knippen_lang.style.background != "rgb(56, 129, 72)") {
     item_knippen_lang.style.background = "rgb(56, 129, 72)";
     behandelingsAantal++;
-    behandelingenArr.push("knippen_lang")
   }
   else {
     item_knippen_lang.style.background = "none";
     behandelingsAantal--;
-    const index = behandelingenArr.indexOf("knippen_lang");
-    if (index > -1) {
-      behandelingenArr.splice(index, 1);
-    }
   }
   aantal_behandelingen.innerHTML = behandelingsAantal;
+  save("knippenLang");
 });
 
 infoIcon_baard.addEventListener("click", () => {
@@ -174,13 +132,5 @@ leftArrow.addEventListener("click", () => {
 
 
 setInterval(() => {
-  localStorage.clear();
-}, 10000)
-
-setInterval(() => {
   console.log(localStorage);
-}, 2000);
-
-setInterval(() => {
-  console.log(behandelingenArr);
 }, 2000);

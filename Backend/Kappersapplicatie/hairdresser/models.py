@@ -26,8 +26,7 @@ class Behandeling(models.Model):
 class Reservering(models.Model):
     behandeling = models.ForeignKey(Behandeling, on_delete=models.PROTECT)
     klant = models.ForeignKey(Klant, on_delete=models.PROTECT)
-    gehelebehandeling = models.DurationField(default='')
-
+    geheletijdsduur = models.DurationField(default='')
 
 class Author(models.Model):
     name = models.CharField(max_length=255)

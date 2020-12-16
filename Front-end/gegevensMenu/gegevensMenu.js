@@ -1,5 +1,3 @@
-export {myUrl}; 
-
 const man = document.querySelector("#man");
 const vrouw = document.querySelector("#vrouw");
 const title = document.querySelector("#title");
@@ -15,17 +13,16 @@ const volwassene = document.querySelector("#volwassene");
 const senior = document.querySelector("#senior");
 const ageImage = document.querySelectorAll(".ageImage");
 
-let myUrl = "test"; // new URL("http://127.0.0.1:5500/Front-end/gegevensMenu/gegevensMenu.html");
 let nextCheck = 0;
 let ageClickable = 0;
 let manCheck = 0;
 let vrouwCheck = 0;
 let arrowCheck = 0;
 let speed = 1;
-let kindCheck = 0;
-let jongvolwasseneCheck = 0;
-let volwasseneCheck = 0;
-let seniorCheck = 0;
+let kindCheck = false;
+let jongvolwasseneCheck = false;
+let volwasseneCheck = false;
+let seniorCheck = false;
 
 age.style.display = "none";
 breakLine.style.display = "none";
@@ -56,8 +53,15 @@ man.addEventListener("click", () => {
     tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=1")
     arrowCheck = 1;
   }
-  // myUrl.searchParams.set("gender", "man");
+  localStorage.setItem("gender", "man");
 });
+if (localStorage.getItem("gender") == "man") {
+  tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+  setTimeout(function() {
+    localStorage.setItem("gender", "man");
+  }, 500);
+  manCheck = 1;
+}
 vrouw.addEventListener("click", () => {
   tl.fromTo(vrouw, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
   if (manCheck == 1) {
@@ -69,8 +73,16 @@ vrouw.addEventListener("click", () => {
     tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=1")
     arrowCheck = 1;
   }
-  // myUrl.searchParams.set("gender", "vrouw");
+  localStorage.setItem("gender", "vrouw");
+  console.log(localStorage.getItem("gender"));
 });
+if (localStorage.getItem("gender") == "vrouw") {
+  tl.fromTo(vrouw, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+  setTimeout(function() {
+    localStorage.setItem("gender", "vrouw");
+  }, 500);
+  vrouwCheck = 1;
+}
 rightArrow.addEventListener("click", () => {
   if (arrowCheck == 1) {
     tl.fromTo(rightArrow, speed, {opacity: "1"}, {opacity: ".5"})
@@ -83,7 +95,7 @@ rightArrow.addEventListener("click", () => {
       tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"}, "-=1")
     } else {
       tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"})
-    tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
+      tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
     }
     tl.fromTo(man, speed, {x: "-80px"}, {x: "0px"}, "-=1")
     tl.fromTo(vrouw, speed, {x: "60px"}, {x: "0px"}, "-=1")
@@ -97,6 +109,9 @@ rightArrow.addEventListener("click", () => {
       breakLine.style.display = "block";
     }, 500);
     tl.fromTo(breakLine, speed, {scaleX: "0", opacity: "0"}, {scaleX: "1", opacity: "1"})
+    if ((localStorage.getItem("age") == "kind")) {
+      tl.fromTo(kind, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+    }
   } else if (arrowCheck == 2) {
     window.location.assign("../handelingsMenu/handelingsMenu.html");
   }
@@ -109,12 +124,21 @@ rightArrow.addEventListener("click", () => {
 function selectOption(option, optionCheck) {
   tl.fromTo(option, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
   let optionNumber = optionCheck;
-  console.log(optionNumber);
+  if (optionNumber == 1) {kindCheck = true};
+  if (optionNumber == 2) {jongvolwasseneCheck = true};
+  if (optionNumber == 3) {volwasseneCheck = true};
+  if (optionNumber == 4) {seniorCheck = true};
 }
-function checkOption(option, optionCheck) {
-  if (optionCheck == 1) {
+function checkOption(option, optionNumber, optionCheck) {
+  if (optionCheck == true) {
     tl.fromTo(option, .5, {transform: "scale(1.05)", opacity: 1}, {transform: "scale(1)", opacity: .5}, "-=.5")
-    optionCheck = 0;
+    let optionNumbers = optionNumber;
+    setTimeout(function() {
+      if (optionNumbers == 1) {kindCheck = false};
+      if (optionNumbers == 2) {jongvolwasseneCheck = false};
+      if (optionNumbers == 3) {volwasseneCheck = false};
+      if (optionNumbers == 4) {seniorCheck = false};
+    }, 500);
   }
 }
 function checkArrow() {
@@ -127,37 +151,48 @@ function checkArrow() {
 
 kind.addEventListener("click", () => {
   selectOption(kind, 1);
-  checkOption(jongvolwassene, 2);
-  checkOption(volwassene, 3);
-  checkOption(senior, 4);
+  checkOption(jongvolwassene, 2, jongvolwasseneCheck);
+  checkOption(volwassene, 3, volwasseneCheck);
+  checkOption(senior, 4, seniorCheck);
   checkArrow();
+  localStorage.setItem("age", "kind");
 });
+if ((localStorage.getItem("age") == "kind")) {
+  setTimeout(function() {
+    localStorage.setItem("age", "kind");
+  }, 500);
+}
 jongvolwassene.addEventListener("click", () => {
   selectOption(jongvolwassene, 2);
-  checkOption(kind, kindCheck);
-  checkOption(volwassene, volwasseneCheck);
-  checkOption(senior, seniorCheck);
+  checkOption(kind, 1, kindCheck);
+  checkOption(volwassene, 3, volwasseneCheck);
+  checkOption(senior, 4, seniorCheck);
   checkArrow();
+  localStorage.setItem("age", "jongvolwassene");
 });
 volwassene.addEventListener("click", () => {
   selectOption(volwassene, 3);
-  checkOption(kind, kindCheck);
-  checkOption(jongvolwassene, jongvolwasseneCheck);
-  checkOption(senior, seniorCheck);
+  checkOption(kind, 1, kindCheck);
+  checkOption(jongvolwassene, 2, jongvolwasseneCheck);
+  checkOption(senior, 4, seniorCheck);
   checkArrow();
+  localStorage.setItem("age", "volwassene");
 });
 senior.addEventListener("click", () => {
   selectOption(senior, 4);
-  checkOption(kind, kindCheck);
-  checkOption(jongvolwassene, jongvolwasseneCheck);
-  checkOption(volwassene, volwasseneCheck);
+  checkOption(kind, 1, kindCheck);
+  checkOption(jongvolwassene, 2, jongvolwasseneCheck);
+  checkOption(volwassene, 3, volwasseneCheck);
   checkArrow();
+  localStorage.setItem("age", "senior");
 });
 
+localStorage.setItem("gender", "none");
+localStorage.setItem("age", "none");
+
+console.log(localStorage);
 
 setInterval(function() {
-  console.log(myUrl);
+  console.log(localStorage.getItem("gender") == "man");
+  console.log(localStorage.getItem("gender"), localStorage.getItem("age"), (age.style.display == "flex"), (localStorage.getItem("age") == "kind") && (age.style.display == "flex"));
 }, 3000);
-
-
-

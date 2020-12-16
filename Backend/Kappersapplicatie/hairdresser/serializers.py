@@ -44,10 +44,9 @@ class ReserveringSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservering
         fields = ('id',
-                  'gehelebehandeling',
-                  'behandeling',
-                  'klant')
-
+                  'behandeling_id',
+                  'klant_id'
+                  'geheletijdsduur',)
 
 class AuthorSerializer(serializers.ModelSerializer):
 
