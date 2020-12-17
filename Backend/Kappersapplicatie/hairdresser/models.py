@@ -1,11 +1,14 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
     
 class Klant(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
+    naam = models.CharField(max_length=255)
+    email = models.EmailField(max_length=254)
+    leeftijd = models.CharField(max_length=3, default='' )
+    telefoon = PhoneNumberField(null=False, blank=False, unique=True, default='')
     geslacht = models.CharField(max_length=1)
-    leeftijdscategorie = models.CharField(max_length=25, default='')
+
 
 class Leeftijd(models.Model):
     nulelf = models.CharField(max_length=1)

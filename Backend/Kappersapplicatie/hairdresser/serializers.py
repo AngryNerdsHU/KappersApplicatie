@@ -6,10 +6,11 @@ class KlantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Klant
         fields = ('id',
-                  'name',
+                  'naam',
                   'email',
-                  'geslacht',
-                  'leeftijdscategorie',)
+                  'leeftijd',
+                  'telefoon'
+                  'geslacht',)
 
 class LeeftijdSerializer(serializers.ModelSerializer):
 
