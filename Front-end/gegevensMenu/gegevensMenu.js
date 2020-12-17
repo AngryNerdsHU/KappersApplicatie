@@ -13,16 +13,16 @@ const volwassene = document.querySelector("#volwassene");
 const senior = document.querySelector("#senior");
 const ageImage = document.querySelectorAll(".ageImage");
 
-let nextCheck = 0;
-let ageClickable = 0;
-let manCheck = 0;
-let vrouwCheck = 0;
-let arrowCheck = 0;
-let speed = 1;
-let kindCheck = false;
-let jongvolwasseneCheck = false;
-let volwasseneCheck = false;
-let seniorCheck = false;
+let nextCheck = 0,
+    ageClickable = 0,
+    manCheck = 0,
+    vrouwCheck = 0,
+    arrowCheck = 0,
+    speed = 1,
+    kindCheck = false,
+    jongvolwasseneCheck = false,
+    volwasseneCheck = false,
+    seniorCheck = false;
 
 age.style.display = "none";
 breakLine.style.display = "none";
