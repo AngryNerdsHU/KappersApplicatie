@@ -68,4 +68,5 @@ body {
 .arrows {
   position: absolute;
   bottom: 60px;
+  display: flex;
 }

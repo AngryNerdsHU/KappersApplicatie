@@ -31,6 +31,10 @@ vrouw.style.opacity = .5;
 leftArrow.style.opacity = .5;
 rightArrow.style.opacity = .5;
 
+function showAge() {
+
+};
+
 const tl = new TimelineMax();
 
 tl.fromTo(title, speed, {y: "-200%"}, {y: "0%"})
@@ -38,54 +42,26 @@ tl.fromTo(man, speed, {transform: "scale(0)", opacity: 0}, {transform: "scale(1)
 tl.fromTo(man, speed, {x: "-300%"}, {x: "0%"}, "-=1")
 tl.fromTo(vrouw, speed, {transform: "scale(0)", opacity: 0}, {transform: "scale(1)", opacity: .5}, "-=1")
 tl.fromTo(vrouw, speed, {x: "300%"}, {x: "0%"}, "-=1")
-tl.fromTo(leftArrow, speed, {x: "-300%"}, {x: "0%"}, "-=1")
-tl.fromTo(rightArrow, speed, {x: "300%"}, {x: "0%"}, "-=1")
+leftArrow.style.display = "none";
+rightArrow.style.display = "none";
 
 man.addEventListener("click", () => {
-  tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
-  if (vrouwCheck == 1) {
-    tl.fromTo(vrouw, .5, {transform: "scale(1.05)", opacity: 1}, {transform: "scale(1)", opacity: .5}, "-=.5")
-    vrouwCheck = 0;
-  }
-  manCheck = 1;
-  if (arrowCheck == 0) {
-    rightArrow.style.cursor = "pointer";
-    tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=1")
-    arrowCheck = 1;
+  if (age.style.display == "flex") {
+    tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)",     opacity: 1})
+    if (vrouwCheck == 1) {
+      tl.fromTo(vrouw, .5, {transform: "scale(1.05)", opacity: 1}, {transform: "scale(1)", opacity: .5}, "-=.5")
+      vrouwCheck = 0;
+    }
+    manCheck = 1;
+    if (arrowCheck == 0) {
+      rightArrow.style.cursor = "pointer";
+      tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=1")
+      arrowCheck = 1;
+    }
   }
   localStorage.setItem("gender", "man");
-});
-if (localStorage.getItem("gender") == "man") {
-  tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-  setTimeout(function() {
-    localStorage.setItem("gender", "man");
-  }, 500);
-  manCheck = 1;
-}
-vrouw.addEventListener("click", () => {
-  tl.fromTo(vrouw, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
-  if (manCheck == 1) {
-    tl.fromTo(man, .5, {transform: "scale(1.05)", opacity: 1}, {transform: "scale(1)", opacity: .5}, "-=.5")
-    manCheck = 0;
-  }
-  vrouwCheck = 1;
-  if (arrowCheck == 0) {
-    tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=1")
-    arrowCheck = 1;
-  }
-  localStorage.setItem("gender", "vrouw");
-  console.log(localStorage.getItem("gender"));
-});
-if (localStorage.getItem("gender") == "vrouw") {
-  tl.fromTo(vrouw, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-  setTimeout(function() {
-    localStorage.setItem("gender", "vrouw");
-  }, 500);
-  vrouwCheck = 1;
-}
-rightArrow.addEventListener("click", () => {
-  if (arrowCheck == 1) {
-    tl.fromTo(rightArrow, speed, {opacity: "1"}, {opacity: ".5"})
+  if (age.style.display != "flex") {
+    tl.fromTo(rightArrow, speed, {opacity: "1"}, {opacity: ".5"}, "-=1")
     man.style.width = "240px";
     man.style.height = "240px";
     vrouw.style.width = "240px";
@@ -100,6 +76,10 @@ rightArrow.addEventListener("click", () => {
     tl.fromTo(man, speed, {x: "-80px"}, {x: "0px"}, "-=1")
     tl.fromTo(vrouw, speed, {x: "60px"}, {x: "0px"}, "-=1")
     age.style.display = "flex";
+    leftArrow.style.display = "flex";
+    rightArrow.style.display = "flex";
+    tl.fromTo(leftArrow, speed, {x: "-300%"}, {x: "0%"})
+    tl.fromTo(rightArrow, speed, {x: "300%"}, {x: "0%"}, "-=1")
     for (var i = 0; i < ageImage.length; i++) {
       tl.fromTo(ageImage[i], speed, {transform: "scale(0)", opacity: "0"}, {transform: "scale(1)", opacity: ".5"}, "-=1");
     }
@@ -109,10 +89,78 @@ rightArrow.addEventListener("click", () => {
       breakLine.style.display = "block";
     }, 500);
     tl.fromTo(breakLine, speed, {scaleX: "0", opacity: "0"}, {scaleX: "1", opacity: "1"})
+    tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)",     opacity: 1})
+    manCheck = 1;
     if ((localStorage.getItem("age") == "kind")) {
       tl.fromTo(kind, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
     }
-  } else if (arrowCheck == 2) {
+  }
+});
+if (localStorage.getItem("gender") == "man") {
+  tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+  setTimeout(function() {
+    localStorage.setItem("gender", "man");
+  }, 500);
+  manCheck = 1;
+}
+vrouw.addEventListener("click", () => {
+  if (age.style.display == "flex") {
+    tl.fromTo(vrouw, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)",     opacity: 1})
+    if (manCheck == 1) {
+      tl.fromTo(man, .5, {transform: "scale(1.05)", opacity: 1}, {transform: "scale(1)", opacity: .5}, "-=.5")
+      manCheck = 0;
+    }
+    vrouwCheck = 1;
+    if (arrowCheck == 0) {
+      rightArrow.style.cursor = "pointer";
+      tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=1")
+      arrowCheck = 1;
+    }
+  }
+  localStorage.setItem("gender", "vrouw");
+  if (age.style.display != "flex") {
+    tl.fromTo(rightArrow, speed, {opacity: "1"}, {opacity: ".5"}, "-=1")
+    man.style.width = "240px";
+    man.style.height = "240px";
+    vrouw.style.width = "240px";
+    vrouw.style.height = "240px";
+    if (vrouwCheck == 1) {
+      tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
+      tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"}, "-=1")
+    } else {
+      tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"})
+      tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
+    }
+    tl.fromTo(man, speed, {x: "-80px"}, {x: "0px"}, "-=1")
+    tl.fromTo(vrouw, speed, {x: "60px"}, {x: "0px"}, "-=1")
+    age.style.display = "flex";
+    
+    for (var i = 0; i < ageImage.length; i++) {
+      tl.fromTo(ageImage[i], speed, {transform: "scale(0)", opacity: "0"}, {transform: "scale(1)", opacity: ".5"}, "-=1");
+    }
+    tl.fromTo(gender, speed, {y: "0%"}, {y: "-40%"})
+    tl.fromTo(age, speed, {y: "0%"}, {y: "40%"}, "-=1")
+    setTimeout(function() {
+      breakLine.style.display = "block";
+    }, 500);
+    tl.fromTo(breakLine, speed, {scaleX: "0", opacity: "0"}, {scaleX: "1", opacity: "1"})
+    tl.fromTo(vrouw, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)",     opacity: 1})
+    vrouwCheck = 1;
+    if ((localStorage.getItem("age") == "kind")) {
+      tl.fromTo(kind, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+    }
+  }
+});
+if (localStorage.getItem("gender") == "vrouw") {
+  tl.fromTo(vrouw, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+  setTimeout(function() {
+    localStorage.setItem("gender", "vrouw");
+  }, 500);
+  vrouwCheck = 1;
+}
+
+rightArrow.addEventListener("click", () => {
+  if (arrowCheck == 2) {
     window.location.assign("../handelingsMenu/handelingsMenu.html");
   }
 });
