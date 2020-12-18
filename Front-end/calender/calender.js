@@ -122,7 +122,7 @@ let hour = "";
 
 for (let j = 1; j <= 63; j++) {
   if(j<8) {
-    hour += '<div id="9-10">9:00-10:00</div>';
+    hour += "<div id="+"9-10,"+j+">9:00-10:00</div>";
   }
   else if(j<15) {
     hour += '<div>10:00-11:00</div>';
