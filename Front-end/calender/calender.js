@@ -1,5 +1,4 @@
-const date = new Date();
-
+// Arrays
 const maanden = [
   "Januari",
   "Februari",
@@ -14,18 +13,32 @@ const maanden = [
   "November",
   "December"
 ];
-
 const dagen = [
-  "Zo",
   "Ma",
   "Di",
   "Wo",
   "Do",
   "Vrij",
-  "Za"
+  "Za",
+  "Zo"
 ];
 
-// weeknummerfunctie
+// Variables
+const date = new Date(),
+      calenderHours = document.querySelector("#calenderHours"),
+      firstDay = document.querySelector("#firstDay"), 
+      lastDay = document.querySelector("#lastDay"),
+      nextArrow = document.querySelector("#next"),
+      prevArrow = document.querySelector("#prev");
+
+let firstDate = getMonday(date),
+    lastDate = getSunday(date),
+    clickAmount = 1,
+    nextCheck = true,
+    prevCheck = false,
+    hour = "";
+
+// WeeknumberFunction
 function getWeekNumber(d) {
   d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
   d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
@@ -33,42 +46,63 @@ function getWeekNumber(d) {
   var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
   return weekNo;
 }
-
 var weeknummer = getWeekNumber(new Date());
 
-document.querySelector(".next").addEventListener("click", () => {
+// Weekmenu
+nextArrow.addEventListener("click", () => {
+  //weeknumber
   weeknummer++;
-  if (weeknummer > 53) {
-    weeknummer = 1;
-  }
+  if (weeknummer > 53) {weeknummer = 1}
   document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
-  let oldTable = document.getElementsByClassName('calenderHours')
-  oldTable.innerHTML = '';
   createTable();
-  console.log(weeknummer)
-});
-document.querySelector(".prev").addEventListener("click", () => {
-  weeknummer--;
-  if (weeknummer < 1) {
-    weeknummer = 53;
-  }
-  document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
+
+  //weekdays
+  if (prevCheck == true) {clickAmount = clickAmount + 2};
+  const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
+  const addWeekS = getSunday(date).getDate() + (7 * clickAmount);
+  firstDate.setDate(addWeekM);
+  lastDate.setDate(addWeekS);
+  clickAmount++;
+  firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
+  lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
+  firstDate = new Date();
+  lastDate = new Date();
+  nextCheck = true;
+  prevCheck = false;
+
+  //hourStorage
+  Today();
 });
 
+prevArrow.addEventListener("click", () => {
+  //weeknumber
+  weeknummer--;
+  if (weeknummer < 1) {weeknummer = 53}
+  document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
+  createTable();
+
+  //weekdays
+  if (nextCheck == true) {clickAmount = clickAmount - 2}
+  const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
+  const addWeekS = getSunday(date).getDate() + (7 * clickAmount);
+  firstDate.setDate(addWeekM);
+  lastDate.setDate(addWeekS);
+  clickAmount--;
+  firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
+  lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
+  firstDate = new Date();
+  lastDate = new Date();
+  prevCheck = true;
+  nextCheck = false;
+
+  //hourStorage
+  Today();
+});
+firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
+lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
 document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
 
-// Weekdagen
-const firstDay = document.querySelector("#firstDay"), 
-      lastDay = document.querySelector("#lastDay"),
-      nextArrow = document.querySelector("#next"),
-      prevArrow = document.querySelector("#prev");
-
-let firstDate = getMonday(date),
-    lastDate = getSunday(date);
-    clickAmount = 1;
-    nextCheck = true;
-    prevCheck = false;
-
+// Functions
 function getMonday(d) {
   d = new Date(d);
   var day = d.getDay(),
@@ -86,81 +120,54 @@ function weekMonth(day) {
   if (day == 1) {return lastDate.toLocaleString("default", { month: "short"})}
 }
 
-nextArrow.addEventListener("click", function() {
-  if (prevCheck == true) {clickAmount = clickAmount + 2};
-  const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
-  const addWeekS = getSunday(date).getDate() + (7 * clickAmount);
-  firstDate.setDate(addWeekM);
-  lastDate.setDate(addWeekS);
-  clickAmount++;
-  firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
-  lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
-  firstDate = new Date();
-  lastDate = new Date();
-  nextCheck = true;
-  prevCheck = false;
-});
-prevArrow.addEventListener("click", function() {
-  if (nextCheck == true) {clickAmount = clickAmount - 2}
-  const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
-  const addWeekS = getSunday(date).getDate() + (7 * clickAmount);
-  firstDate.setDate(addWeekM);
-  lastDate.setDate(addWeekS);
-  clickAmount--;
-  firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
-  lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
-  firstDate = new Date();
-  lastDate = new Date();
-  prevCheck = true;
-  nextCheck = false;
-});
 
-firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
-lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
 
 // Uren
-
-const calenderHours = document.querySelector(".calenderHours");
-
-let hour = "";
-
-
 function createTable() {
-
+  hour = " ";
   for (let j = 1; j <= 63; j++) {
     if(j<8) {
-      hour += '<div id="'+weeknummer+'9-10">9:00-10:00</div>';
+      hour += "<div id="+(dagen[j-1])+weeknummer+"-9"+">9:00-10:00</div>";
     }
     else if(j<15) {
-      hour += '<div>10:00-11:00</div>';
+      hour += "<div id="+(dagen[j-7-1])+weeknummer+"-10"+">10:00-11:00</div>";
     }
     else if(j<22) {
-      hour += '<div>11:00-12:00</div>';
+      hour += "<div id="+(dagen[j-7*2-1])+weeknummer+"-11"+">11:00-12:00</div>";
     }
     else if(j<29) {
-      hour += '<div>12:00-13:00</div>';
+      hour += "<div id="+(dagen[j-7*3-1])+weeknummer+"-12"+">12:00-13:00</div>";
     }
     else if(j<36) {
-      hour += '<div>13:00-14:00</div>';
+      hour += "<div id="+(dagen[j-7*4-1])+weeknummer+"-13"+">13:00-14:00</div>";
     }
     else if(j<43) {
-      hour += '<div>14:00-15:00</div>';
+      hour += "<div id="+(dagen[j-7*5-1])+weeknummer+"-14"+">14:00-15:00</div>";
     }
     else if(j<50) {
-      hour += '<div>15:00-16:00</div>';
+      hour += "<div id="+(dagen[j-7*6-1])+weeknummer+"-15"+">15:00-16:00</div>";
     }
     else if(j<57) {
-      hour += '<div>16:00-17:00</div>';
+      hour += "<div id="+(dagen[j-7*7-1])+weeknummer+"-16"+">16:00-17:00</div>";
     }
     else if(j<64) {
-      hour += '<div>17:00-18:00</div>';
+      hour += "<div id="+(dagen[j-7*8-1])+weeknummer+"-17"+">17:00-18:00</div>";
     }
     calenderHours.innerHTML = hour;
   }
-}
+};
+createTable();
 
-createTable()
-
+//Vandaag
+function Today() {
+  const todayDate = new Date(2020, 11, 20);
+  const today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
+  console.log(todayDate.getDay(), (todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)));
+  const blok = document.querySelectorAll('[id^='+today+']');
+  Array.from(blok, e => e.style.backgroundColor = "#50c090");
+  document.querySelector("#Di52-10").style.color = "red";
+};
+Today();
 
 // setInterval(() => {
 //   console.log(localStorage)
