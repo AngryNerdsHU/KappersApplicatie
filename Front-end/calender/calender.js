@@ -124,10 +124,10 @@ function weekMonth(day) {
 
 // Uren
 function createTable() {
-  hour = " ";
+  hour = "";
   for (let j = 1; j <= 63; j++) {
     if(j<8) {
-      hour += "<div id="+(dagen[j-1])+weeknummer+"-9"+">9:00-10:00</div>";
+      hour += "<div class=hours id="+(dagen[j-1])+weeknummer+"-9"+">9:00-10:00</div>";
     }
     else if(j<15) {
       hour += "<div id="+(dagen[j-7-1])+weeknummer+"-10"+">10:00-11:00</div>";
@@ -158,16 +158,37 @@ function createTable() {
 };
 createTable();
 
+
+
+
+function SelectDate() {
+  let firstday = firstDay.innerHTML;
+  let lastday = lastDay.innerHTML;
+  console.log(firstday + " " + lastday)
+}
+
+setInterval(() => {
+  console.log(firstDay.innerHTML);
+  console.log(lastDay.innerHTML);
+  SelectDate();
+  }, 3000);
+
+
+
 //Vandaag
 function Today() {
-  const todayDate = new Date(2020, 11, 20);
+  const todayDate = new Date();
   const today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
   console.log(todayDate.getDay(), (todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)));
   const blok = document.querySelectorAll('[id^='+today+']');
   Array.from(blok, e => e.style.backgroundColor = "#50c090");
-  document.querySelector("#Di52-10").style.color = "red";
 };
 Today();
+
+function pickDate() {
+  
+}
+
 
 // setInterval(() => {
 //   console.log(localStorage)
