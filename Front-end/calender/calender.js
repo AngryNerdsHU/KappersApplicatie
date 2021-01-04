@@ -18,7 +18,7 @@ const dagen = [
   "Di",
   "Wo",
   "Do",
-  "Vrij",
+  "Vr",
   "Za",
   "Zo"
 ];
@@ -30,6 +30,15 @@ const date = new Date(),
       lastDay = document.querySelector("#lastDay"),
       nextArrow = document.querySelector("#next"),
       prevArrow = document.querySelector("#prev");
+      leftArrow = document.querySelector("#leftArrow");
+      rightArrow = document.querySelector("#rightArrow");
+      Ma = "Maandag";
+      Di = "Dinsdag";
+      Wo = "Woensdag";
+      Do = "Donderdag";
+      Vr = "Vrijdag";
+      Za = "Zaterdag"
+      Zo = "Zondag";
 
 let firstDate = getMonday(date),
     lastDate = getSunday(date),
@@ -127,31 +136,31 @@ function createTable() {
   hour = " ";
   for (let j = 1; j <= 63; j++) {
     if(j<8) {
-      hour += "<div id="+(dagen[j-1])+weeknummer+"-9"+">9:00-10:00</div>";
+      hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" onClick='isClicked(this.id)'>9:00-10:00</div>";
     }
     else if(j<15) {
-      hour += "<div id="+(dagen[j-7-1])+weeknummer+"-10"+">10:00-11:00</div>";
+      hour += "<div id="+(dagen[j-7-1])+"-"+weeknummer+"-10"+" onClick='isClicked(this.id)'>10:00-11:00</div>";
     }
     else if(j<22) {
-      hour += "<div id="+(dagen[j-7*2-1])+weeknummer+"-11"+">11:00-12:00</div>";
+      hour += "<div id="+(dagen[j-7*2-1])+"-"+weeknummer+"-11"+" onClick='isClicked(this.id)'>11:00-12:00</div>";
     }
     else if(j<29) {
-      hour += "<div id="+(dagen[j-7*3-1])+weeknummer+"-12"+">12:00-13:00</div>";
+      hour += "<div id="+(dagen[j-7*3-1])+"-"+weeknummer+"-12"+" onClick='isClicked(this.id)'>12:00-13:00</div>";
     }
     else if(j<36) {
-      hour += "<div id="+(dagen[j-7*4-1])+weeknummer+"-13"+">13:00-14:00</div>";
+      hour += "<div id="+(dagen[j-7*4-1])+"-"+weeknummer+"-13"+" onClick='isClicked(this.id)'>13:00-14:00</div>";
     }
     else if(j<43) {
-      hour += "<div id="+(dagen[j-7*5-1])+weeknummer+"-14"+">14:00-15:00</div>";
+      hour += "<div id="+(dagen[j-7*5-1])+"-"+weeknummer+"-14"+" onClick='isClicked(this.id)'>14:00-15:00</div>";
     }
     else if(j<50) {
-      hour += "<div id="+(dagen[j-7*6-1])+weeknummer+"-15"+">15:00-16:00</div>";
+      hour += "<div id="+(dagen[j-7*6-1])+"-"+weeknummer+"-15"+" onClick='isClicked(this.id)'>15:00-16:00</div>";
     }
     else if(j<57) {
-      hour += "<div id="+(dagen[j-7*7-1])+weeknummer+"-16"+">16:00-17:00</div>";
+      hour += "<div id="+(dagen[j-7*7-1])+"-"+weeknummer+"-16"+" onClick='isClicked(this.id)'>16:00-17:00</div>";
     }
     else if(j<64) {
-      hour += "<div id="+(dagen[j-7*8-1])+weeknummer+"-17"+">17:00-18:00</div>";
+      hour += "<div id="+(dagen[j-7*8-1])+"-"+weeknummer+"-17"+" onClick='isClicked(this.id)'>17:00-18:00</div>";
     }
     calenderHours.innerHTML = hour;
   }
@@ -160,14 +169,57 @@ createTable();
 
 //Vandaag
 function Today() {
-  const todayDate = new Date(2020, 11, 20);
+  const todayDate = new Date();
   const today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
-  console.log(todayDate.getDay(), (todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)));
+  // console.log(todayDate.getDay(), (todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)));
   const blok = document.querySelectorAll('[id^='+today+']');
   Array.from(blok, e => e.style.backgroundColor = "#50c090");
-  document.querySelector("#Di52-10").style.color = "red";
+  // document.querySelector("#Di52-10").style.color = "red";
 };
 Today();
+
+// Tijdhokje reserveren
+// document.addEventListener("click", () => {
+//   document.querySelector("#Za1-10").style.backgroundColor = "#407090";
+// });
+let selectedDay;
+let selectedTime;
+let selectedDate = new Date();
+selectedDate.setDate(selectedDate.getDate() + 6);
+
+function isClicked(clickedID) {
+  selectedID = document.querySelector("#"+clickedID+"");
+  selectedID.style.backgroundColor = "#407090";
+  var splitArray = clickedID.split("-");
+  selectedDay = splitArray[0];
+  selectedTime = splitArray[2];
+  console.log(clickedID, splitArray, selectedDay);
+}
+
+var fullDaysNames = {
+  Ma: "Maandag",
+  Di: "Dinsdag",
+  Wo: "Woensdag",
+  Do: "Donderdag",
+  Vr: "Vrijdag",
+  Za: "Zaterdag",
+  Zo: "Zondag"
+};
+
+console.log(new Date(2021, 0, 4));
+console.log(lastDate);
+console.log(selectedDate);
+
+rightArrow.addEventListener("click", () => {
+  localStorage.setItem("dag", ""+fullDaysNames[""+selectedDay+""]+"");
+  localStorage.setItem("datum", ""+date.getDate()+" "+maanden[date.getMonth()]+"");
+  localStorage.setItem("tijd", ""+selectedTime+":00 - "+(parseInt(selectedTime)+1)+":00");
+});
+
+document.querySelector("#Zo-1-9").addEventListener("click", () => {
+  localStorage.clear();
+  console.log("pizza");
+});
 
 // setInterval(() => {
 //   console.log(localStorage)
