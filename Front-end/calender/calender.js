@@ -129,35 +129,41 @@ function createTable() {
 
   for (let j = 1; j <= 63; j++) {
     if(j<8) {
-      hour += '<div id="'+weeknummer+'9-10">9:00-10:00</div>';
+      hour += '<div class="maandag">9:00-10:00</div>';
     }
     else if(j<15) {
-      hour += '<div>10:00-11:00</div>';
+      hour += '<div class="'+weeknummer+'>10:00-11:00</div>';
     }
     else if(j<22) {
-      hour += '<div>11:00-12:00</div>';
+      hour += '<div class="'+weeknummer+'>11:00-12:00</div>';
     }
     else if(j<29) {
-      hour += '<div>12:00-13:00</div>';
+      hour += '<div class="'+weeknummer+'>12:00-13:00</div>';
     }
     else if(j<36) {
-      hour += '<div>13:00-14:00</div>';
+      hour += '<div class="'+weeknummer+'>13:00-14:00</div>';
     }
     else if(j<43) {
-      hour += '<div>14:00-15:00</div>';
+      hour += '<div class="'+weeknummer+'>14:00-15:00</div>';
     }
     else if(j<50) {
-      hour += '<div>15:00-16:00</div>';
+      hour += '<div class="'+weeknummer+'>15:00-16:00</div>';
     }
     else if(j<57) {
-      hour += '<div>16:00-17:00</div>';
+      hour += '<div class="'+weeknummer+'>16:00-17:00</div>';
     }
     else if(j<64) {
-      hour += '<div>17:00-18:00</div>';
+      hour += '<div class="'+weeknummer+'>17:00-18:00</div>';
     }
     calenderHours.innerHTML = hour;
   }
 }
+
+let maandag = document.getElementsByClassName("maandag");
+console.log(maandag)
+
+
+console.log(hour)
 
 createTable()
 
