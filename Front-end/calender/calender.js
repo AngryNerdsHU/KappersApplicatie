@@ -184,19 +184,29 @@ Today();
 // });
 let selectedDay;
 let selectedTime;
-let selectedDate = new Date();
-selectedDate.setDate(selectedDate.getDate() + 6);
+let FirstDate;
+let selectedDate = FirstDate;
+let splitArray;
 
 function isClicked(clickedID) {
+  getFirstDate();
   selectedID = document.querySelector("#"+clickedID+"");
   selectedID.style.backgroundColor = "#407090";
-  var splitArray = clickedID.split("-");
+  splitArray = clickedID.split("-");
   selectedDay = splitArray[0];
   selectedTime = splitArray[2];
   console.log(clickedID, splitArray, selectedDay);
+  console.log(selectedDate);
+  selectedDate.setDate(selectedDate.getDate() + 1);
+}
+function getFirstDate() {
+  const dateFirst = firstDay.innerHTML;
+  const firstDateArray = dateFirst.split(" ");
+  const shortMonth = monthShort[firstDateArray[1]];
+  FirstDate = new Date(2021, shortMonth, firstDateArray[0]);
 }
 
-var fullDaysNames = {
+const fullDaysNames = {
   Ma: "Maandag",
   Di: "Dinsdag",
   Wo: "Woensdag",
@@ -205,15 +215,37 @@ var fullDaysNames = {
   Za: "Zaterdag",
   Zo: "Zondag"
 };
+const monthShort = {
+  "jan.": 0,
+  "feb.": 1,
+  "mrt.": 2,
+  "apr.": 3,
+  "mei": 4,
+  "jun.": 5,
+  "jul.": 6,
+  "aug.": 7,
+  "sep.": 8,
+  "okt.": 9,
+  "nov.": 10,
+  "dec.": 11
+};
+const dayNumber = {
+  "Ma": 0,
+  "Di": 1,
+  "Wo": 2,
+  "Do": 3,
+  "Vr": 4,
+  "Za": 5,
+  "Zo": 6
+};
 
-console.log(new Date(2021, 0, 4));
-console.log(lastDate);
-console.log(selectedDate);
+
 
 rightArrow.addEventListener("click", () => {
-  localStorage.setItem("dag", ""+fullDaysNames[""+selectedDay+""]+"");
+  localStorage.setItem("dag", ""+fullDaysNames[selectedDay]+"");
   localStorage.setItem("datum", ""+date.getDate()+" "+maanden[date.getMonth()]+"");
   localStorage.setItem("tijd", ""+selectedTime+":00 - "+(parseInt(selectedTime)+1)+":00");
+  console.log(localStorage);
 });
 
 document.querySelector("#Zo-1-9").addEventListener("click", () => {
@@ -221,7 +253,7 @@ document.querySelector("#Zo-1-9").addEventListener("click", () => {
   console.log("pizza");
 });
 
-// setInterval(() => {
-//   console.log(localStorage)
-// }, 3000)
+setInterval(() => {
+  console.log(selectedDate, FirstDate)
+}, 3000)
 
