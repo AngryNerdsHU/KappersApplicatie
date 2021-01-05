@@ -136,7 +136,7 @@ function createTable() {
   hour = "";
   for (let j = 1; j <= 63; j++) {
     if(j<8) {
-      hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" onClick='isClicked(this.id)'>9:00-10:00</div>";
+      hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" onClick='isClicked(this.id)' class='active'>9:00-10:00</div>";
     }
     else if(j<15) {
       hour += "<div id="+(dagen[j-7-1])+"-"+weeknummer+"-10"+" onClick='isClicked(this.id)'>10:00-11:00</div>";
@@ -186,19 +186,29 @@ Today();
 // });
 let selectedDay;
 let selectedTime;
+let FirstDate;
 let selectedDate = new Date();
-selectedDate.setDate(selectedDate.getDate() + 6);
+let splitArray;
 
 function isClicked(clickedID) {
+  getFirstDate();
   selectedID = document.querySelector("#"+clickedID+"");
-  selectedID.style.backgroundColor = "#407090";
-  var splitArray = clickedID.split("-");
+  const allDivs = document.getElementById("calenderHours").querySelectorAll(".active");
+  allDivs.style.backgroundColor = "#404040";
+  selectedID.classList.add("active");
+  splitArray = clickedID.split("-");
   selectedDay = splitArray[0];
   selectedTime = splitArray[2];
-  console.log(clickedID, splitArray, selectedDay);
+  selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
+}
+function getFirstDate() {
+  const dateFirst = firstDay.innerHTML;
+  const firstDateArray = dateFirst.split(" ");
+  const shortMonth = monthShort[firstDateArray[1]];
+  FirstDate = new Date(2021, shortMonth, firstDateArray[0]);
 }
 
-var fullDaysNames = {
+const fullDaysNames = {
   Ma: "Maandag",
   Di: "Dinsdag",
   Wo: "Woensdag",
@@ -207,25 +217,37 @@ var fullDaysNames = {
   Za: "Zaterdag",
   Zo: "Zondag"
 };
+const monthShort = {
+  "jan.": 0,
+  "feb.": 1,
+  "mrt.": 2,
+  "apr.": 3,
+  "mei": 4,
+  "jun.": 5,
+  "jul.": 6,
+  "aug.": 7,
+  "sep.": 8,
+  "okt.": 9,
+  "nov.": 10,
+  "dec.": 11
+};
+const dayNumber = {
+  "Ma": 0,
+  "Di": 1,
+  "Wo": 2,
+  "Do": 3,
+  "Vr": 4,
+  "Za": 5,
+  "Zo": 6
+};
 
-function SelectDate() {
-  let firstday = firstDay.innerHTML;
-  let lastday = lastDay.innerHTML;
-  console.log(firstday + " " + lastday)
-  
-}
-
-setInterval(() => {
-  console.log(firstDay.innerHTML);
-  console.log(lastDay.innerHTML);
-  SelectDate();
-  }, 3000);
 
 
 rightArrow.addEventListener("click", () => {
-  localStorage.setItem("dag", ""+fullDaysNames[""+selectedDay+""]+"");
-  localStorage.setItem("datum", ""+date.getDate()+" "+maanden[date.getMonth()]+"");
+  localStorage.setItem("dag", ""+fullDaysNames[selectedDay]+"");
+  localStorage.setItem("datum", ""+selectedDate.getDate()+" "+maanden[selectedDate.getMonth()]+"");
   localStorage.setItem("tijd", ""+selectedTime+":00 - "+(parseInt(selectedTime)+1)+":00");
+  console.log(localStorage);
 });
 
 document.querySelector("#Zo-1-9").addEventListener("click", () => {
@@ -234,6 +256,6 @@ document.querySelector("#Zo-1-9").addEventListener("click", () => {
 });
 
 // setInterval(() => {
-//   console.log(localStorage)
+//   console.log(selectedDate, FirstDate)
 // }, 3000)
 
