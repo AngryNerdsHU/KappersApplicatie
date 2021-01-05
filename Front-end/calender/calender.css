@@ -137,3 +137,7 @@ body {
   color: black;
   cursor: pointer;
 }
+
+.active {
+  background-color: #407090;
+}

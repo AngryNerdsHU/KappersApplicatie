@@ -136,7 +136,7 @@ function createTable() {
   hour = " ";
   for (let j = 1; j <= 63; j++) {
     if(j<8) {
-      hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" onClick='isClicked(this.id)'>9:00-10:00</div>";
+      hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" onClick='isClicked(this.id)' class='active'>9:00-10:00</div>";
     }
     else if(j<15) {
       hour += "<div id="+(dagen[j-7-1])+"-"+weeknummer+"-10"+" onClick='isClicked(this.id)'>10:00-11:00</div>";
@@ -185,19 +185,19 @@ Today();
 let selectedDay;
 let selectedTime;
 let FirstDate;
-let selectedDate = FirstDate;
+let selectedDate = new Date();
 let splitArray;
 
 function isClicked(clickedID) {
   getFirstDate();
   selectedID = document.querySelector("#"+clickedID+"");
-  selectedID.style.backgroundColor = "#407090";
+  const allDivs = document.getElementById("calenderHours").querySelectorAll(".active");
+  allDivs.style.backgroundColor = "#404040";
+  selectedID.classList.add("active");
   splitArray = clickedID.split("-");
   selectedDay = splitArray[0];
   selectedTime = splitArray[2];
-  console.log(clickedID, splitArray, selectedDay);
-  console.log(selectedDate);
-  selectedDate.setDate(selectedDate.getDate() + 1);
+  selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
 }
 function getFirstDate() {
   const dateFirst = firstDay.innerHTML;
@@ -243,7 +243,7 @@ const dayNumber = {
 
 rightArrow.addEventListener("click", () => {
   localStorage.setItem("dag", ""+fullDaysNames[selectedDay]+"");
-  localStorage.setItem("datum", ""+date.getDate()+" "+maanden[date.getMonth()]+"");
+  localStorage.setItem("datum", ""+selectedDate.getDate()+" "+maanden[selectedDate.getMonth()]+"");
   localStorage.setItem("tijd", ""+selectedTime+":00 - "+(parseInt(selectedTime)+1)+":00");
   console.log(localStorage);
 });
@@ -253,7 +253,7 @@ document.querySelector("#Zo-1-9").addEventListener("click", () => {
   console.log("pizza");
 });
 
-setInterval(() => {
-  console.log(selectedDate, FirstDate)
-}, 3000)
+// setInterval(() => {
+//   console.log(selectedDate, FirstDate)
+// }, 3000)
 
