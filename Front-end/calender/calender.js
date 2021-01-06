@@ -194,7 +194,7 @@ function isClicked(clickedID) {
   getFirstDate();
   selectedID = document.querySelector("#"+clickedID+"");
   const allDivs = document.getElementById("calenderHours").querySelectorAll(".active");
-  allDivs.style.backgroundColor = "#404040";
+//  allDivs.style.backgroundColor = "#404040";
   selectedID.classList.add("active");
   splitArray = clickedID.split("-");
   selectedDay = splitArray[0];
@@ -246,6 +246,7 @@ const dayNumber = {
 rightArrow.addEventListener("click", () => {
   localStorage.setItem("dag", ""+fullDaysNames[selectedDay]+"");
   localStorage.setItem("datum", ""+selectedDate.getDate()+" "+maanden[selectedDate.getMonth()]+"");
+
   localStorage.setItem("tijd", ""+selectedTime+":00 - "+(parseInt(selectedTime)+1)+":00");
   console.log(localStorage);
 });
