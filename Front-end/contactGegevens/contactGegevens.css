@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 66vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  margin: 3rem;
+  font-size: 3.5rem;
+}
+
+label {
+  font-size: 1.5rem;
+}
+input {
+  font-size: 1.5rem;
+}
+
+#arrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fa-chevron-left,
+.fa-chevron-right {
+  font-size: 4em;
+  margin: 1.5rem 4rem 0rem 4rem;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}

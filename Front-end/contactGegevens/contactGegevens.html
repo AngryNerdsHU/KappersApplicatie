@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>contactGegevens</title>
+  <link rel="stylesheet" href="contactGegevens.css"/>
+  <script src="contactGegevens.js" defer></script>
+  <script src="https://kit.fontawesome.com/00ddc597e2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>Vul uw contactgegevens in</h1>
+  <div id="inputField">
+    <form>
+      <label for="fname">Volledige Naam:</label>
+      <input type="text" id="fname" name="fname" title="Vul hier uw volledige naam in."><br><br>
+      <label for="email">e-mail adres:</label>
+      <input type="text" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Vul alstublieft een geldig e-mail adres in."><br><br>
+      <!-- <input type="submit"> -->
+    </form>
+    <div class="arrows">
+      <i alt="This is the left arrow" class="fas fa-chevron-left" id="leftArrow"></i> 
+      <i alt="This is the right arrow" class="fas fa-chevron-right" id="rightArrow"></i>
+    </div>
+  </div>
+</body>
+</html>
