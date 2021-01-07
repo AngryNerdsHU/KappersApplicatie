@@ -83,15 +83,6 @@ body {
 }
 
 /*#region InfoIcon*/
-#infoIcon_baard {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  cursor: pointer;
-  position: absolute;
-  z-index: 1;
-}
-
 .fa-info-circle {
   font-size: 2em;
   color: #70a6be;
@@ -163,7 +154,7 @@ body {
 }
 
 /*#endregion*/
-#infoPopup_baard {
+#infoPopup {
   width: 25%;
   height: 80%;
   border-radius: 20px;
@@ -175,7 +166,7 @@ body {
   margin: 5% 38%;
 }
 
-#infoPopup_baard header {
+#infoPopup header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -188,7 +179,7 @@ body {
   padding: 1rem 1rem 1rem 1rem;
 }
 
-#closeIcon_baard {
+#closeIcon {
   width: 30px;
   height: 30px;
   cursor: pointer;

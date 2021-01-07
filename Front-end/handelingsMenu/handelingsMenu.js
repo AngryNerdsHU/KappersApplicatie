@@ -1,6 +1,12 @@
 const infoIcon_baard = document.getElementById("Knippen_baard");
-const closeIcon_baard = document.getElementById("closeIcon_baard");
-const infoPopup_baard = document.getElementById("infoPopup_baard");
+const infoIcon_wassen = document.getElementById("wassen");
+const infoIcon_bijknippen = document.getElementById("bijknippen");
+const infoIcon_kort = document.getElementById("Knippen_kort");
+const infoIcon_krullen = document.getElementById("Knippen_krullen");
+const infoIcon_lang = document.getElementById("Knippen_lang");
+
+const closeIcon = document.getElementById("closeIcon");
+const infoPopup = document.getElementById("infoPopup");
 
 const item_knippen_baard = document.getElementById("item_knippen_baard");
 const item_wassen = document.getElementById("item_wassen");
@@ -18,8 +24,7 @@ const rightArrow = document.getElementById("rightArrow");
 
 aantal_behandelingen.innerHTML = behandelingsAantal;
 
-infoPopup_baard.style.display = "none";
-
+infoPopup.style.display = "none";
 
 
 
@@ -71,9 +76,9 @@ item_knippen_baard.addEventListener("click", () => {
   aantal_behandelingen.innerHTML = behandelingsAantal;
 });
 
-setInterval(() => {
-  console.log(behandelingenArr.indexOf("knippen_baard") == -1)
-}, 3000)
+// setInterval(() => {
+//   console.log(behandelingenArr.indexOf("knippen_baard") == -1)
+// }, 3000)
 
 item_wassen.addEventListener("click", () => {
   if (item_wassen.style.background != "rgb(56, 129, 72)") {
@@ -160,12 +165,34 @@ item_knippen_lang.addEventListener("click", () => {
   aantal_behandelingen.innerHTML = behandelingsAantal;
 });
 
+
+
 infoIcon_baard.addEventListener("click", () => {
-  infoPopup_baard.style.display = "block";
+  infoPopup.style.display = "block";
 });
 
-closeIcon_baard.addEventListener("click", () => {
-  infoPopup_baard.style.display = "none";
+infoIcon_wassen.addEventListener("click", () => {
+  infoPopup.style.display = "block";
+});
+
+infoIcon_bijknippen.addEventListener("click", () => {
+  infoPopup.style.display = "block";
+});
+
+infoIcon_kort.addEventListener("click", () => {
+  infoPopup.style.display = "block";
+});
+
+infoIcon_krullen.addEventListener("click", () => {
+  infoPopup.style.display = "block";
+});
+
+infoIcon_lang.addEventListener("click", () => {
+  infoPopup.style.display = "block";
+});
+
+closeIcon.addEventListener("click", () => {
+  infoPopup.style.display = "none";
 });
 
 leftArrow.addEventListener("click", () => {
@@ -177,10 +204,10 @@ leftArrow.addEventListener("click", () => {
 //   localStorage.clear();
 // }, 10000)
 
-setInterval(() => {
-  console.log(localStorage);
-}, 2000);
+// setInterval(() => {
+//   console.log(localStorage);
+// }, 2000);
 
-setInterval(() => {
-  console.log(behandelingenArr);
-}, 2000);
+// setInterval(() => {
+//   console.log(behandelingenArr);
+// }, 2000);
