@@ -173,9 +173,9 @@ leftArrow.addEventListener("click", () => {
 });
 
 
-setInterval(() => {
-  localStorage.clear();
-}, 10000)
+// setInterval(() => {
+//   localStorage.clear();
+// }, 10000)
 
 setInterval(() => {
   console.log(localStorage);

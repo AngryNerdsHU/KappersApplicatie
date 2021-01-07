@@ -58,6 +58,7 @@ man.addEventListener("click", () => {
       tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=1")
       arrowCheck = 1;
     }
+    console.log(localStorage);
   }
   localStorage.setItem("gender", "man");
   if (age.style.display != "flex") {

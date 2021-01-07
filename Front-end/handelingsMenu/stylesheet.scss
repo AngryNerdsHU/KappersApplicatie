@@ -36,20 +36,19 @@ body {
   width: 40%;
   height: 64%;
   display: block;
-  padding: .2em;
+  padding: 0.2em;
   position: relative;
   overflow: hidden;
   overflow-y: scroll;
 }
 
-.behandelingen::-webkit-scrollbar{
-    width: 0;
+.behandelingen::-webkit-scrollbar {
+  width: 0;
 }
 
 .simplebar-scrollbar:before {
-    background-color: rgb(102, 141, 173)
+  background-color: rgb(102, 141, 173);
 }
-
 
 .behandeling {
   display: inline-block;
@@ -64,18 +63,17 @@ body {
 .behandeling_image {
   width: 100%;
   height: auto;
-  padding: .5em;
+  padding: 0.5em;
   margin-left: auto;
   z-index: -1;
   border-radius: 50%;
   background-color: #fffafa;
 }
 
-
 .behandeling_container {
   position: relative;
 }
- 
+
 /*#region InfoIcon*/
 #infoIcon_baard {
   display: flex;
@@ -96,7 +94,6 @@ body {
   background: rgb(255, 255, 255);
 }
 
-
 .fa-caret-down {
   font-size: 4em;
 }
@@ -109,24 +106,28 @@ body {
   height: 50px;
 }
 
-.aantal_behandelingen{
+.aantal_behandelingen {
   display: block;
   text-align: right;
   margin-right: 32%;
-  padding: .5em;
+  padding: 0.5em;
 }
 
-#behandelingsAantal{
+#behandelingsAantal {
   color: green;
   font-weight: bold;
 }
 
-.fa-chevron-left, .fa-chevron-right {
+.fa-chevron-left,
+.fa-chevron-right {
   font-size: 4em;
   padding: 0rem 4rem 0rem 4rem;
   margin-top: 10px;
   text-decoration: none;
   color: black;
+}
+.fa-chevron-left {
+  cursor: pointer;
 }
 
 .arrows {
@@ -161,6 +162,5 @@ body {
 #description_baard {
   margin: 1rem;
 }
-
 
 /*#endregion*/
