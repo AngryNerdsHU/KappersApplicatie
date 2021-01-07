@@ -133,7 +133,7 @@ function weekMonth(day) {
 
 // Uren
 function createTable() {
-  hour = " ";
+  hour = "";
   for (let j = 1; j <= 63; j++) {
     if(j<8) {
       hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" onClick='isClicked(this.id)'>9:00-10:00</div>";
@@ -166,6 +166,8 @@ function createTable() {
   }
 };
 createTable();
+
+
 
 //Vandaag
 function Today() {
@@ -261,6 +263,7 @@ function test() {
 rightArrow.addEventListener("click", () => {
   localStorage.setItem("dag", ""+fullDaysNames[selectedDay]+"");
   localStorage.setItem("datum", ""+selectedDate.getDate()+" "+maanden[selectedDate.getMonth()]+"");
+
   localStorage.setItem("tijd", ""+selectedTime+":00 - "+(parseInt(selectedTime)+1)+":00");
   if (clickCheck) {
     window.location.assign("../contactGegevens/contactGegevens.html");
