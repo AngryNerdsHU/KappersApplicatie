@@ -136,7 +136,7 @@ function createTable() {
   hour = "";
   for (let j = 1; j <= 63; j++) {
     if(j<8) {
-      hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" onClick='isClicked(this.id)'>9:00-10:00</div>";
+      hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" onClick='isClicked(this.id)' class='active'>9:00-10:00</div>";
     }
     else if(j<15) {
       hour += "<div id="+(dagen[j-7-1])+"-"+weeknummer+"-10"+" onClick='isClicked(this.id)'>10:00-11:00</div>";
@@ -177,7 +177,6 @@ function Today() {
   const blok = document.querySelectorAll('[id^='+today+']');
   Array.from(blok, e => e.style.backgroundColor = "#50c090");
   // document.querySelector("#Di52-10").style.color = "red";
-  console.log(today);
 };
 Today();
 
@@ -185,6 +184,29 @@ Today();
 // document.addEventListener("click", () => {
 //   document.querySelector("#Za1-10").style.backgroundColor = "#407090";
 // });
+let selectedDay;
+let selectedTime;
+let FirstDate;
+let selectedDate = new Date();
+let splitArray;
+
+function isClicked(clickedID) {
+  getFirstDate();
+  selectedID = document.querySelector("#"+clickedID+"");
+  const allDivs = document.getElementById("calenderHours").querySelectorAll(".active");
+  allDivs.style.backgroundColor = "#404040";
+  selectedID.classList.add("active");
+  splitArray = clickedID.split("-");
+  selectedDay = splitArray[0];
+  selectedTime = splitArray[2];
+  selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
+}
+function getFirstDate() {
+  const dateFirst = firstDay.innerHTML;
+  const firstDateArray = dateFirst.split(" ");
+  const shortMonth = monthShort[firstDateArray[1]];
+  FirstDate = new Date(2021, shortMonth, firstDateArray[0]);
+}
 
 const fullDaysNames = {
   Ma: "Maandag",
@@ -219,57 +241,18 @@ const dayNumber = {
   "Zo": 6
 };
 
-let selectedDay;
-let selectedTime;
-let FirstDate = new Date();
-let selectedDate = FirstDate;
-let splitArray;
-let clickCheck = false;
-
-function isClicked(clickedID) {
-  getFirstDate();
-  selectedID = document.querySelector("#"+clickedID+"");
-  const allDivs = document.getElementById("calenderHours").querySelectorAll(".active");
-  Array.from(allDivs, e => e.classList.remove("active"));
-  selectedID.classList.add("active");
-  splitArray = clickedID.split("-");
-  selectedDay = splitArray[0];
-  selectedTime = splitArray[2];
-  selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
-  clickCheck = true;
-
-  console.log(FirstDate);
-  console.log(selectedDate);
-}
-function getFirstDate() {
-  const dateFirst = firstDay.innerHTML;
-  const firstDateArray = dateFirst.split(" ");
-  const shortMonth = monthShort[firstDateArray[1]];
-  FirstDate = new Date(2021, shortMonth, firstDateArray[0]);  
-}
-
-
-
-function test() {
-  const today = new Date(2021, 1, 3);
-  const tomorrow = new Date(today)
-  tomorrow.setDate(tomorrow.getDate() + 5);
-  console.log(today);
-  console.log(tomorrow);
-}
-// test();
 
 
 rightArrow.addEventListener("click", () => {
   localStorage.setItem("dag", ""+fullDaysNames[selectedDay]+"");
   localStorage.setItem("datum", ""+selectedDate.getDate()+" "+maanden[selectedDate.getMonth()]+"");
-
   localStorage.setItem("tijd", ""+selectedTime+":00 - "+(parseInt(selectedTime)+1)+":00");
-  if (clickCheck) {
-    window.location.assign("../contactGegevens/contactGegevens.html");
-  }
   console.log(localStorage);
+});
 
+document.querySelector("#Zo-1-9").addEventListener("click", () => {
+  localStorage.clear();
+  console.log("pizza");
 });
 
 // setInterval(() => {
