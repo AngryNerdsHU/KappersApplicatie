@@ -56,7 +56,7 @@ if (behandelingenArr.indexOf("knippen_baard") != -1) {
 
 rightArrow.addEventListener("click", () => {
   if (behandelingenArr.length != 0) {
-    localStorage.setItem("behandelingen", JSON.stringify(behandelingenArr));
+    localStorage.setItem("behandelingen", behandelingenArr.join(', '));
   }
 });
 
