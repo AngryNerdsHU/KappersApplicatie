@@ -62,54 +62,41 @@ man.addEventListener("click", () => {
   }
   localStorage.setItem("gender", "man");
   if (age.style.display != "flex") {
-    ageAnimationMan();
+    tl.fromTo(rightArrow, speed, {opacity: "1"}, {opacity: ".5"}, "-=1")
+    man.style.width = "240px";
+    man.style.height = "240px";
+    vrouw.style.width = "240px";
+    vrouw.style.height = "240px";
+    if (manCheck == 1) {
+      tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
+      tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"}, "-=1")
+    } else {
+      tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"})
+      tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
+    }
+    tl.fromTo(man, speed, {x: "-80px"}, {x: "0px"}, "-=1")
+    tl.fromTo(vrouw, speed, {x: "60px"}, {x: "0px"}, "-=1")
+    age.style.display = "flex";
+    leftArrow.style.display = "flex";
+    rightArrow.style.display = "flex";
+    tl.fromTo(leftArrow, speed, {x: "-300%"}, {x: "0%"})
+    tl.fromTo(rightArrow, speed, {x: "300%"}, {x: "0%"}, "-=1")
+    for (var i = 0; i < ageImage.length; i++) {
+      tl.fromTo(ageImage[i], speed, {transform: "scale(0)", opacity: "0"}, {transform: "scale(1)", opacity: ".5"}, "-=1");
+    }
+    tl.fromTo(gender, speed, {y: "0%"}, {y: "-40%"})
+    tl.fromTo(age, speed, {y: "0%"}, {y: "40%"}, "-=1")
+    setTimeout(function() {
+      breakLine.style.display = "block";
+    }, 500);
+    tl.fromTo(breakLine, speed, {scaleX: "0", opacity: "0"}, {scaleX: "1", opacity: "1"})
+    tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)",     opacity: 1})
+    manCheck = 1;
+    if ((localStorage.getItem("age") == "kind")) {
+      tl.fromTo(kind, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+    }
   }
 });
-
-function ageAnimationMan() {
-  tl.fromTo(rightArrow, speed, {opacity: "1"}, {opacity: ".5"}, "-=1")
-  man.style.width = "240px";
-  man.style.height = "240px";
-  vrouw.style.width = "240px";
-  vrouw.style.height = "240px";
-  if (manCheck == 1) {
-    tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
-    tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"}, "-=1")
-  } else {
-    tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"})
-    tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
-  }
-  tl.fromTo(man, speed, {x: "-80px"}, {x: "0px"}, "-=1")
-  tl.fromTo(vrouw, speed, {x: "60px"}, {x: "0px"}, "-=1")
-  age.style.display = "flex";
-  leftArrow.style.display = "flex";
-  rightArrow.style.display = "flex";
-  tl.fromTo(leftArrow, speed, {x: "-300%"}, {x: "0%"})
-  tl.fromTo(rightArrow, speed, {x: "300%"}, {x: "0%"}, "-=1")
-  for (var i = 0; i < ageImage.length; i++) {
-    tl.fromTo(ageImage[i], speed, {transform: "scale(0)", opacity: "0"}, {transform: "scale(1)", opacity: ".5"}, "-=1");
-  }
-  tl.fromTo(gender, speed, {y: "0%"}, {y: "-40%"})
-  tl.fromTo(age, speed, {y: "0%"}, {y: "40%"}, "-=1")
-  setTimeout(function() {
-    breakLine.style.display = "block";
-  }, 500);
-  tl.fromTo(breakLine, speed, {scaleX: "0", opacity: "0"}, {scaleX: "1", opacity: "1"})
-  tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)",     opacity: 1})
-  manCheck = 1;
-  if ((localStorage.getItem("age") == "kind")) {
-    tl.fromTo(kind, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-  }
-  if ((localStorage.getItem("age") == "jongvolwassene")) {
-    tl.fromTo(jongvolwassene, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-  }
-  if ((localStorage.getItem("age") == "volwassene")) {
-    tl.fromTo(volwassene, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-  }
-  if ((localStorage.getItem("age") == "senior")) {
-    tl.fromTo(senior, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-  }
-}
 if (localStorage.getItem("gender") == "man") {
   tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
   setTimeout(function() {
@@ -162,15 +149,6 @@ vrouw.addEventListener("click", () => {
     vrouwCheck = 1;
     if ((localStorage.getItem("age") == "kind")) {
       tl.fromTo(kind, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-    }
-    if ((localStorage.getItem("age") == "jongvolwassene")) {
-      tl.fromTo(jongvolwassene, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-    }
-    if ((localStorage.getItem("age") == "volwassene")) {
-      tl.fromTo(volwassene, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-    }
-    if ((localStorage.getItem("age") == "senior")) {
-      tl.fromTo(senior, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
     }
   }
 });

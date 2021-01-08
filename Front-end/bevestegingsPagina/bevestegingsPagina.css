@@ -22,5 +22,8 @@ p {
 }
 button {
   padding: 0.6rem;
+}
+a {
+  padding: 0;
   margin: 5rem;
 }
