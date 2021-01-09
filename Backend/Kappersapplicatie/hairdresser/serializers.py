@@ -1,53 +1,66 @@
 from rest_framework import serializers
-from .models import Article, Author, Appointment, Customer, Klant, Leeftijd, Kapper, Behandeling, Reservering
-
-class KlantSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Klant
-        fields = ('id',
-                  'naam',
-                  'email',
-                  'leeftijd',
-                  'telefoon'
-                  'geslacht',)
-
-class LeeftijdSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Leeftijd
-        fields = ('id',
-                  'nulelf',
-                  'twaalfachtien',
-                  'negentienvijfentwintig',
-                  'zesentwintigvijftig',
-                  'vijftigplus',)
-                 
-class KapperSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Kapper
-        fields = ('id',
-                  'naam',)
-
-class BehandelingSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Behandeling
-        fields = ('id',
-                  'behandeltype',
-                  'tijdsduur',
-                  'prijs',
-                  'kapper',)
+from .models import Article, Author, Appointment, Customer, Reservering
 
 class ReserveringSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reservering
         fields = ('id',
-                  'behandeling_id',
-                  'klant_id'
-                  'geheletijdsduur',)
+                  'age',
+                  'behandelingen',
+                  'dag',
+                  'datum',
+                  'email',
+                  'fname',
+                  'gender',
+                  'tijd',)
+# class KlantSerializer(serializers.ModelSerializer):
+
+#     class Meta:
+#         model = Klant
+#         fields = ('id',
+#                   'naam',
+#                   'email',
+#                   'leeftijd',
+#                   'telefoon'
+#                   'geslacht',)
+
+# class LeeftijdSerializer(serializers.ModelSerializer):
+
+#     class Meta:
+#         model = Leeftijd
+#         fields = ('id',
+#                   'nulelf',
+#                   'twaalfachtien',
+#                   'negentienvijfentwintig',
+#                   'zesentwintigvijftig',
+#                   'vijftigplus',)
+                 
+# class KapperSerializer(serializers.ModelSerializer):
+
+#     class Meta:
+#         model = Kapper
+#         fields = ('id',
+#                   'naam',)
+
+# class BehandelingSerializer(serializers.ModelSerializer):
+
+#     class Meta:
+#         model = Behandeling
+#         fields = ('id',
+#                   'behandeltype',
+#                   'tijdsduur',
+#                   'prijs',
+#                   'kapper',)
+
+# class ReserveringSerializer(serializers.ModelSerializer):
+
+#     class Meta:
+#         model = Reservering
+#         fields = ('id',
+#                   'behandeling_id',
+#                   'klant_id'
+#                   'geheletijdsduur',)
 
 class AuthorSerializer(serializers.ModelSerializer):
 
