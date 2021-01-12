@@ -105,11 +105,7 @@ body {
   color: rgb(0, 0, 0);
   border: 1px solid black;
 }
-#calenderHours div:hover:not(.today) {
-  background-color: #4e748b;
-  box-shadow: 30px red inset;
-  cursor: pointer;
-}
+
 .prev-date,
 .next-date {
   opacity: 0.5;
@@ -139,5 +135,9 @@ body {
 }
 
 .active {
-  background-color: #407090;
+  background-color: #407090 !important;
+}
+.available:hover {
+  background-color: #407090 !important;
+  cursor: pointer;
 }

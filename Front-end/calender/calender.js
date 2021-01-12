@@ -55,7 +55,8 @@ function getWeekNumber(d) {
   var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
   return weekNo;
 }
-var weeknummer = getWeekNumber(new Date());
+let weeknummer = getWeekNumber(new Date());
+const currentWeek = getWeekNumber(new Date());
 
 // Weekmenu
 nextArrow.addEventListener("click", () => {
@@ -64,7 +65,10 @@ nextArrow.addEventListener("click", () => {
   if (weeknummer > 53) {weeknummer = 1}
   document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
   createTable();
-
+  makeAvailable();
+  if (currentWeek == weeknummer) {
+    Today();
+  }
   //weekdays
   if (prevCheck == true) {clickAmount = clickAmount + 2};
   const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
@@ -80,7 +84,6 @@ nextArrow.addEventListener("click", () => {
   prevCheck = false;
 
   //hourStorage
-  Today();
 });
 
 prevArrow.addEventListener("click", () => {
@@ -89,7 +92,10 @@ prevArrow.addEventListener("click", () => {
   if (weeknummer < 1) {weeknummer = 53}
   document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
   createTable();
-
+  makeAvailable();
+  if (currentWeek == weeknummer) {
+    Today();
+  }
   //weekdays
   if (nextCheck == true) {clickAmount = clickAmount - 2}
   const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
@@ -105,7 +111,6 @@ prevArrow.addEventListener("click", () => {
   nextCheck = false;
 
   //hourStorage
-  Today();
 });
 firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
 lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
@@ -136,31 +141,31 @@ function createTable() {
   hour = "";
   for (let j = 1; j <= 63; j++) {
     if(j<8) {
-      hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" onClick='isClicked(this.id)'>9:00-10:00</div>";
+      hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" class='available' onClick='isClicked(this.id)'>9:00-10:00</div>";
     }
     else if(j<15) {
-      hour += "<div id="+(dagen[j-7-1])+"-"+weeknummer+"-10"+" onClick='isClicked(this.id)'>10:00-11:00</div>";
+      hour += "<div id="+(dagen[j-7-1])+"-"+weeknummer+"-10"+" class='available' onClick='isClicked(this.id)'>10:00-11:00</div>";
     }
     else if(j<22) {
-      hour += "<div id="+(dagen[j-7*2-1])+"-"+weeknummer+"-11"+" onClick='isClicked(this.id)'>11:00-12:00</div>";
+      hour += "<div id="+(dagen[j-7*2-1])+"-"+weeknummer+"-11"+" class='available' onClick='isClicked(this.id)'>11:00-12:00</div>";
     }
     else if(j<29) {
-      hour += "<div id="+(dagen[j-7*3-1])+"-"+weeknummer+"-12"+" onClick='isClicked(this.id)'>12:00-13:00</div>";
+      hour += "<div id="+(dagen[j-7*3-1])+"-"+weeknummer+"-12"+" class='available' onClick='isClicked(this.id)'>12:00-13:00</div>";
     }
     else if(j<36) {
-      hour += "<div id="+(dagen[j-7*4-1])+"-"+weeknummer+"-13"+" onClick='isClicked(this.id)'>13:00-14:00</div>";
+      hour += "<div id="+(dagen[j-7*4-1])+"-"+weeknummer+"-13"+" class='available' onClick='isClicked(this.id)'>13:00-14:00</div>";
     }
     else if(j<43) {
-      hour += "<div id="+(dagen[j-7*5-1])+"-"+weeknummer+"-14"+" onClick='isClicked(this.id)'>14:00-15:00</div>";
+      hour += "<div id="+(dagen[j-7*5-1])+"-"+weeknummer+"-14"+" class='available' onClick='isClicked(this.id)'>14:00-15:00</div>";
     }
     else if(j<50) {
-      hour += "<div id="+(dagen[j-7*6-1])+"-"+weeknummer+"-15"+" onClick='isClicked(this.id)'>15:00-16:00</div>";
+      hour += "<div id="+(dagen[j-7*6-1])+"-"+weeknummer+"-15"+" class='available' onClick='isClicked(this.id)'>15:00-16:00</div>";
     }
     else if(j<57) {
-      hour += "<div id="+(dagen[j-7*7-1])+"-"+weeknummer+"-16"+" onClick='isClicked(this.id)'>16:00-17:00</div>";
+      hour += "<div id="+(dagen[j-7*7-1])+"-"+weeknummer+"-16"+" class='available' onClick='isClicked(this.id)'>16:00-17:00</div>";
     }
     else if(j<64) {
-      hour += "<div id="+(dagen[j-7*8-1])+"-"+weeknummer+"-17"+" onClick='isClicked(this.id)'>17:00-18:00</div>";
+      hour += "<div id="+(dagen[j-7*8-1])+"-"+weeknummer+"-17"+" class='available' onClick='isClicked(this.id)'>17:00-18:00</div>";
     }
     calenderHours.innerHTML = hour;
   }
@@ -173,18 +178,10 @@ createTable();
 function Today() {
   const todayDate = new Date();
   const today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
-  // console.log(todayDate.getDay(), (todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)));
   const blok = document.querySelectorAll('[id^='+today+']');
   Array.from(blok, e => e.style.backgroundColor = "#50c090");
-  // document.querySelector("#Di52-10").style.color = "red";
   console.log(today);
 };
-Today();
-
-// Tijdhokje reserveren
-// document.addEventListener("click", () => {
-//   document.querySelector("#Za1-10").style.backgroundColor = "#407090";
-// });
 
 const fullDaysNames = {
   Ma: "Maandag",
@@ -223,23 +220,39 @@ let selectedDay;
 let selectedTime;
 let FirstDate = new Date();
 let selectedDate = FirstDate;
+let selectedid;
 let splitArray;
 let clickCheck = false;
+let allDivs;
+let StringArray = ["Wo-2-9"/*,"Do-2-12","Ma-2-14","Ma-3-9","Ma-3-10","Ma-4-12","Ma-1-15"*/];
+let FilterArray = [];
+let IDArray = [];
+
+const split = StringArray[0].split("-");
+if (split[1] == weeknummer) {
+  FilterArray.push(StringArray[0]);
+}
+
+
+console.log(FilterArray);
 
 function isClicked(clickedID) {
   getFirstDate();
   selectedID = document.querySelector("#"+clickedID+"");
-  const allDivs = document.getElementById("calenderHours").querySelectorAll(".active");
-  Array.from(allDivs, e => e.classList.remove("active"));
-  selectedID.classList.add("active");
-  splitArray = clickedID.split("-");
-  selectedDay = splitArray[0];
-  selectedTime = splitArray[2];
-  selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
-  clickCheck = true;
+  if (selectedID.classList.contains("available")) {
+    allDivs = document.getElementById("calenderHours").querySelectorAll(".active");
+    Array.from(allDivs, e => e.classList.remove("active"));
+    selectedID.classList.add("active");
+    splitArray = clickedID.split("-");
+    selectedDay = splitArray[0];
+    selectedTime = splitArray[2];
+    selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
+    selectedid = selectedID.id;
+    clickCheck = true;
 
-  console.log(FirstDate);
-  console.log(selectedDate);
+    console.log(FirstDate);
+    console.log(selectedDate);
+  }
 }
 function getFirstDate() {
   const dateFirst = firstDay.innerHTML;
@@ -247,23 +260,25 @@ function getFirstDate() {
   const shortMonth = monthShort[firstDateArray[1]];
   FirstDate = new Date(2021, shortMonth, firstDateArray[0]);  
 }
-
-
-
-function test() {
-  const today = new Date(2021, 1, 3);
-  const tomorrow = new Date(today)
-  tomorrow.setDate(tomorrow.getDate() + 5);
-  console.log(today);
-  console.log(tomorrow);
+function makeAvailable() {
+  for (let j = 0; j <= FilterArray.length-1; j++) {
+    IDArray.push(document.querySelector("#"+FilterArray[j]+""));
+  }
+  Array.from(IDArray, e => e.classList.remove("available"));
+  const classActive = document.querySelectorAll(".available")
+  Array.from(classActive, e => e.style.backgroundColor = "rgb(82, 167, 138)");
 }
-// test();
 
+makeAvailable();
+if (currentWeek == weeknummer) {
+  Today();
+}
 
+// Send to database
 rightArrow.addEventListener("click", () => {
+  localStorage.setItem("tijdsvak", ""+selectedid+"");
   localStorage.setItem("dag", ""+fullDaysNames[selectedDay]+"");
   localStorage.setItem("datum", ""+selectedDate.getDate()+" "+maanden[selectedDate.getMonth()]+"");
-
   localStorage.setItem("tijd", ""+selectedTime+":00 - "+(parseInt(selectedTime)+1)+":00");
   if (clickCheck) {
     window.location.assign("../contactGegevens/contactGegevens.html");
@@ -276,3 +291,7 @@ rightArrow.addEventListener("click", () => {
 //   console.log(selectedDate, FirstDate)
 // }, 3000)
 
+function test() {
+  
+}
+test();
