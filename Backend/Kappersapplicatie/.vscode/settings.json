@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "C:\\Users\\USER\\.virtualenvs\\django-kappers-TRB9XNEY\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\Kuipe\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+   
+    "python.analysis.memory.keepLibraryAst": true,
+		"python.jediMemoryLimit": -1,
+		"python.languageServer": "Pylance",
+		"python.linting.pylintEnabled": true,
+		"python.linting.enabled": true
 }
