@@ -188,7 +188,7 @@ function Today() {
   const todayDate = new Date();
   const today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
   const blok = document.querySelectorAll('[id^='+today+']');
-  Array.from(blok, e => e.style.backgroundColor = "#50c090");
+  Array.from(blok, e => e.style.backgroundColor = "var(--clr-lightgrey)");
   console.log(today);
 };
 
@@ -246,9 +246,6 @@ function FilterIDs() {
   }
 }
 
-
-console.log(FilterArray);
-
 function isClicked(clickedID) {
   getFirstDate();
   selectedID = document.querySelector("#"+clickedID+"");
@@ -262,9 +259,6 @@ function isClicked(clickedID) {
     selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
     selectedid = selectedID.id;
     clickCheck = true;
-
-    console.log(FirstDate);
-    console.log(selectedDate);
   }
 }
 function getFirstDate() {
@@ -301,8 +295,6 @@ rightArrow.addEventListener("click", () => {
   if (clickCheck) {
     window.location.assign("../contactGegevens/contactGegevens.html");
   }
-  console.log(localStorage);
-
 });
 
 // setInterval(() => {
