@@ -69,9 +69,7 @@ nextArrow.addEventListener("click", () => {
   createTable();
   FilterIDs();
   makeAvailable();
-  if (currentWeek == weeknummer) {
-    Today();
-  }
+  Today();
   if (localStorage.getItem("tijdsvak") != null) {selectedidArray = localStorage.getItem("tijdsvak").split("-");}
   if (localStorage.getItem("tijdsvak") != null && selectedidArray[1] == weeknummer) {
     document.querySelector("#"+localStorage.getItem("tijdsvak")+"").classList.add("active");
@@ -100,9 +98,7 @@ prevArrow.addEventListener("click", () => {
   createTable();
   FilterIDs();
   makeAvailable();
-  if (currentWeek == weeknummer) {
-    Today();
-  }
+  Today();
   if (localStorage.getItem("tijdsvak") != null) {selectedidArray = localStorage.getItem("tijdsvak").split("-");}
   if (localStorage.getItem("tijdsvak") != null && selectedidArray[1] == weeknummer) {
     document.querySelector("#"+localStorage.getItem("tijdsvak")+"").classList.add("active");
@@ -182,14 +178,23 @@ function createTable() {
 createTable();
 
 
-
 //Vandaag
 function Today() {
   const todayDate = new Date();
   const today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
-  const blok = document.querySelectorAll('[id^='+today+']');
-  Array.from(blok, e => e.style.backgroundColor = "var(--clr-lightgrey)");
-  console.log(today);
+  const vandaag = document.querySelector("#"+today+"");
+  if (currentWeek == weeknummer) {
+    vandaag.style.backgroundColor = "white";
+    vandaag.style.color = "#303030"
+  }
+  else {
+    vandaag.style.backgroundColor = "#303030";
+    vandaag.style.color = "white";
+  } 
+
+  
+  //const blok = document.querySelectorAll('[id^='+today+']');
+  //Array.from(blok, e => e.style.backgroundColor = "var(--clr-light)");
 };
 
 const fullDaysNames = {
@@ -273,7 +278,7 @@ function makeAvailable() {
   }
   Array.from(IDArray, e => e.classList.remove("available"));
   const classActive = document.querySelectorAll(".available")
-  Array.from(classActive, e => e.style.backgroundColor = "rgb(82, 167, 138)");
+  Array.from(classActive, e => e.style.opacity = "100%");
 }
 
 FilterIDs();
