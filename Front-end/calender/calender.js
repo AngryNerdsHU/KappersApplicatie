@@ -39,7 +39,6 @@ const date = new Date(),
       Vr = "Vrijdag";
       Za = "Zaterdag"
       Zo = "Zondag";
-      selectedidArray = [];
 
 let firstDate = getMonday(date),
     lastDate = getSunday(date),
@@ -67,15 +66,7 @@ nextArrow.addEventListener("click", () => {
   document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
   FilterArray = [];
   createTable();
-  FilterIDs();
-  makeAvailable();
-  if (currentWeek == weeknummer) {
-    Today();
-  }
-  if (localStorage.getItem("tijdsvak") != null) {selectedidArray = localStorage.getItem("tijdsvak").split("-");}
-  if (localStorage.getItem("tijdsvak") != null && selectedidArray[1] == weeknummer) {
-    document.querySelector("#"+localStorage.getItem("tijdsvak")+"").classList.add("active");
-  }
+  runFunctions();
   //weekdays
   if (prevCheck == true) {clickAmount = clickAmount + 2};
   const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
@@ -98,15 +89,7 @@ prevArrow.addEventListener("click", () => {
   document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
   FilterArray = [];
   createTable();
-  FilterIDs();
-  makeAvailable();
-  if (currentWeek == weeknummer) {
-    Today();
-  }
-  if (localStorage.getItem("tijdsvak") != null) {selectedidArray = localStorage.getItem("tijdsvak").split("-");}
-  if (localStorage.getItem("tijdsvak") != null && selectedidArray[1] == weeknummer) {
-    document.querySelector("#"+localStorage.getItem("tijdsvak")+"").classList.add("active");
-  }
+  runFunctions();
   //weekdays
   if (nextCheck == true) {clickAmount = clickAmount - 2}
   const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
@@ -188,7 +171,7 @@ function Today() {
   const todayDate = new Date();
   const today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
   const blok = document.querySelectorAll('[id^='+today+']');
-  Array.from(blok, e => e.style.backgroundColor = "#50c090");
+  Array.from(blok, e => e.classList.add("today"));
   console.log(today);
 };
 
@@ -225,17 +208,20 @@ const dayNumber = {
   "Zo": 6
 };
 
+const tijdsvakData = localStorage.getItem("tijdsvak");
+
 let selectedDay;
 let selectedTime;
 let FirstDate = new Date();
 let selectedDate = FirstDate;
-let selectedid;
+let selectedid = null;
 let splitArray;
 let clickCheck = false;
 let allDivs;
 let StringArray = ["Wo-2-9","Do-2-12","Ma-2-14","Ma-3-9","Ma-3-10","Ma-4-12","Ma-1-15"];
 let FilterArray = [];
 let IDArray = [];
+let selectedidArray = [];
 
 function FilterIDs() {
   for (j = 0; j <= StringArray.length-1; j++) {
@@ -251,6 +237,7 @@ console.log(FilterArray);
 
 function isClicked(clickedID) {
   getFirstDate();
+  rememberActive();
   selectedID = document.querySelector("#"+clickedID+"");
   if (selectedID.classList.contains("available")) {
     allDivs = document.getElementById("calenderHours").querySelectorAll(".active");
@@ -262,9 +249,6 @@ function isClicked(clickedID) {
     selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
     selectedid = selectedID.id;
     clickCheck = true;
-
-    console.log(FirstDate);
-    console.log(selectedDate);
   }
 }
 function getFirstDate() {
@@ -278,19 +262,35 @@ function makeAvailable() {
     IDArray.push(document.querySelector("#"+FilterArray[j]+""));
   }
   Array.from(IDArray, e => e.classList.remove("available"));
+  Array.from(IDArray, e => e.classList.remove("today"));
+
   const classActive = document.querySelectorAll(".available")
   Array.from(classActive, e => e.style.backgroundColor = "rgb(82, 167, 138)");
 }
+function rememberActive() {
+  if (tijdsvakData != null && selectedid == null) {
+    selectedidArray = tijdsvakData.split("-")
+    if (selectedidArray[1] == weeknummer) {
+      document.querySelector("#"+tijdsvakData+"").classList.add("active");
+    }
+  } else if (selectedid != null) {
+    selectedidArray = selectedid.split("-")
+    if (selectedidArray[1] == weeknummer) {
+      document.querySelector("#"+selectedid+"").classList.add("active");
+    }
+  }
+}
 
-FilterIDs();
-makeAvailable();
-if (currentWeek == weeknummer) {
-  Today();
+function runFunctions() {
+  FilterIDs();
+  if (currentWeek == weeknummer) {
+    Today();
+  }
+  makeAvailable();
+  rememberActive();
 }
-if (localStorage.getItem("tijdsvak") != null) {selectedidArray = localStorage.getItem("tijdsvak").split("-");}
-if (localStorage.getItem("tijdsvak") != null && selectedidArray[1] == weeknummer) {
-  document.querySelector("#"+localStorage.getItem("tijdsvak")+"").classList.add("active");
-}
+runFunctions();
+
 
 // Send to database
 rightArrow.addEventListener("click", () => {

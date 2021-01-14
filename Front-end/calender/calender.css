@@ -110,9 +110,6 @@ body {
 .next-date {
   opacity: 0.5;
 }
-.today {
-  background-color: #237455;
-}
 /*#endregion*/
 
 #legenda {
@@ -133,7 +130,9 @@ body {
   color: black;
   cursor: pointer;
 }
-
+.today {
+  background-color: #237455 !important;
+}
 .active {
   background-color: #407090 !important;
 }
