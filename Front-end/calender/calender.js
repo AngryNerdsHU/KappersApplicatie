@@ -39,13 +39,31 @@ const date = new Date(),
       Vr = "Vrijdag";
       Za = "Zaterdag"
       Zo = "Zondag";
+      tijdsvakData = localStorage.getItem("tijdsvak");
 
 let firstDate = getMonday(date),
     lastDate = getSunday(date),
     clickAmount = 1,
     nextCheck = true,
     prevCheck = false,
-    hour = "";
+    hour = "",
+    selectedDay;
+let selectedTime;
+let FirstDate = new Date();
+let selectedDate = FirstDate;
+let selectedid = null;
+let splitArray;
+let clickCheck = false;
+let allDivs;
+let StringArray = ["Wo-2-9","Do-2-12","Ma-2-14","Ma-3-9","Ma-3-10","Ma-4-12","Ma-1-15"];
+let FilterArray = [];
+let IDArray = [];
+let selectedidArray = [];
+let vandaag;
+let today;
+let pastDaysArray = [];
+let blok = [];
+let weekCheck = 0;
 
 // WeeknumberFunction
 function getWeekNumber(d) {
@@ -55,15 +73,15 @@ function getWeekNumber(d) {
   var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
   return weekNo;
 }
-let weeknummer = getWeekNumber(new Date());
+let futureWeek = getWeekNumber(new Date());
 const currentWeek = getWeekNumber(new Date());
 
 // Weekmenu
 nextArrow.addEventListener("click", () => {
   //weeknumber
-  weeknummer++;
-  if (weeknummer > 53) {weeknummer = 1}
-  document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
+  futureWeek++;
+  if (futureWeek > 53) {futureWeek = 1}
+  document.querySelector(".date h1").innerHTML = "Week " + futureWeek;
   FilterArray = [];
   createTable();
   runFunctions();
@@ -82,31 +100,34 @@ nextArrow.addEventListener("click", () => {
   prevCheck = false;
 });
 
-prevArrow.addEventListener("click", () => {
-  //weeknumber
-  weeknummer--;
-  if (weeknummer < 1) {weeknummer = 53}
-  document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
-  FilterArray = [];
-  createTable();
-  runFunctions();
-  //weekdays
-  if (nextCheck == true) {clickAmount = clickAmount - 2}
-  const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
-  const addWeekS = getSunday(date).getDate() + (7 * clickAmount);
-  firstDate.setDate(addWeekM);
-  lastDate.setDate(addWeekS);
-  clickAmount--;
-  firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
-  lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
-  firstDate = new Date();
-  lastDate = new Date();
-  prevCheck = true;
-  nextCheck = false;
-});
+  prevArrow.addEventListener("click", () => {
+    if (weekCheck == 1) {
+      //weeknumber
+      futureWeek--;
+      if (futureWeek < 1) {futureWeek = 53}
+      document.querySelector(".date h1").innerHTML = "Week " + futureWeek;
+      FilterArray = [];
+      createTable();
+      runFunctions();
+      //weekdays
+      if (nextCheck == true) {clickAmount = clickAmount - 2}
+      const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
+      const addWeekS = getSunday(date).getDate() + (7 * clickAmount);
+      firstDate.setDate(addWeekM);
+      lastDate.setDate(addWeekS);
+      clickAmount--;
+      firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
+      lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
+      firstDate = new Date();
+      lastDate = new Date();
+      prevCheck = true;
+      nextCheck = false;
+    }
+  });
+
 firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
 lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
-document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
+document.querySelector(".date h1").innerHTML = "Week " + futureWeek;
 
 // Functions
 function getMonday(d) {
@@ -133,31 +154,31 @@ function createTable() {
   hour = "";
   for (let j = 1; j <= 63; j++) {
     if(j<8) {
-      hour += "<div id="+(dagen[j-1])+"-"+weeknummer+"-9"+" class='available' onClick='isClicked(this.id)'>9:00-10:00</div>";
+      hour += "<div id="+(dagen[j-1])+"-"+futureWeek+"-9"+" class='available' onClick='isClicked(this.id)'>9:00-10:00</div>";
     }
     else if(j<15) {
-      hour += "<div id="+(dagen[j-7-1])+"-"+weeknummer+"-10"+" class='available' onClick='isClicked(this.id)'>10:00-11:00</div>";
+      hour += "<div id="+(dagen[j-7-1])+"-"+futureWeek+"-10"+" class='available' onClick='isClicked(this.id)'>10:00-11:00</div>";
     }
     else if(j<22) {
-      hour += "<div id="+(dagen[j-7*2-1])+"-"+weeknummer+"-11"+" class='available' onClick='isClicked(this.id)'>11:00-12:00</div>";
+      hour += "<div id="+(dagen[j-7*2-1])+"-"+futureWeek+"-11"+" class='available' onClick='isClicked(this.id)'>11:00-12:00</div>";
     }
     else if(j<29) {
-      hour += "<div id="+(dagen[j-7*3-1])+"-"+weeknummer+"-12"+" class='available' onClick='isClicked(this.id)'>12:00-13:00</div>";
+      hour += "<div id="+(dagen[j-7*3-1])+"-"+futureWeek+"-12"+" class='available' onClick='isClicked(this.id)'>12:00-13:00</div>";
     }
     else if(j<36) {
-      hour += "<div id="+(dagen[j-7*4-1])+"-"+weeknummer+"-13"+" class='available' onClick='isClicked(this.id)'>13:00-14:00</div>";
+      hour += "<div id="+(dagen[j-7*4-1])+"-"+futureWeek+"-13"+" class='available' onClick='isClicked(this.id)'>13:00-14:00</div>";
     }
     else if(j<43) {
-      hour += "<div id="+(dagen[j-7*5-1])+"-"+weeknummer+"-14"+" class='available' onClick='isClicked(this.id)'>14:00-15:00</div>";
+      hour += "<div id="+(dagen[j-7*5-1])+"-"+futureWeek+"-14"+" class='available' onClick='isClicked(this.id)'>14:00-15:00</div>";
     }
     else if(j<50) {
-      hour += "<div id="+(dagen[j-7*6-1])+"-"+weeknummer+"-15"+" class='available' onClick='isClicked(this.id)'>15:00-16:00</div>";
+      hour += "<div id="+(dagen[j-7*6-1])+"-"+futureWeek+"-15"+" class='available' onClick='isClicked(this.id)'>15:00-16:00</div>";
     }
     else if(j<57) {
-      hour += "<div id="+(dagen[j-7*7-1])+"-"+weeknummer+"-16"+" class='available' onClick='isClicked(this.id)'>16:00-17:00</div>";
+      hour += "<div id="+(dagen[j-7*7-1])+"-"+futureWeek+"-16"+" class='available' onClick='isClicked(this.id)'>16:00-17:00</div>";
     }
     else if(j<64) {
-      hour += "<div id="+(dagen[j-7*8-1])+"-"+weeknummer+"-17"+" class='available' onClick='isClicked(this.id)'>17:00-18:00</div>";
+      hour += "<div id="+(dagen[j-7*8-1])+"-"+futureWeek+"-17"+" class='available' onClick='isClicked(this.id)'>17:00-18:00</div>";
     }
     calenderHours.innerHTML = hour;
   }
@@ -167,21 +188,17 @@ createTable();
 
 //Vandaag
 function Today() {
-  const todayDate = new Date();
-  const today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
-  const vandaag = document.querySelector("#"+today+"");
-  if (currentWeek == weeknummer) {
+  const todayDate = new Date(2021, 0, 15);
+  today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
+  vandaag = document.querySelector("#"+today+"");
+  if (currentWeek == futureWeek) {
     vandaag.style.backgroundColor = "white";
     vandaag.style.color = "#303030"
   }
   else {
     vandaag.style.backgroundColor = "#303030";
     vandaag.style.color = "white";
-  } 
-
-  
-  //const blok = document.querySelectorAll('[id^='+today+']');
-  //Array.from(blok, e => e.style.backgroundColor = "var(--clr-light)");
+  }
 };
 
 const fullDaysNames = {
@@ -217,25 +234,10 @@ const dayNumber = {
   "Zo": 6
 };
 
-const tijdsvakData = localStorage.getItem("tijdsvak");
-
-let selectedDay;
-let selectedTime;
-let FirstDate = new Date();
-let selectedDate = FirstDate;
-let selectedid = null;
-let splitArray;
-let clickCheck = false;
-let allDivs;
-let StringArray = ["Wo-2-9","Do-2-12","Ma-2-14","Ma-3-9","Ma-3-10","Ma-4-12","Ma-1-15"];
-let FilterArray = [];
-let IDArray = [];
-let selectedidArray = [];
-
 function FilterIDs() {
   for (j = 0; j <= StringArray.length-1; j++) {
     const split = StringArray[j].split("-");
-    if (split[1] == weeknummer) {
+    if (split[1] == futureWeek) {
       FilterArray.push(StringArray[j]);
     }
   }
@@ -276,14 +278,44 @@ function makeAvailable() {
 function rememberActive() {
   if (tijdsvakData != null && selectedid == null) {
     selectedidArray = tijdsvakData.split("-")
-    if (selectedidArray[1] == weeknummer) {
+    if (selectedidArray[1] == futureWeek) {
       document.querySelector("#"+tijdsvakData+"").classList.add("active");
     }
   } else if (selectedid != null) {
     selectedidArray = selectedid.split("-")
-    if (selectedidArray[1] == weeknummer) {
+    if (selectedidArray[1] == futureWeek) {
       document.querySelector("#"+selectedid+"").classList.add("active");
     }
+  }
+}
+function makeUnavailable() {
+  todayIndex = dagen.indexOf(""+today+"");
+  for (j = 0; j <= dagen.length; j++) {
+    if (j < todayIndex) {
+      pastDaysArray.push(dagen[j]);
+    }
+  }
+  for (j = 0; j <= pastDaysArray.length-1; j++) {
+    blok.push(document.querySelectorAll('[id^='+pastDaysArray[j]+']'));
+  }
+  for (j = 0; j <= blok.length-1; j++) {
+    if (futureWeek == currentWeek) {
+      Array.from(blok[j], e => e.style.opacity = "50%");
+      Array.from(blok[j], e => e.classList.remove("available"));
+    } else {
+      Array.from(blok[j], e => e.style.opacity = "100%");
+    }
+  }
+}
+function pastWeekCheck () {
+  if (futureWeek > currentWeek) {
+    weekCheck = 1;
+    prevArrow.style.opacity = "100%";
+    prevArrow.style.cursor = "pointer";
+  } else {
+    weekCheck = 0;
+    prevArrow.style.opacity = "50%";
+    prevArrow.style.cursor = "default";
   }
 }
 
@@ -292,6 +324,8 @@ function runFunctions() {
   Today();
   makeAvailable();
   rememberActive();
+  makeUnavailable();
+  pastWeekCheck();
 }
 runFunctions();
 
