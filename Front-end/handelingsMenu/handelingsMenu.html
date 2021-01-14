@@ -16,9 +16,9 @@
         <h1><span id="behandelingsNaam">Naam behandeling</span></h1>
         <img id="closeIcon" src="../../Resources/icons/close-black-18dp.svg">
       </header>
-      <h3 id="description_behandeling">
+      <p id="description_behandeling">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, necessitatibus molestias, nesciunt accusamus libero repellat magni corporis harum adipisci sequi ex fuga dolorum quo voluptatibus. Earum sunt commodi quod, nihil assumenda praesentium tempora deleniti vel ratione, quibusdam est aperiam atque eum beatae.
-      </h3>
+      </p>
     </div>
     
     <div id="title_handelingsmenu">
@@ -27,43 +27,43 @@
     <div class="behandelingen" data-simplebar data-simplebar-auto-hide="false">
       <div class="behandeling" >
         <div class="behandeling_container">
-          <img src="../../Resources/haircuts/rounded_images/Knippen_baard.png" id="item_knippen_baard" class="behandeling_image">
-          <i class="fas fa-info-circle" id="Knippen_baard"></i>        
+          <img src="../../Resources/haircuts/rounded_images/Knippen_baard.png" id="item_knippen_baard" class="behandeling_image" onClick="itemClicked(this.id)">
+          <i class="fas fa-info-circle" id="info_Knippen_baard" onClick="infoIcons(this.id)"></i>        
         </div>
           <h3 class="behandelingstitel">Knippen baard</h3>
       </div>
       <div class="behandeling">
         <div class="behandeling_container">
-          <img src="../../Resources/haircuts/rounded_images/Wassen.png" id="item_wassen" class="behandeling_image">
-          <i class="fas fa-info-circle" id="wassen"></i>        
+          <img src="../../Resources/haircuts/rounded_images/Wassen.png" id="item_wassen" class="behandeling_image" onClick="itemClicked(this.id)">
+          <i class="fas fa-info-circle" id="info_wassen" onClick="infoIcons(this.id)"></i>        
         </div>
         <h3 class="behandelingstitel">Wassen</h3>
       </div>
       <div class="behandeling">
         <div class="behandeling_container">
-          <img src="../../Resources/haircuts/rounded_images/Bijknippen.png" id="item_bijknippen" class="behandeling_image">
-          <i class="fas fa-info-circle" id="bijknippen"></i>        
+          <img src="../../Resources/haircuts/rounded_images/Bijknippen.png" id="item_bijknippen" class="behandeling_image" onClick="itemClicked(this.id)">
+          <i class="fas fa-info-circle" id="info_bijknippen" onClick="infoIcons(this.id)"></i>        
         </div>
         <h3 class="behandelingstitel">Bijknippen</h3>
       </div>
       <div class="behandeling">
         <div class="behandeling_container">
-          <img src="../../Resources/haircuts/rounded_images/Knippen_kort.png" id="item_knippen_kort" class="behandeling_image">
-          <i class="fas fa-info-circle" id="Knippen_kort"></i>        
+          <img src="../../Resources/haircuts/rounded_images/Knippen_kort.png" id="item_knippen_kort" class="behandeling_image" onClick="itemClicked(this.id)">
+          <i class="fas fa-info-circle" id="info_Knippen_kort" onClick="infoIcons(this.id)"></i>        
         </div>
         <h3 class="behandelingstitel">Knippen kort</h3>
       </div>
       <div class="behandeling">
         <div class="behandeling_container">
-          <img src="../../Resources/haircuts/rounded_images/Knippen_krullen.png" id="item_knippen_krullen" class="behandeling_image">
-          <i class="fas fa-info-circle" id="Knippen_krullen"></i>        
+          <img src="../../Resources/haircuts/rounded_images/Knippen_krullen.png" id="item_knippen_krullen" class="behandeling_image" onClick="itemClicked(this.id)">
+          <i class="fas fa-info-circle" id="info_Knippen_krullen" onClick="infoIcons(this.id)"></i>        
         </div>
         <h3 class="behandelingstitel">Knippen krullen</h3>
       </div>
       <div class="behandeling">
         <div class="behandeling_container">
-          <img src="../../Resources/haircuts/rounded_images/Knippen_lang.png" id="item_knippen_lang" class="behandeling_image">
-          <i class="fas fa-info-circle" id="Knippen_lang"></i>        
+          <img src="../../Resources/haircuts/rounded_images/Knippen_lang.png" id="item_knippen_lang" class="behandeling_image" onClick="itemClicked(this.id)">
+          <i class="fas fa-info-circle" id="info_Knippen_lang" onClick="infoIcons(this.id)"></i>        
         </div>
         <h3 class="behandelingstitel">Knippen lang</h3>
       </div>
@@ -110,11 +110,11 @@
         <h3 class="behandelingstitel">Knippen lang</h3>
       </div>
     </div>
-    <p class="aantal_behandelingen">U heeft <span id="behandelingsAantal">x</span> behandelingen geselecteerd</p>
+    <p class="aantal_behandelingen">U heeft <span id="behandelingsAantal">0</span> behandelingen geselecteerd</p>
     
     <div class="arrows">
-      <i alt="This is an arrow" class="fas fa-chevron-left" id="leftArrow"></i> 
-      <a href="../calender/calender.html"><i alt="This is an arrow" class="fas fa-chevron-right" id="rightArrow"></i></a>
+      <i><a href="../gegevensMenu/gegevensMenu.html" alt="This is an arrow" class="fas fa-chevron-left" id="leftArrow"></a></i>
+      <i alt="This is an arrow" class="fas fa-chevron-right" id="rightArrow"></i>
     </div>
 
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.js"></script>
