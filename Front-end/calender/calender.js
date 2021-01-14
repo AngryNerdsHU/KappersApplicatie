@@ -66,7 +66,17 @@ nextArrow.addEventListener("click", () => {
   document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
   FilterArray = [];
   createTable();
+<<<<<<< HEAD
   runFunctions();
+=======
+  FilterIDs();
+  makeAvailable();
+  Today();
+  if (localStorage.getItem("tijdsvak") != null) {selectedidArray = localStorage.getItem("tijdsvak").split("-");}
+  if (localStorage.getItem("tijdsvak") != null && selectedidArray[1] == weeknummer) {
+    document.querySelector("#"+localStorage.getItem("tijdsvak")+"").classList.add("active");
+  }
+>>>>>>> 077a986e05d4335a8d4a73ffc77359771455ce46
   //weekdays
   if (prevCheck == true) {clickAmount = clickAmount + 2};
   const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
@@ -89,7 +99,17 @@ prevArrow.addEventListener("click", () => {
   document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
   FilterArray = [];
   createTable();
+<<<<<<< HEAD
   runFunctions();
+=======
+  FilterIDs();
+  makeAvailable();
+  Today();
+  if (localStorage.getItem("tijdsvak") != null) {selectedidArray = localStorage.getItem("tijdsvak").split("-");}
+  if (localStorage.getItem("tijdsvak") != null && selectedidArray[1] == weeknummer) {
+    document.querySelector("#"+localStorage.getItem("tijdsvak")+"").classList.add("active");
+  }
+>>>>>>> 077a986e05d4335a8d4a73ffc77359771455ce46
   //weekdays
   if (nextCheck == true) {clickAmount = clickAmount - 2}
   const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
@@ -165,14 +185,23 @@ function createTable() {
 createTable();
 
 
-
 //Vandaag
 function Today() {
   const todayDate = new Date();
   const today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
-  const blok = document.querySelectorAll('[id^='+today+']');
-  Array.from(blok, e => e.classList.add("today"));
-  console.log(today);
+  const vandaag = document.querySelector("#"+today+"");
+  if (currentWeek == weeknummer) {
+    vandaag.style.backgroundColor = "white";
+    vandaag.style.color = "#303030"
+  }
+  else {
+    vandaag.style.backgroundColor = "#303030";
+    vandaag.style.color = "white";
+  } 
+
+  
+  //const blok = document.querySelectorAll('[id^='+today+']');
+  //Array.from(blok, e => e.style.backgroundColor = "var(--clr-light)");
 };
 
 const fullDaysNames = {
@@ -232,9 +261,6 @@ function FilterIDs() {
   }
 }
 
-
-console.log(FilterArray);
-
 function isClicked(clickedID) {
   getFirstDate();
   rememberActive();
@@ -265,7 +291,7 @@ function makeAvailable() {
   Array.from(IDArray, e => e.classList.remove("today"));
 
   const classActive = document.querySelectorAll(".available")
-  Array.from(classActive, e => e.style.backgroundColor = "rgb(82, 167, 138)");
+  Array.from(classActive, e => e.style.opacity = "100%");
 }
 function rememberActive() {
   if (tijdsvakData != null && selectedid == null) {
@@ -301,8 +327,6 @@ rightArrow.addEventListener("click", () => {
   if (clickCheck) {
     window.location.assign("../contactGegevens/contactGegevens.html");
   }
-  console.log(localStorage);
-
 });
 
 // setInterval(() => {
