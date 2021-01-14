@@ -66,17 +66,7 @@ nextArrow.addEventListener("click", () => {
   document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
   FilterArray = [];
   createTable();
-<<<<<<< HEAD
   runFunctions();
-=======
-  FilterIDs();
-  makeAvailable();
-  Today();
-  if (localStorage.getItem("tijdsvak") != null) {selectedidArray = localStorage.getItem("tijdsvak").split("-");}
-  if (localStorage.getItem("tijdsvak") != null && selectedidArray[1] == weeknummer) {
-    document.querySelector("#"+localStorage.getItem("tijdsvak")+"").classList.add("active");
-  }
->>>>>>> 077a986e05d4335a8d4a73ffc77359771455ce46
   //weekdays
   if (prevCheck == true) {clickAmount = clickAmount + 2};
   const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
@@ -99,17 +89,7 @@ prevArrow.addEventListener("click", () => {
   document.querySelector(".date h1").innerHTML = "Week " + weeknummer;
   FilterArray = [];
   createTable();
-<<<<<<< HEAD
   runFunctions();
-=======
-  FilterIDs();
-  makeAvailable();
-  Today();
-  if (localStorage.getItem("tijdsvak") != null) {selectedidArray = localStorage.getItem("tijdsvak").split("-");}
-  if (localStorage.getItem("tijdsvak") != null && selectedidArray[1] == weeknummer) {
-    document.querySelector("#"+localStorage.getItem("tijdsvak")+"").classList.add("active");
-  }
->>>>>>> 077a986e05d4335a8d4a73ffc77359771455ce46
   //weekdays
   if (nextCheck == true) {clickAmount = clickAmount - 2}
   const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
@@ -309,9 +289,7 @@ function rememberActive() {
 
 function runFunctions() {
   FilterIDs();
-  if (currentWeek == weeknummer) {
-    Today();
-  }
+  Today();
   makeAvailable();
   rememberActive();
 }
