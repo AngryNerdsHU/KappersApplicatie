@@ -97,7 +97,7 @@ body {
 }
 
 .behandeling_image:hover {
-  background: var(--clr-accent);
+  background: var(--clr-accent) !important;
 }
 
 .behandeling_image {
@@ -170,8 +170,8 @@ div p {
 .fa-chevron-left,
 .fa-chevron-right {
   font-size: 4em;
-  padding: 0rem 4rem 0rem 4rem;
-  margin-top: 10px;
+  margin: 0rem 4rem 0rem 4rem;
+  margin-top: 1%;
   text-decoration: none;
   color: black;
 }

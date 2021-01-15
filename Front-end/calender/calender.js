@@ -315,6 +315,9 @@ function makeUnavailable() {
     }
   }
 }
+
+console.log(document.querySelectorAll('[id^="Do"]'));
+
 function pastWeekCheck () {
   if (futureWeek > currentWeek) {
     weekCheck = 1;
