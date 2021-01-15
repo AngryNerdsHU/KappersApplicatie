@@ -15,6 +15,7 @@
   --clr-light: #fff;
   --clr-dark: hsl(0, 0%, 19%);
   --clr-accent: #7cbed8;
+  --clr-selected: rgb(58, 172, 218);
   --fs-h1: 3rem;
   --fs-h2: 2.25rem;
   --fs-h3: 1.rem;
@@ -52,7 +53,7 @@ body {
   margin: 0;
   font-family: var(--ff-primary);
   font-size: var(--fs-body);
-  line-height: 1.6;
+  line-height: 1;
 }
 
 /*#endregion*/
@@ -60,7 +61,8 @@ body {
 #title_handelingsmenu {
   display: block;
   text-align: center;
-  padding: 1rem;
+  padding: 4rem;
+  font-size: var(--fs-h3);
 }
 
 /*#endregion*/
@@ -68,13 +70,14 @@ body {
 .behandelingstitel {
   text-align: center;
   color: var(--clr-dark);
+  font-size: var(--fs-h3);
 }
 
 .behandelingen {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
-  height: 64%;
+  height: 58%;
   display: block;
   padding: 0.2em;
   position: relative;
@@ -123,7 +126,7 @@ div p {
 
 /*#region InfoIcon*/
 .fa-info-circle {
-  font-size: 2em;
+  font-size: 3em;
   color: #70a6be;
   z-index: 1;
   position: absolute;
@@ -141,25 +144,13 @@ div p {
   font-size: 4em;
 }
 
-.downArrow {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  height: 50px;
-}
-
 .aantal_behandelingen {
   display: block;
   text-align: right;
   margin-right: 32%;
+  margin-top: 1%;
   padding: 0.5em;
+  font-size: var(--fs-h3);
 }
 
 #behandelingsAantal {
@@ -170,8 +161,7 @@ div p {
 .fa-chevron-left,
 .fa-chevron-right {
   font-size: 4em;
-  margin: 0rem 4rem 0rem 4rem;
-  margin-top: 1%;
+  margin: 2rem 4rem 0rem 4rem;
   text-decoration: none;
   color: black;
 }
