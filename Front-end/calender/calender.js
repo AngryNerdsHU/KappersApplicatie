@@ -255,8 +255,16 @@ function isClicked(clickedID) {
     selectedDay = splitArray[0];
     selectedTime = splitArray[2];
     selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
+    if (FirstDate.getDate() > selectedDate.getDate()) {
+      selectedDate.setMonth(FirstDate.getMonth() + 1);
+    } else {
+      selectedDate.setMonth(FirstDate.getMonth());
+    }
     selectedid = selectedID.id;
     clickCheck = true;
+    console.log(FirstDate);
+    console.log(selectedDate);
+    console.log(dayNumber[splitArray[0]]);
   }
 }
 function getFirstDate() {
@@ -349,6 +357,10 @@ rightArrow.addEventListener("click", () => {
 // }, 3000)
 
 function test() {
-  
+  let testDate = new Date();
+  let testingDate = new Date(2021, 2, 29);
+  testDate.setDate(testingDate.getDate() + 2);
+  testDate.setMonth(testingDate.getMonth());
+  console.log(testDate);
 }
 test();
