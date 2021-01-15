@@ -1,11 +1,25 @@
+@import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap);
+#tekst{
+  font-family: "Quicksand", sans-serif;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+}
+#tekst2{
+  font-family: "Quicksand", sans-serif;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  font-size: 17px;
+}
 #form{
   margin-left: 10vw;
   margin-right: 10vw;
   margin-top: 5vw;
+  margin-bottom: 5vw;
 }
 /* Bordered form */
 form {
-    border: 3px solid #f1f1f1;
+    /* border: 3px solid black; */
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0.5rem 3rem;
+
 }
   
   /* Full-width inputs */
@@ -20,7 +34,7 @@ input[type=text], input[type=password] {
   
   /* Set a style for all buttons */
 button {
-    background-color: #4CAF50;
+    background-color:#407090;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -38,7 +52,10 @@ button:hover {
 .registreerbtn {
     width: auto;
     padding: 10px 18px;
-    background-color: #f44336;
+    background-color: white;
+    color: rgb(48, 48, 48);
+    border: 1px solid black;
+    margin: 5px;
 }
   
   /* Center the avatar image inside this container */
@@ -49,6 +66,7 @@ button:hover {
   
   /* Avatar image */
 img.avatar {
+    padding: 1vw;
     width: 10%;
     border-radius: 50%;
 }
@@ -57,7 +75,10 @@ img.avatar {
 .container {
     padding: 16px;
 }
-  
+.container2{
+  padding: 2vw;
+  /* margin-bottom: 2vw; */
+}
   /* The "Forgot password" text */
 span.psw {
     float: right;
