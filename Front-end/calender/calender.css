@@ -7,8 +7,8 @@
 }
 
 :root {
-  --ff-primary: 'Source Sans Pro', sans-serif;
-  --ff-secundary: 'Source code Pro', monospace;
+  --ff-primary: "Source Sans Pro", sans-serif;
+  --ff-secundary: "Source code Pro", monospace;
 
   --fw-reg: 300;
   --fw-bold: 900;
@@ -18,7 +18,6 @@
   --clr-accent: #7cbed8;
   --clr-lightgrey: #e7e7e7;
 
-
   --fs-h1: 3rem;
   --fs-h2: 2.25rem;
   --fs-h3: 1.25rem;
@@ -27,10 +26,10 @@
 
 @media (min-width: 800px) {
   :root {
-      --fs-h1: 4.5rem;
-      --fs-h2: 3.75rem;
-      --fs-h3: 1.5rem;
-      --fs-body: 1.125rem;
+    --fs-h1: 4.5rem;
+    --fs-h2: 3.75rem;
+    --fs-h3: 1.5rem;
+    --fs-body: 1.125rem;
   }
 }
 
@@ -57,8 +56,7 @@ body {
   font-family: "Quicksand", sans-serif;
   padding: 0 0.5rem;
   user-select: none;
-  margin: .7rem;
-  
+  margin: 0.7rem;
 }
 .weekDisplay svg {
   width: 40px;
@@ -80,7 +78,7 @@ body {
   margin-bottom: 0.2rem;
 }
 .weekDisplay p {
-  font-size: var(--fs-h4)
+  font-size: var(--fs-h4);
 }
 /*#endregion*/
 /*#region Calender*/
@@ -92,7 +90,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 10px solid var(--clr-dark)
+  border-bottom: 10px solid var(--clr-dark);
 }
 .calenderDays {
   width: 100%;
@@ -102,8 +100,6 @@ body {
   justify-content: space-around;
   background-color: var(--clr-dark);
 }
-
-
 
 .calenderDays div {
   width: calc(100% / 7);
@@ -199,5 +195,3 @@ body {
   background-color: var(--clr-accent) !important;
   cursor: pointer;
 }
-
-
