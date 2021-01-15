@@ -1,3 +1,8 @@
+#form{
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 5vw;
+}
 /* Bordered form */
 form {
     border: 3px solid #f1f1f1;
@@ -44,7 +49,7 @@ button:hover {
   
   /* Avatar image */
 img.avatar {
-    width: 20%;
+    width: 10%;
     border-radius: 50%;
 }
   
