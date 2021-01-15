@@ -56,6 +56,7 @@ body {
   position: absolute;
   text-align: center;
   top: 5%;
+  font-size: var(--fs-h3);
 }
 #options {
   display: flex;
@@ -76,13 +77,15 @@ body {
 }
 .gender img,
 .age img {
-  max-width: 100%;
+  max-width: 110%;
   max-height: 100%;
   cursor: pointer;
 }
+
+
 .gender div,
 .gender img {
-  height: 80%;
+  height: 100%;
   width: auto;
 }
 
@@ -90,10 +93,14 @@ body {
   margin: 1rem;
 }
 
+#manImage, #vrouwImage {
+  padding: 0%;
+}
+
 .age div,
 .age img {
-  width: 70%;
-  height: 100%;
+  width: 100%;
+  height: auto;
 }
 .fa-chevron-left,
 .fa-chevron-right {
