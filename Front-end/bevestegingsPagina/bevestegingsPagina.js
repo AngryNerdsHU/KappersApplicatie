@@ -3,11 +3,18 @@ const datum = document.querySelector("#datum");
 const tijd = document.querySelector("#tijd");
 const behandeling = document.querySelector("#behandeling");
 const homeButton = document.querySelector("#homeButton");
-
+const naam = document.querySelector("#naam");
+const email = document.querySelector("#email");
+naam.innerHTML = localStorage.getItem("fname");
+email.innerHTML = localStorage.getItem("email");
 dag.innerHTML = localStorage.getItem("dag");
 datum.innerHTML = localStorage.getItem("datum");
 tijd.innerHTML = localStorage.getItem("tijd");
 behandeling.innerHTML = localStorage.getItem("behandelingen");
+wijzigKnop = document.querySelector("#wijzigButton")
+wijzigKnop.addEventListener ("click", () =>{
+  window.location.assign("../contactgegevens/contactgegevens.html")
+})
 
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");

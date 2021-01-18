@@ -52,6 +52,7 @@ body {
 h1 {
   margin: 3rem;
   font-size: 3.5rem;
+  font-weight: var(--fw-reg);
 }
 
 label {
@@ -74,4 +75,13 @@ input {
   text-decoration: none;
   color: black;
   cursor: pointer;
+}
+
+input, label {
+  display: inline-block;
+}
+
+
+input {
+  margin: .5rem;
 }
