@@ -84,7 +84,6 @@ nextArrow.addEventListener("click", () => {
   document.querySelector(".date h1").innerHTML = "Week " + futureWeek;
   FilterArray = [];
   createTable();
-  runFunctions();
   //weekdays
   if (prevCheck == true) {clickAmount = clickAmount + 2};
   const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
@@ -98,6 +97,7 @@ nextArrow.addEventListener("click", () => {
   lastDate = new Date();
   nextCheck = true;
   prevCheck = false;
+  runFunctions();
 });
 
   prevArrow.addEventListener("click", () => {
@@ -108,7 +108,6 @@ nextArrow.addEventListener("click", () => {
       document.querySelector(".date h1").innerHTML = "Week " + futureWeek;
       FilterArray = [];
       createTable();
-      runFunctions();
       //weekdays
       if (nextCheck == true) {clickAmount = clickAmount - 2}
       const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
@@ -122,6 +121,7 @@ nextArrow.addEventListener("click", () => {
       lastDate = new Date();
       prevCheck = true;
       nextCheck = false;
+      runFunctions();
     }
   });
 
@@ -244,7 +244,6 @@ function FilterIDs() {
 }
 
 function isClicked(clickedID) {
-  getFirstDate();
   rememberActive();
   selectedID = document.querySelector("#"+clickedID+"");
   if (selectedID.classList.contains("available")) {
@@ -254,7 +253,9 @@ function isClicked(clickedID) {
     splitArray = clickedID.split("-");
     selectedDay = splitArray[0];
     selectedTime = splitArray[2];
+    selectedDate = new Date(2021, FirstDate.getMonth());
     selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
+    console.log(selectedDate);
     if (FirstDate.getDate() > selectedDate.getDate()) {
       selectedDate.setMonth(FirstDate.getMonth() + 1);
     } else {
@@ -265,6 +266,7 @@ function isClicked(clickedID) {
     console.log(FirstDate);
     console.log(selectedDate);
     console.log(dayNumber[splitArray[0]]);
+    console.log(FirstDate.getDate() > selectedDate.getDate());
   }
 }
 function getFirstDate() {
@@ -315,9 +317,6 @@ function makeUnavailable() {
     }
   }
 }
-
-console.log(document.querySelectorAll('[id^="Do"]'));
-
 function pastWeekCheck () {
   if (futureWeek > currentWeek) {
     weekCheck = 1;
@@ -337,6 +336,7 @@ function runFunctions() {
   rememberActive();
   makeUnavailable();
   pastWeekCheck();
+  getFirstDate();
 }
 runFunctions();
 
@@ -359,7 +359,7 @@ rightArrow.addEventListener("click", () => {
 function test() {
   let testDate = new Date();
   let testingDate = new Date(2021, 2, 29);
-  testDate.setDate(testingDate.getDate() + 2);
+  testDate.setDate(testingDate.getDate());
   testDate.setMonth(testingDate.getMonth());
   console.log(testDate);
 }
