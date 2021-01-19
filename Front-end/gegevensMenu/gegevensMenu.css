@@ -57,6 +57,11 @@ body {
   top: 5%;
   font-size: var(--fs-h3);
 }
+#title {
+  font-family: var(--ff-primary);
+  font-size: 3.5rem;
+  font-weight: var(--fw-reg);
+}
 #options {
   display: flex;
   justify-content: center;

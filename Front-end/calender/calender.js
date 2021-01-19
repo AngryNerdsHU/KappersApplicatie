@@ -23,6 +23,40 @@ const dagen = [
   "Zo"
 ];
 
+// Objects
+const fullDaysNames = {
+  Ma: "Maandag",
+  Di: "Dinsdag",
+  Wo: "Woensdag",
+  Do: "Donderdag",
+  Vr: "Vrijdag",
+  Za: "Zaterdag",
+  Zo: "Zondag"
+};
+const monthShort = {
+  "jan.": 0,
+  "feb.": 1,
+  "mrt.": 2,
+  "apr.": 3,
+  "mei": 4,
+  "jun.": 5,
+  "jul.": 6,
+  "aug.": 7,
+  "sep.": 8,
+  "okt.": 9,
+  "nov.": 10,
+  "dec.": 11
+};
+const dayNumber = {
+  "Ma": 0,
+  "Di": 1,
+  "Wo": 2,
+  "Do": 3,
+  "Vr": 4,
+  "Za": 5,
+  "Zo": 6
+};
+
 // Variables
 const date = new Date(),
       calenderHours = document.querySelector("#calenderHours"),
@@ -100,30 +134,30 @@ nextArrow.addEventListener("click", () => {
   runFunctions();
 });
 
-  prevArrow.addEventListener("click", () => {
-    if (weekCheck == 1) {
-      //weeknumber
-      futureWeek--;
-      if (futureWeek < 1) {futureWeek = 53}
-      document.querySelector(".date h1").innerHTML = "Week " + futureWeek;
-      FilterArray = [];
-      createTable();
-      //weekdays
-      if (nextCheck == true) {clickAmount = clickAmount - 2}
-      const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
-      const addWeekS = getSunday(date).getDate() + (7 * clickAmount);
-      firstDate.setDate(addWeekM);
-      lastDate.setDate(addWeekS);
-      clickAmount--;
-      firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
-      lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
-      firstDate = new Date();
-      lastDate = new Date();
-      prevCheck = true;
-      nextCheck = false;
-      runFunctions();
-    }
-  });
+prevArrow.addEventListener("click", () => {
+  if (weekCheck == 1) {
+    //weeknumber
+    futureWeek--;
+    if (futureWeek < 1) {futureWeek = 53}
+    document.querySelector(".date h1").innerHTML = "Week " + futureWeek;
+    FilterArray = [];
+    createTable();
+    //weekdays
+    if (nextCheck == true) {clickAmount = clickAmount - 2}
+    const addWeekM = getMonday(date).getDate() + (7 * clickAmount);
+    const addWeekS = getSunday(date).getDate() + (7 * clickAmount);
+    firstDate.setDate(addWeekM);
+    lastDate.setDate(addWeekS);
+    clickAmount--;
+    firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
+    lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
+    firstDate = new Date();
+    lastDate = new Date();
+    prevCheck = true;
+    nextCheck = false;
+    runFunctions();
+  }
+});
 
 firstDay.innerHTML = firstDate.getDate() + " " + weekMonth(0);
 lastDay.innerHTML = lastDate.getDate() + " " + weekMonth(1);
@@ -188,7 +222,7 @@ createTable();
 
 //Vandaag
 function Today() {
-  const todayDate = new Date(2021, 0, 15);
+  const todayDate = new Date();
   today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
   vandaag = document.querySelector("#"+today+"");
   if (currentWeek == futureWeek) {
@@ -199,39 +233,6 @@ function Today() {
     vandaag.style.backgroundColor = "#303030";
     vandaag.style.color = "white";
   }
-};
-
-const fullDaysNames = {
-  Ma: "Maandag",
-  Di: "Dinsdag",
-  Wo: "Woensdag",
-  Do: "Donderdag",
-  Vr: "Vrijdag",
-  Za: "Zaterdag",
-  Zo: "Zondag"
-};
-const monthShort = {
-  "jan.": 0,
-  "feb.": 1,
-  "mrt.": 2,
-  "apr.": 3,
-  "mei": 4,
-  "jun.": 5,
-  "jul.": 6,
-  "aug.": 7,
-  "sep.": 8,
-  "okt.": 9,
-  "nov.": 10,
-  "dec.": 11
-};
-const dayNumber = {
-  "Ma": 0,
-  "Di": 1,
-  "Wo": 2,
-  "Do": 3,
-  "Vr": 4,
-  "Za": 5,
-  "Zo": 6
 };
 
 function FilterIDs() {
@@ -267,6 +268,9 @@ function isClicked(clickedID) {
     console.log(selectedDate);
     console.log(dayNumber[splitArray[0]]);
     console.log(FirstDate.getDate() > selectedDate.getDate());
+    rightArrow.style.opacity = "100%";
+    rightArrow.style.cursor = "pointer";
+    isClicked.called = true;
   }
 }
 function getFirstDate() {
@@ -291,11 +295,19 @@ function rememberActive() {
     if (selectedidArray[1] == futureWeek) {
       document.querySelector("#"+tijdsvakData+"").classList.add("active");
     }
+    rightArrow.style.opacity = "100%";
+    rightArrow.style.cursor = "pointer";
+    rememberActive.called = true;
+    clickCheck = true;
   } else if (selectedid != null) {
     selectedidArray = selectedid.split("-")
     if (selectedidArray[1] == futureWeek) {
       document.querySelector("#"+selectedid+"").classList.add("active");
     }
+    rightArrow.style.opacity = "100%";
+    rightArrow.style.cursor = "pointer";
+    rememberActive.called = true;
+    clickCheck = true;
   }
 }
 function makeUnavailable() {
@@ -343,13 +355,22 @@ runFunctions();
 
 // Send to database
 rightArrow.addEventListener("click", () => {
-  localStorage.setItem("tijdsvak", ""+selectedid+"");
-  localStorage.setItem("dag", ""+fullDaysNames[selectedDay]+"");
-  localStorage.setItem("datum", ""+selectedDate.getDate()+" "+maanden[selectedDate.getMonth()]+"");
-  localStorage.setItem("tijd", ""+selectedTime+":00 - "+(parseInt(selectedTime)+1)+":00");
-  if (clickCheck) {
-    window.location.assign("../contactGegevens/contactGegevens.html");
+  if (isClicked.called || rememberActive.called) {
+    if (isClicked.called) {
+      localStorage.setItem("tijdsvak", ""+selectedid+"");
+      localStorage.setItem("dag", ""+fullDaysNames[selectedDay]+"");
+      localStorage.setItem("datum", ""+selectedDate.getDate()+" "+maanden[selectedDate.getMonth()]+"");
+      localStorage.setItem("tijd", ""+selectedTime+":00 - "+(parseInt(selectedTime)+1)+":00");
+    }
+    if (clickCheck) {
+      window.location.assign("../contactGegevens/contactGegevens.html");
+    }
+  } else {
+    alert("Selecteer eerst uw gewenste een datum en tijd");
   }
+});
+leftArrow.addEventListener("click", () => {
+  window.location.assign("../handelingsMenu/handelingsMenu.html");
 });
 
 // setInterval(() => {
