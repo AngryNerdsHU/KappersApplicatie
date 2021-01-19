@@ -1,7 +1,49 @@
+@import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap);
+:root {
+  --ff-primary: "Source Sans Pro", sans-serif;
+  --ff-secundary: "Source code Pro", monospace;
+
+  --fw-reg: 300;
+  --fw-bold: 900;
+
+  --clr-light: #ffffff;
+  --clr-dark: #303030;
+  --clr-accent: #7cbed8;
+  --clr-lightgrey: #e7e7e7;
+
+  --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+}
+
 * {box-sizing: border-box}
 
+.tekst{
+  font-family: "Quicksand", sans-serif;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+}
+
+.tekst2{
+  font-family: "Quicksand", sans-serif;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  font-size: 17px;
+}
+
+#registreren {
+  font-size: xx-large;
+}
+#signup-form{
+
+  margin-left: 30vw;
+  margin-right: 30vw;
+  margin-top: 5vw;
+  margin-bottom: 5vw;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0.5rem 3rem;
+}
 /* Full-width input fields */
-  input[type=text], input[type=password] {
+input[type=text], input[type=password] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -21,8 +63,19 @@ hr {
 }
 
 /* Set a style for all buttons */
-button {
-  background-color: #4CAF50;
+#cancelbtn {
+  background-color: var(--clr-accent);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+#signupbtn {
+  background-color: var(--clr-accent);
   color: white;
   padding: 14px 20px;
   margin: 8px 0;

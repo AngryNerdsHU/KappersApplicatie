@@ -12,7 +12,7 @@
     <div class="imgcontainer">
       <img src="img/avatar2.png" alt="Avatar" class="avatar">
     </div>
-      heyyyy
+    
     <div class="container">
       <label id="tekst" for="uname"><b>Gebruikersnaam</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
@@ -32,5 +32,32 @@
     </div>
   </form>
   
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+  <script src="/__/firebase/8.2.3/firebase-auth.js"></script>
+  <script src="/__/firebase/8.2.3/firebase-firestore.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDzN6_W5lXpYkVPWZPhRgYAkjPHfSWHvAk",
+      authDomain: "kappersproject-dd6a5.firebaseapp.com",
+      projectId: "kappersproject-dd6a5",
+      // storageBucket: "kappersproject-dd6a5.appspot.com",
+      // messagingSenderId: "1096923648874",
+      appId: "1:1096923648874:web:0e77e4180cefc12c7f0b13"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Make auth and firestore references
+    // make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+  </script>
 </body>
 </html>

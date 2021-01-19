@@ -7,32 +7,58 @@
     <title>Registreren</title>
 </head>
 <body>
-    <form action="action_page.php" style="border:1px solid #ccc">
+    <form id="signup-form" style="border:1px solid #ccc">
         <div class="container">
-          <h1>Registreren</h1>
-          <p>Vul uw gegevens in om een account aan te maken</p>
+          <h1 class="tekst" id="registreren">Registreren</h1>
+          <p class="tekst" >Vul uw gegevens in om een account aan te maken</p>
           <hr>
       
-          <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="Vul uw email in" name="email" required>
+          <label class="tekst" for="email"><b>Email</b></label>
+          <input type="text" id="signup-email" placeholder="Vul uw email in" name="email" required>
       
-          <label for="psw"><b>Wachtwoord</b></label>
-          <input type="password" placeholder="Vul uw wachtwoord in" name="psw" required>
+          <label class="tekst" for="psw"><b>Wachtwoord</b></label>
+          <input type="password" id="signup-password" placeholder="Vul uw wachtwoord in" name="psw" required>
       
-          <label for="psw-repeat"><b>Herhaal wachtwoord</b></label>
+          <!-- <label for="psw-repeat"><b>Herhaal wachtwoord</b></label>
           <input type="password" placeholder="Herhaal wachtwoord" name="psw-repeat" required>
-      
-          <label>
+       -->
+          <!-- <label>
             <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px">Onthouden
-          </label>
+          </label> -->
       
           <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
       
           <div class="clearfix">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <button type="submit" class="signupbtn">Registreren</button>
+            <!-- <button class="tekst2" type="button" id="cancelbtn">Cancel</button> -->
+            <button class="tekst2" type="submit" id="signupbtn">Registreren</button>
           </div>
         </div>
     </form>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDzN6_W5lXpYkVPWZPhRgYAkjPHfSWHvAk",
+      authDomain: "kappersproject-dd6a5.firebaseapp.com",
+      projectId: "kappersproject-dd6a5",
+      // storageBucket: "kappersproject-dd6a5.appspot.com",
+      // messagingSenderId: "1096923648874",
+      appId: "1:1096923648874:web:0e77e4180cefc12c7f0b13"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Make auth and firestore references
+    // make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+  </script>
+
+  <script src="scripts/auth.js"></script>
 </body>
 </html>
