@@ -1,0 +1,20 @@
+db.sqlite3
+# database
+
+manage.py
+# de running file hiermee wordt alles gerund
+
+myDjango
+# alle config files die onnodig zijn om over te boeken. met 1 keer runnen heb je die al
+
+.vscode
+# Javascript code met de settings
+
+.env
+# files gerelateerd aan API keys
+
+.DS_store
+# mac troep
+
+.dist
+# Gegenereerde files waar ik geen ene moer mee te maken heb
