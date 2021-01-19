@@ -5,10 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bevestegings Pagina</title>
   <link rel="stylesheet" href="bevestegingsPagina.css"/>
+  <script src="https://kit.fontawesome.com/00ddc597e2.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Source=Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
   <script src="bevestegingsPagina.js" defer></script>
 </head>
 <body>
+  <div id="popup">
+    <h1 id="popupHeader">Uw reservering is gelukt!</h1>
+    <H3 id="popupDescription">Bedankt voor het reserveren en tot snel</H3>
+    <div id="backToHome"><button id=b2bButton>Terug naar home</button></div>
+  </div>
   <h1>Bevestig uw reservering</h1>
   <p id="subtitle">Controleer of onderstaande gegevens kloppen</p>
   <p id="ingevoerdeGegevens">
@@ -22,8 +28,8 @@
   </p>
   <div class="buttons">
     <button id="wijzigButton">Wijzig gegevens</button>
-    <button id="homeButton">Reservering bevestigen</button>
+    <button id="bevestigingsButton">Reservering bevestigen</button>
   </div>
-  
+  <div id="overlay"></div>
 </body>
 </html>

@@ -40,7 +40,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: snow;
+  background-color: white;
 }
 /*#endregion*/
 
@@ -177,6 +177,10 @@ body {
   align-items: center;
   justify-content: center;
 }
+#rightArrow {
+  opacity: 50%;
+  cursor: default;
+}
 .fa-chevron-left,
 .fa-chevron-right {
   font-size: 4em;
@@ -198,7 +202,7 @@ body {
 
 #calendarTitle {
   font-family: var(--ff-primary);
-  color:var(--clr-dark);
+  color: var(--clr-dark);
   font-size: 3.5rem;
   font-weight: var(--fw-reg);
 }
