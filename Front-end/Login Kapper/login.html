@@ -8,17 +8,17 @@
   <title>Login scherm kapper</title>
 </head>
 <body>
-  <form id="form" action="action_page.php" method="post">
+  <form id="form" method="post">
     <div class="imgcontainer">
       <img src="img/avatar2.png" alt="Avatar" class="avatar">
     </div>
     
     <div class="container">
-      <label id="tekst" for="uname"><b>Gebruikersnaam</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label id="tekst" for="uname"><b>Emailadres</b></label>
+      <input type="text" id="login-email" placeholder="Vul uw Emailadres in" name="uname" required>
   
       <label id="tekst"  for="psw"><b>Wachtwoord</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="password" id="login-password" placeholder="Vul uw wachtwoord in" name="psw" required>
   
       <button id="tekst2" type="submit">Login</button>
       <label>
@@ -34,11 +34,8 @@
   
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
-  <script src="/__/firebase/8.2.3/firebase-auth.js"></script>
-  <script src="/__/firebase/8.2.3/firebase-firestore.js"></script>
-
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
 
   <script>
     // Your web app's Firebase configuration
@@ -59,5 +56,7 @@
     const db = firebase.firestore();
 
   </script>
+
+  <script src="login.js"></script>
 </body>
 </html>

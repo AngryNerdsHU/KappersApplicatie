@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="registreren.css"/>
-    <title>Registreren</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="registreren.css" />
+  <title>Registreren</title>
 </head>
+
 <body>
-    <form id="signup-form" style="border:1px solid #ccc">
-        <div class="container">
-          <h1 class="tekst" id="registreren">Registreren</h1>
-          <p class="tekst" >Vul uw gegevens in om een account aan te maken</p>
-          <hr>
-      
-          <label class="tekst" for="email"><b>Email</b></label>
-          <input type="text" id="signup-email" placeholder="Vul uw email in" name="email" required>
-      
-          <label class="tekst" for="psw"><b>Wachtwoord</b></label>
-          <input type="password" id="signup-password" placeholder="Vul uw wachtwoord in" name="psw" required>
-      
-          <!-- <label for="psw-repeat"><b>Herhaal wachtwoord</b></label>
+  <form id="signup-form" style="border:1px solid #ccc">
+    <div class="container">
+      <h1 class="tekst" id="registreren">Registreren</h1>
+      <p class="tekst">Vul uw gegevens in om een account aan te maken</p>
+      <hr>
+
+      <label class="tekst" for="email"><b>Email</b></label>
+      <input type="text" id="signup-email" placeholder="Vul uw email in" name="email" required>
+
+      <label class="tekst" for="psw"><b>Wachtwoord</b></label>
+      <input type="password" id="signup-password" placeholder="Uw wachtwoord moet minimaal zes tekens lang zijn" name="psw" required>
+
+      <!-- <label for="psw-repeat"><b>Herhaal wachtwoord</b></label>
           <input type="password" placeholder="Herhaal wachtwoord" name="psw-repeat" required>
        -->
-          <!-- <label>
+      <!-- <label>
             <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px">Onthouden
           </label> -->
-      
-          <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-      
-          <div class="clearfix">
-            <!-- <button class="tekst2" type="button" id="cancelbtn">Cancel</button> -->
-            <button class="tekst2" type="submit" id="signupbtn">Registreren</button>
-          </div>
-        </div>
-    </form>
+
+      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+      <div class="clearfix">
+        <!-- <button class="tekst2" type="button" id="cancelbtn">Cancel</button> -->
+        <button class="tekst2" type="submit" id="signupbtn">Registreren</button>
+      </div>
+    </div>
+  </form>
+  
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
@@ -61,4 +64,5 @@
 
   <script src="scripts/auth.js"></script>
 </body>
+
 </html>
