@@ -188,7 +188,7 @@ createTable();
 
 //Vandaag
 function Today() {
-  const todayDate = new Date(2021, 0, 15);
+  const todayDate = new Date();
   today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
   vandaag = document.querySelector("#"+today+"");
   if (currentWeek == futureWeek) {
