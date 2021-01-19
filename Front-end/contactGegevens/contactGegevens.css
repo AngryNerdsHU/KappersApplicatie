@@ -74,6 +74,9 @@ input {
   margin: 1.5rem 4rem 0rem 4rem;
   text-decoration: none;
   color: black;
+}
+
+.fa-chevron-left {
   cursor: pointer;
 }
 
