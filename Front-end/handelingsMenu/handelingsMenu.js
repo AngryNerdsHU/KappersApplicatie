@@ -1,3 +1,4 @@
+const overlay = document.querySelector("#overlay")
 const closeIcon = document.getElementById("closeIcon");
 const infoPopup = document.getElementById("infoPopup");
 const aantal_behandelingen = document.getElementById("behandelingsAantal");
@@ -18,11 +19,14 @@ infoPopup.style.display = "none";
 rightArrow.style.opacity = "50%";
 
 function infoIcons(clickedIcon) {
+  overlay.style.display = "block";
   infoPopup.style.display = "block";
+
 };
 
 closeIcon.addEventListener("click", () => {
   infoPopup.style.display = "none";
+  overlay.style.display = "none";
 });
 
 function itemClicked(clickedID) {

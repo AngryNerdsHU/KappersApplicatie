@@ -1,6 +1,7 @@
 const fname = document.querySelector("#fname");
 const email = document.querySelector("#email");
 const rightArrow = document.querySelector("#rightArrow");
+const leftArrow = document.querySelector("#leftArrow");
 const input = document.querySelector("input");
 const mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const fnameFormat = /^[a-zA-Z]+ [a-zA-Z]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -12,6 +13,10 @@ const clickOnNextPage = function() {
 const alertGegevens = function() {
   window.alert("Vul eerst uw contactgegevens in");
 }
+
+leftArrow.addEventListener("click", () => {
+  window.location.assign("../calender/calender.html");
+})
 
 function validate() {
   if (fname.value.match(fnameFormat) && email.value.match(mailFormat)) {

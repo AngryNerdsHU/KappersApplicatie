@@ -49,6 +49,23 @@ body {
   line-height: 1.6;
 }
 
+#popup {
+  width: 40%;
+  height: 35%;
+  position: absolute;
+  z-index: 2;
+  margin: 20% 38%;
+  background: var(--clr-dark);
+}
+
+#popupDescription {
+  margin: 1rem;
+  text-align: center;
+  font-size: var(--fs-h3);
+  color: var(--clr-accent);
+}
+
+
 #dag, #datum, #tijd, #behandeling, #naam, #email{
   font-weight: var(--fw-bold);
 }
@@ -56,7 +73,14 @@ body {
 h1 {
   top: 5%;
   font-size: 3.5rem;
+  text-align: center;
   font-weight: var(--fw-reg);
+}
+
+#popupHeader {
+  margin-top: 5%;
+  font-weight: var(--fw-bold);
+  color: var(--clr-light);
 }
 
 #subtitle {
@@ -83,7 +107,7 @@ h1 {
   margin: 0rem;
 }
 
-#homeButton, #wijzigButton {
+#bevestigingsButton, #wijzigButton {
   display: inline-block;
   margin: 1.5rem;
   padding: 1rem;
@@ -91,13 +115,38 @@ h1 {
   background-color: var(--clr-accent);
   font-size: var(--fs-h3);
   color: #fff;
+  cursor: pointer;
 }
 
-#homeButton:hover, #wijzigButton {
+#b2bButton {
+  padding: 1rem;
   cursor: pointer;
+  border-radius: 10%;
+}
+
+#backToHome {
+  margin: auto;
+  padding: 1rem;
+  background-color: var(--clr-dark);
+  font-size: var(--fs-h3);
+  text-align: center;
 }
 
 a {
   padding: 0;
   margin: 5rem;
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7); /* Black background with opacity */
+  z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: default; /* Add a pointer on hover */
 }
