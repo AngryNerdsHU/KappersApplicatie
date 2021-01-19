@@ -10,7 +10,6 @@ signupForm.addEventListener('submit', (e) => {
 
     // sign up the user
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
-        console.log(cred.user);
         signupForm.reset()
     });
 });
