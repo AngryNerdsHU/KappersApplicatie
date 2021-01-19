@@ -9,11 +9,21 @@
   <script src="bevestegingsPagina.js" defer></script>
 </head>
 <body>
-  <h1>Het reserveren is gelukt!</h1>
-  <p>Uw reservering valt op <span id="dag"></span> <span id="datum"></span> om <span id="tijd"></span>.<br>
-    Waarbij U hebt gekozen voor: <span id="behandeling"></span>.<br>
-    Fijne dag en tot gauw!
+  <h1>Bevestig uw reservering</h1>
+  <p id="subtitle">Controleer of onderstaande gegevens kloppen</p>
+  <p id="ingevoerdeGegevens">
+    - Uw naam is <span id="naam"></span> en uw ingevoerde e-mailadres is <span id="email"></span>;<br>
+    - Uw reservering valt op <span id="dag"></span> <span id="datum"></span> om <span id="tijd"></span>;<br>
+    - Waarbij U hebt gekozen voor: <span id="behandeling"></span>.<br><br>
   </p>
-  <button id="homeButton">Terug naar Homepage</button>
+  <p id="validatie">
+    Als alle gegevens kloppen Klikt u op de knop <i>'Reservering bevestigen'</i> om uw reservering te bevestigen.<br>
+    Indien u nog iets wil wijzigen kunt u op de knop <i>'Wijzig gegevens'</i> drukken.
+  </p>
+  <div class="buttons">
+    <button id="wijzigButton">Wijzig gegevens</button>
+    <button id="homeButton">Reservering bevestigen</button>
+  </div>
+  
 </body>
 </html>
