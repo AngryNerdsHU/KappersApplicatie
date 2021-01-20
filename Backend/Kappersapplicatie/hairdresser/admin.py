@@ -6,3 +6,4 @@ admin.site.register(Article)
 admin.site.register(Author)
 admin.site.register(Customer)
 admin.site.register(Appointment)
+
