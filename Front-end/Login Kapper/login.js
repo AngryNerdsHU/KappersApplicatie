@@ -30,5 +30,5 @@ loginForm.addEventListener('submit', (e) => {
             alert("Gebruikersnaam en/of wachtwoord niet herkend");
             console.log(loginCheck);
         }
-    }, 500);
+    }, 1000);
 });

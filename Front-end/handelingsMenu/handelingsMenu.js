@@ -8,6 +8,7 @@ const leftArrow = document.getElementById("leftArrow");
 const rightArrow = document.getElementById("rightArrow");
 
 const nextPage = function () {
+  localStorage.setItem("behandelingen", ""+behandelingenArr+"");
   window.location.assign("../calender/calender.html");
 };
 
@@ -34,7 +35,7 @@ function itemClicked(clickedID) {
   if (geselecteerdeBehandeling.style.background != "rgb(56, 129, 72)") {
     geselecteerdeBehandeling.style.background = "rgb(56, 129, 72)";
     behandelingsAantal++;
-    behandelingenArr.push(""+clickedID+"");
+    behandelingenArr.push("\u00a0"+clickedID+"");
   }
   else {
     geselecteerdeBehandeling.style.background = "none";
@@ -59,5 +60,4 @@ function itemClicked(clickedID) {
     rightArrow.addEventListener("click", nextPage, true);
   }
 };
-
 rightArrow.addEventListener("click", alertBehandelingen, true);
