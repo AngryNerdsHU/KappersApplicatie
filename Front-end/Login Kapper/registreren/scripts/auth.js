@@ -11,6 +11,8 @@ signupForm.addEventListener('submit', (e) => {
     // sign up the user
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
         signupForm.reset()
+        alert("Uw account is aangemaakt, u kunt nu inloggen")
+
     });
 });
 
