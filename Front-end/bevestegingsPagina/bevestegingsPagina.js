@@ -52,7 +52,7 @@ bevestigingsButton.addEventListener("click", () => {
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
-  overlay.style.display = "block"
+  overlay.style.display = "block";
   displayPopup();
   });
 
