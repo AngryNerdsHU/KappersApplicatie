@@ -8,8 +8,46 @@
     <title>Kappersapplicatie</title>
 </head>
 <body>
-    <header>
-        <h1 class="mainTitle">Afsprakenoverzicht</h1>
-    </header>
+    <button id="logout">Uitloggen</button>
+    <div id="list">
+        <header>
+            <h1 class="mainTitle">Afsprakenoverzicht</h1>
+        </header>
+        <table id="table">
+            <tr>
+                <th>Naam</th>
+                <th>Geslacht</th>
+                <th>Leeftijd</th>
+                <th>Behandeling(en)</th>
+                <th>Dag</th>
+                <th>Datum</th>
+                <th>Tijd</th>
+                <th>eMail</th>
+            </tr>
+        </table>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+        apiKey: "AIzaSyDzN6_W5lXpYkVPWZPhRgYAkjPHfSWHvAk",
+        authDomain: "kappersproject-dd6a5.firebaseapp.com",
+        projectId: "kappersproject-dd6a5",
+        // storageBucket: "kappersproject-dd6a5.appspot.com",
+        // messagingSenderId: "1096923648874",
+        appId: "1:1096923648874:web:0e77e4180cefc12c7f0b13"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Make auth and firestore references
+        // make auth and firestore references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+    </script>
 </body>
 </html>
