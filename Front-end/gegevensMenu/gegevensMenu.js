@@ -34,6 +34,8 @@ vrouw.style.opacity = .5;
 leftArrow.style.opacity = .5;
 rightArrow.style.opacity = .5;
 
+if (localStorage.getItem("gender") == null) {localStorage.setItem("gender", "none")};
+if (localStorage.getItem("age") == null) {localStorage.setItem("age", "none")};
 
 // Initial animations
 const tl = new TimelineMax();
@@ -48,7 +50,7 @@ rightArrow.style.display = "none";
 
 // 
 man.addEventListener("click", () => {
-  clickGender(man, vrouw, 1, 0);
+  clickGender(man, 1, 0);
 });
 if (localStorage.getItem("gender") == "man") {
   tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
@@ -61,7 +63,7 @@ if (localStorage.getItem("gender") == "man") {
 
 
 vrouw.addEventListener("click", () => {
-  clickGender(vrouw, man, 0, 1);
+  clickGender(vrouw, 0, 1);
 });
 if (localStorage.getItem("gender") == "vrouw") {
   tl.fromTo(vrouw, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
@@ -71,7 +73,7 @@ if (localStorage.getItem("gender") == "vrouw") {
   vrouwCheck = 1;
 }
 
-function clickGender(cGender, oGender, manValue, vrouwValue) {
+function clickGender(cGender, manValue, vrouwValue) {
   if (age.style.display == "flex") {
     if (manCheck == 1) {
       tl.fromTo(man, .5, {transform: "scale(1.05)", opacity: 1}, {transform: "scale(1)", opacity: .5})
@@ -86,52 +88,69 @@ function clickGender(cGender, oGender, manValue, vrouwValue) {
   }
   localStorage.setItem("gender", cGender.id);
   if (age.style.display != "flex") {
-    tl.fromTo(rightArrow, speed, {opacity: "1"}, {opacity: ".5"}, "-=1")
-    man.style.width = "240px";
-    man.style.height = "240px";
-    vrouw.style.width = "240px";
-    vrouw.style.height = "240px";
-    if (manCheck == 1) {
-      tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
-      tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"}, "-=1")
-    } else if (vrouwCheck == 1) {
-      tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"})
-      tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
-    }
-    tl.fromTo(man, speed, {x: "-80px"}, {x: "0px"}, "-=1")
-    tl.fromTo(vrouw, speed, {x: "60px"}, {x: "0px"}, "-=1")
-    age.style.display = "flex";
-    leftArrow.style.display = "flex";
-    rightArrow.style.display = "flex";
-    tl.fromTo(leftArrow, speed, {x: "-300%"}, {x: "0%"})
-    tl.fromTo(rightArrow, speed, {x: "300%"}, {x: "0%"}, "-=1")
-    for (var i = 0; i < ageImage.length; i++) {
-      tl.fromTo(ageImage[i], speed, {transform: "scale(0)", opacity: "0"}, {transform: "scale(1)", opacity: ".5"}, "-=1");
-    }
-    tl.fromTo(gender, speed, {y: "0%"}, {y: "-40%"})
-    tl.fromTo(age, speed, {y: "0%"}, {y: "40%"}, "-=1")
-    setTimeout(function() {
-      breakLine.style.display = "block";
-    }, 500);
-    tl.fromTo(breakLine, speed, {scaleX: "0", opacity: "0"}, {scaleX: "1", opacity: "1"})
-    tl.fromTo(cGender, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
     manCheck = manValue;
     vrouwCheck = vrouwValue;
-    if ((localStorage.getItem("age") == "kind")) {
-      tl.fromTo(kind, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-    }
-    if ((localStorage.getItem("age") == "jongvolwassene")) {
-      tl.fromTo(jongvolwassene, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-    }
-    if ((localStorage.getItem("age") == "volwassene")) {
-      tl.fromTo(volwassene, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-    }
-    if ((localStorage.getItem("age") == "senior")) {
-      tl.fromTo(senior, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
-    }
+    AgeTransistion();
   }
-  console.log(manCheck);
-  console.log(vrouwCheck);
+}
+
+function AgeTransistion() {
+  tl.fromTo(rightArrow, speed, {opacity: "1"}, {opacity: ".5"}, "-=1")
+  man.style.width = "240px";
+  man.style.height = "240px";
+  vrouw.style.width = "240px";
+  vrouw.style.height = "240px";
+  if (manCheck == 1) {
+    tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
+    tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"}, "-=1")
+  } else if (vrouwCheck == 1) {
+    tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"})
+    tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
+  }
+  console.log(manCheck, vrouwCheck);
+  tl.fromTo(man, speed, {x: "-80px"}, {x: "0px"}, "-=1")
+  tl.fromTo(vrouw, speed, {x: "60px"}, {x: "0px"}, "-=1")
+  age.style.display = "flex";
+  leftArrow.style.display = "flex";
+  rightArrow.style.display = "flex";
+  tl.fromTo(leftArrow, speed, {x: "-300%"}, {x: "0%"})
+  tl.fromTo(rightArrow, speed, {x: "300%"}, {x: "0%"}, "-=1")
+  for (var i = 0; i < ageImage.length; i++) {
+    tl.fromTo(ageImage[i], speed, {transform: "scale(0)", opacity: "0"}, {transform: "scale(1)", opacity: ".5"}, "-=1");
+  }
+  tl.fromTo(gender, speed, {y: "0%"}, {y: "-40%"})
+  tl.fromTo(age, speed, {y: "0%"}, {y: "40%"}, "-=1")
+  setTimeout(function() {
+    breakLine.style.display = "block";
+  }, 500);
+  tl.fromTo(breakLine, speed, {scaleX: "0", opacity: "0"}, {scaleX: "1", opacity: "1"})
+  if (manCheck == 1) {
+    tl.fromTo(man, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
+    manCheck = 1;
+    vrouwCheck = 0;
+  }
+  if (vrouwCheck == 1) {
+    tl.fromTo(vrouw, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
+    manCheck = 0;
+    vrouwCheck = 1;
+  }
+  if ((localStorage.getItem("age") == "kind")) {
+    tl.fromTo(kind, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+  } else if ((localStorage.getItem("age") == "jongvolwassene")) {
+    tl.fromTo(jongvolwassene, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+  } else if ((localStorage.getItem("age") == "volwassene")) {
+    tl.fromTo(volwassene, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+  } else if ((localStorage.getItem("age") == "senior")) {
+    tl.fromTo(senior, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
+  }
+  if (localStorage.getItem("gender") != "none" && localStorage.getItem("age") != "none") {
+    tl.fromTo(rightArrow, .5, {opacity: .5}, {opacity: 1})
+    rightArrow.style.cursor = "pointer";
+    arrowCheck = 1;
+  }
+}
+if (localStorage.getItem("gender") != "none") {
+  AgeTransistion();
 }
 
 rightArrow.addEventListener("click", () => {
@@ -146,13 +165,12 @@ rightArrow.addEventListener("click", () => {
 
 
 
-
 function selectOption(option) {
-  tl.fromTo(option, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1})
+  tl.fromTo(option, .5, {transform: "scale(1)", opacity: .5}, {transform: "scale(1.05)", opacity: 1});
   checkArrow();
 }
 function checkOption(option) {
-  tl.fromTo(option, .5, {transform: "scale(1.05)", opacity: 1}, {transform: "scale(1)", opacity: .5}, "-=.5")
+  tl.fromTo(option, .5, {transform: "scale(1.05)", opacity: 1}, {transform: "scale(1)", opacity: .5}, "-=.5");
   kindCheck = false;
   jongvolwasseneCheck = false;
   volwasseneCheck = false;
@@ -161,69 +179,67 @@ function checkOption(option) {
 function checkArrow() {
   if (arrowCheck == 0) {
     rightArrow.style.cursor = "pointer";
-    tl.fromTo(rightArrow, speed, {opacity: .5}, {opacity: 1}, "-=.5")
+    tl.fromTo(rightArrow, .5, {opacity: .5}, {opacity: 1})
     arrowCheck = 1;
   }
+  checkArrow.called = true;
 }
 
 // Age options
 kind.addEventListener("click", () => {
   selectOption(kind);
-  if (jongvolwasseneCheck == 1) {checkOption(jongvolwassene)};
-  if (volwasseneCheck == 1) {checkOption(volwassene)};
-  if (seniorCheck == 1) {checkOption(senior)};
+  if (jongvolwasseneCheck == true) {checkOption(jongvolwassene)};
+  if (volwasseneCheck == true) {checkOption(volwassene)};
+  if (seniorCheck == true) {checkOption(senior)};
   localStorage.setItem("age", "kind");
   kindCheck = true;
-  console.log(kindCheck);
 });
-if ((localStorage.getItem("age") == "kind")) {
-  setTimeout(function() {
-    localStorage.setItem("age", "kind");
-  }, 500);
-}
 jongvolwassene.addEventListener("click", () => {
   selectOption(jongvolwassene);
-  if (kindCheck == 1) {checkOption(kind)};
-  if (volwasseneCheck == 1) {checkOption(volwassene)};
-  if (seniorCheck == 1) {checkOption(senior)};
+  if (kindCheck == true) {checkOption(kind)};
+  if (volwasseneCheck == true) {checkOption(volwassene)};
+  if (seniorCheck == true) {checkOption(senior)};
   localStorage.setItem("age", "jongvolwassene");
   jongvolwasseneCheck = true;
 });
-if ((localStorage.getItem("age") == "jongvolwassene")) {
-  jongvolwasseneCheck = true;
-}
 volwassene.addEventListener("click", () => {
   selectOption(volwassene);
-  if (kindCheck == 1) {checkOption(kind)};
-  if (jongvolwasseneCheck == 1) {checkOption(jongvolwassene)};
-  if (seniorCheck == 1) {checkOption(senior)};
+  if (kindCheck == true) {checkOption(kind)};
+  if (jongvolwasseneCheck == true) {checkOption(jongvolwassene)};
+  if (seniorCheck == true) {checkOption(senior)};
   localStorage.setItem("age", "volwassene");
   volwasseneCheck = true;
 });
-if ((localStorage.getItem("age") == "volwassene")) {
-  setTimeout(function() {
-    localStorage.setItem("age", "volwassene");
-  }, 500);
-}
 senior.addEventListener("click", () => {
   selectOption(senior);
-  if (kindCheck == 1) {checkOption(kind)};
-  if (jongvolwasseneCheck == 1) {checkOption(jongvolwassene)};
-  if (volwasseneCheck == 1) {checkOption(volwassene)};
+  if (kindCheck == true) {checkOption(kind)};
+  if (jongvolwasseneCheck == true) {checkOption(jongvolwassene)};
+  if (volwasseneCheck == true) {checkOption(volwassene)};
   localStorage.setItem("age", "senior");
   seniorCheck = true;
 });
-if ((localStorage.getItem("age") == "senior")) {
-  setTimeout(function() {
-    localStorage.setItem("age", "senior");
-  }, 500);
+if ((localStorage.getItem("gender") == "man")) {
+  manCheck = 1;
 }
-
-if (localStorage.getItem("gender") == null) {localStorage.setItem("gender", "none")};
-if (localStorage.getItem("age") == null) {localStorage.setItem("age", "none")};
+if ((localStorage.getItem("gender") == "vrouw")) {
+  vrouwCheck = 1;
+}
+if ((localStorage.getItem("age") == "kind")) {
+  kindCheck = true;
+}
+if ((localStorage.getItem("age") == "jongvolwassene")) {
+  jongvolwasseneCheck = true;
+}
+if ((localStorage.getItem("age") == "volwassene")) {
+  volwasseneCheck = true;
+}
+if ((localStorage.getItem("age") == "senior")) {
+  seniorCheck = true;
+}
 
 // Testing stuff
 setInterval(function() {
+  console.log(kindCheck, jongvolwasseneCheck, volwasseneCheck, seniorCheck);
 }, 3000);
 
 let testA = 0;
