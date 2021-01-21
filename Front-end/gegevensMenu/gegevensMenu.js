@@ -107,7 +107,6 @@ function AgeTransistion() {
     tl.fromTo(man, speed, {transform: "scale(1.6)"}, {transform: "scale(1)"})
     tl.fromTo(vrouw, speed, {transform: "scale(1.6)"}, {transform: "scale(1.05)"}, "-=1")
   }
-  console.log(manCheck, vrouwCheck);
   tl.fromTo(man, speed, {x: "-80px"}, {x: "0px"}, "-=1")
   tl.fromTo(vrouw, speed, {x: "60px"}, {x: "0px"}, "-=1")
   age.style.display = "flex";
@@ -236,18 +235,3 @@ if ((localStorage.getItem("age") == "volwassene")) {
 if ((localStorage.getItem("age") == "senior")) {
   seniorCheck = true;
 }
-
-// Testing stuff
-setInterval(function() {
-  console.log(kindCheck, jongvolwasseneCheck, volwasseneCheck, seniorCheck);
-}, 3000);
-
-let testA = 0;
-let testB = 0;
-function test(aValue, bValue) {
-  testA = aValue;
-  testB = bValue;
-  console.log(testA);
-  console.log(testB);
-} 
-// test(1, 0);

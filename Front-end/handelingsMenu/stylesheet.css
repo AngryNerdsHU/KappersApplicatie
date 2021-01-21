@@ -4,12 +4,12 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-  --ff-primary: 'Source Sans Pro', sans-serif;
-  --ff-secundary: 'Source code Pro', monospace;
+  --ff-primary: "Source Sans Pro", sans-serif;
+  --ff-secundary: "Source code Pro", monospace;
   --fw-reg: 300;
   --fw-bold: 900;
   --clr-light: #fff;
@@ -18,10 +18,10 @@
   --clr-selected: rgb(58, 172, 218);
   --fs-h1: 3rem;
   --fs-h2: 2.25rem;
-  --fs-h3: 1.rem;
+  --fs-h3: 1rem;
   --fs-body: 1rem;
-  --bs: 0.25em 0.25em 075em rgba(0,0,.25),
-        0.125em 0.125em 0.25em rgba(0,0,0,.15);
+  --bs: 0.25em 0.25em 075em rgba(0, 0, 0.25),
+    0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 800px) {
@@ -37,15 +37,15 @@ body {
   width: 100vw;
   height: 100vh;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   background-color: #fffafa;
   overflow: hidden;
   background: var(--clr-light);
@@ -122,9 +122,9 @@ body {
 
 div p {
   -webkit-margin-before: 0rem;
-          margin-block-start: 0rem;
+  margin-block-start: 0rem;
   -webkit-margin-after: 0rem;
-          margin-block-end: 0rem;
+  margin-block-end: 0rem;
 }
 
 /*#region InfoIcon*/
@@ -174,11 +174,11 @@ div p {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 /*#endregion*/
@@ -187,7 +187,13 @@ div p {
   height: 80%;
   border-radius: 20px;
   border: 2px solid black;
-  background-image: -webkit-gradient(linear, left top, right bottom, from(snow), to(darkgrey));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    from(snow),
+    to(darkgrey)
+  );
   background-image: linear-gradient(to bottom right, snow, darkgrey);
   position: absolute;
   z-index: 2;
@@ -199,11 +205,11 @@ div p {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding: 1rem 1rem 1rem 1rem;
 }
 
@@ -238,4 +244,3 @@ div p {
   cursor: default;
   /* Add a pointer on hover */
 }
-/*# sourceMappingURL=stylesheet.css.map */
