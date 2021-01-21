@@ -10,6 +10,9 @@ class Reservering(models.Model):
     fname = models.CharField(max_length=30)
     gender = models.CharField(max_length=255)
     tijd = models.CharField(max_length=20)
+    tijdvakje = models.CharField(max_length=20, default='')
+    # tijdvakje slaat op de kalender Id vlakjes van de tijden zodat die kunnen worden neergezet als niet beschikbaar of wel beschikbaar
+    # (models.py bij de reserverings tabel)
 
 
 # class Klant(models.Model):
