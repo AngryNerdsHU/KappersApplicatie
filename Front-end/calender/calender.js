@@ -22,6 +22,15 @@ const dagen = [
   "Za",
   "Zo"
 ];
+const days = [
+  "ma",
+  "di",
+  "wo",
+  "do",
+  "vr",
+  "za",
+  "zo"
+]
 
 // Objects
 const fullDaysNames = {
@@ -56,6 +65,17 @@ const dayNumber = {
   "Za": 5,
   "Zo": 6
 };
+const properties = {
+  0 : "fname",
+  1 : "gender",
+  2: "age",
+  3 : "behandelingen",
+  4 : "dag",
+  5 : "datum",
+  6 : "tijd",
+  7 : "email",
+  8 : "tijdsvak"
+}
 
 // Variables
 const date = new Date(),
@@ -66,13 +86,6 @@ const date = new Date(),
       prevArrow = document.querySelector("#prev");
       leftArrow = document.querySelector("#leftArrow");
       rightArrow = document.querySelector("#rightArrow");
-      Ma = "Maandag";
-      Di = "Dinsdag";
-      Wo = "Woensdag";
-      Do = "Donderdag";
-      Vr = "Vrijdag";
-      Za = "Zaterdag"
-      Zo = "Zondag";
       tijdsvakData = localStorage.getItem("tijdsvak");
 
 let firstDate = getMonday(date),
@@ -89,7 +102,7 @@ let selectedid = null;
 let splitArray;
 let clickCheck = false;
 let allDivs;
-let StringArray = ["Wo-2-9","Do-2-12","Ma-2-14","Ma-3-9","Ma-3-10","Ma-4-12","Ma-1-15"];
+let StringArray = [];
 let FilterArray = [];
 let IDArray = [];
 let selectedidArray = [];
@@ -98,6 +111,28 @@ let today;
 let pastDaysArray = [];
 let blok = [];
 let weekCheck = 0;
+let fetchOutput = [];
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+fetch("http://127.0.0.1:8000/api/reservering/", requestOptions)
+  .then(response => response.json())
+  .then(data => fetchOutput = data)
+  .catch(error => console.log('error', error));
+
+function FilterTijdsvak() {
+  StringArray = [];
+  for (j = 0; j <= fetchOutput.length-1; j++) {
+    StringArray.push(fetchOutput[j][""+properties[8]+""]);
+  }
+}
 
 // WeeknumberFunction
 function getWeekNumber(d) {
@@ -223,7 +258,7 @@ createTable();
 //Vandaag
 function Today() {
   const todayDate = new Date();
-  today = dagen[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
+  today = days[todayDate.getDay() - (todayDate.getDay() == 0 ? -6 : 1)];
   vandaag = document.querySelector("#"+today+"");
   if (currentWeek == futureWeek) {
     vandaag.style.backgroundColor = "white";
@@ -256,7 +291,6 @@ function isClicked(clickedID) {
     selectedTime = splitArray[2];
     selectedDate = new Date(2021, FirstDate.getMonth());
     selectedDate.setDate(FirstDate.getDate() + dayNumber[splitArray[0]]);
-    console.log(selectedDate);
     if (FirstDate.getDate() > selectedDate.getDate()) {
       selectedDate.setMonth(FirstDate.getMonth() + 1);
     } else {
@@ -264,10 +298,6 @@ function isClicked(clickedID) {
     }
     selectedid = selectedID.id;
     clickCheck = true;
-    console.log(FirstDate);
-    console.log(selectedDate);
-    console.log(dayNumber[splitArray[0]]);
-    console.log(FirstDate.getDate() > selectedDate.getDate());
     rightArrow.style.opacity = "100%";
     rightArrow.style.cursor = "pointer";
     isClicked.called = true;
@@ -280,6 +310,7 @@ function getFirstDate() {
   FirstDate = new Date(2021, shortMonth, firstDateArray[0]);  
 }
 function makeAvailable() {
+  IDArray = [];
   for (let j = 0; j <= FilterArray.length-1; j++) {
     IDArray.push(document.querySelector("#"+FilterArray[j]+""));
   }
@@ -311,7 +342,7 @@ function rememberActive() {
   }
 }
 function makeUnavailable() {
-  todayIndex = dagen.indexOf(""+today+"");
+  todayIndex = days.indexOf(""+today+"");
   for (j = 0; j <= dagen.length; j++) {
     if (j < todayIndex) {
       pastDaysArray.push(dagen[j]);
@@ -325,7 +356,7 @@ function makeUnavailable() {
       Array.from(blok[j], e => e.style.opacity = "50%");
       Array.from(blok[j], e => e.classList.remove("available"));
     } else {
-      Array.from(blok[j], e => e.style.opacity = "100%");
+      Array.from(document.querySelector(".available"), e => e.style.opacity = "100%");
     }
   }
 }
@@ -342,13 +373,16 @@ function pastWeekCheck () {
 }
 
 function runFunctions() {
-  FilterIDs();
-  Today();
-  makeAvailable();
-  rememberActive();
-  makeUnavailable();
-  pastWeekCheck();
-  getFirstDate();
+  setTimeout(() => {
+    FilterTijdsvak();
+    FilterIDs();
+    Today();
+    makeUnavailable();
+    makeAvailable();
+    rememberActive();
+    pastWeekCheck();
+    getFirstDate();
+  }, 500);
 }
 runFunctions();
 
@@ -372,16 +406,3 @@ rightArrow.addEventListener("click", () => {
 leftArrow.addEventListener("click", () => {
   window.location.assign("../handelingsMenu/handelingsMenu.html");
 });
-
-// setInterval(() => {
-//   console.log(selectedDate, FirstDate)
-// }, 3000)
-
-function test() {
-  let testDate = new Date();
-  let testingDate = new Date(2021, 2, 29);
-  testDate.setDate(testingDate.getDate());
-  testDate.setMonth(testingDate.getMonth());
-  console.log(testDate);
-}
-test();

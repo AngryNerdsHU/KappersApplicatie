@@ -21,10 +21,13 @@ wijzigKnop.addEventListener ("click", () =>{
 })
 
 function displayPopup() {
+  overlay.style.display = "block";
   popup.style.display = "block";
 };
 
-
+if (localStorage.getItem("popupCheck") == "true") {
+  displayPopup();
+}
 
 
 var myHeaders = new Headers();
@@ -37,8 +40,8 @@ var raw = JSON.stringify({"age":""+localStorage.getItem("age")+"",
                           "email":""+localStorage.getItem("email")+"",
                           "fname":""+localStorage.getItem("fname")+"",
                           "gender":""+localStorage.getItem("gender")+"",
-                          "tijd":""+localStorage.getItem("tijd")+""});
-console.log(raw);
+                          "tijd":""+localStorage.getItem("tijd")+"",
+                          "tijdsvak":""+localStorage.getItem("tijdsvak")+""})+"";
 
 var requestOptions = {
   method: 'POST',
@@ -50,11 +53,8 @@ var requestOptions = {
 bevestigingsButton.addEventListener("click", () => {
   fetch("http://127.0.0.1:8000/api/reservering/", requestOptions)
   .then(response => response.text())
+  .then(response => localStorage.setItem("popupCheck", "true"))
   .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-  overlay.style.display = "block";
-  displayPopup();
+  .catch(error => console.log('error', error))
+  .catch(error => alert("Er is iets misgegaan"));
   });
-
-
-console.log(localStorage);

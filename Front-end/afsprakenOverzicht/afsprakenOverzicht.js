@@ -9,7 +9,8 @@ const properties = {
   4 : "dag",
   5 : "datum",
   6 : "tijd",
-  7 : "email"
+  7 : "email",
+  8 : "tijdsvak"
 }
 
 let fetchOutput = [];
@@ -23,18 +24,14 @@ var requestOptions = {
 fetch("http://127.0.0.1:8000/api/reservering/", requestOptions)
   .then(response => response.json())
   .then(data => fetchOutput = data)
-  // .then(result => console.log(result))
   .catch(error => console.log('error', error));
 
 
 setTimeout(() => {
-  // console.log(fetchOutput);
   fillCells();
-}, 2000);
+}, 500);
 
-// console.log(fetchOutput);
 function fillCells() {
-  console.log(fetchOutput);
   for (j = 0; j <= fetchOutput.length-1; j++) {
     table.insertRow().id = "row"+j+"";
     for (k = 0; k <= 7; k++) {
@@ -42,7 +39,6 @@ function fillCells() {
       document.querySelector("#"+"r"+j+"c"+k+"").innerHTML = "\u00a0"+fetchOutput[j][properties[k]]+"";
     }
   }
-  console.log(fetchOutput[1]);
 }
 //Creating list
 const table = document.querySelector("#table");
