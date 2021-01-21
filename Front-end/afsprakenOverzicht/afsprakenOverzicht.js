@@ -31,6 +31,7 @@ setTimeout(() => {
   fillCells();
 }, 500);
 
+//generate tablecells 
 function fillCells() {
   for (j = 0; j <= fetchOutput.length-1; j++) {
     table.insertRow().id = "row"+j+"";
@@ -50,6 +51,7 @@ logout.addEventListener('click', (e) => {
   auth.signOut();
 });
 
+// authentication
 auth.onAuthStateChanged(user => {
     if (user) {
         console.log('user logged in: ', user);

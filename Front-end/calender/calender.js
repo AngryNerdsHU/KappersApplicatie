@@ -270,6 +270,7 @@ function Today() {
   }
 };
 
+// selecting unavailable divs of the displayed week
 function FilterIDs() {
   for (j = 0; j <= StringArray.length-1; j++) {
     const split = StringArray[j].split("-");
@@ -372,6 +373,7 @@ function pastWeekCheck () {
   }
 }
 
+//  To be executed after fetch is finished 
 function runFunctions() {
   setTimeout(() => {
     FilterTijdsvak();

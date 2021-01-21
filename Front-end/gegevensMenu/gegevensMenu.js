@@ -217,6 +217,7 @@ senior.addEventListener("click", () => {
   localStorage.setItem("age", "senior");
   seniorCheck = true;
 });
+
 if ((localStorage.getItem("gender") == "man")) {
   manCheck = 1;
 }

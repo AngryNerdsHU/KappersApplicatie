@@ -25,11 +25,13 @@ function displayPopup() {
   popup.style.display = "block";
 };
 
+//executed when fetch reloads page
 if (localStorage.getItem("popupCheck") == "true") {
+  localStorage.clear();
   displayPopup();
 }
 
-
+//fetch part
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
