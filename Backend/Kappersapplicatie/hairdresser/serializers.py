@@ -13,7 +13,8 @@ class ReserveringSerializer(serializers.ModelSerializer):
                   'email',
                   'fname',
                   'gender',
-                  'tijd',)
+                  'tijd',
+                  'tijdvakje',)
 # class KlantSerializer(serializers.ModelSerializer):
 
 #     class Meta:
