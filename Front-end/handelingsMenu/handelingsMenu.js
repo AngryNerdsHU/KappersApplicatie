@@ -1,3 +1,4 @@
+// variables
 const overlay = document.querySelector("#overlay")
 const closeIcon = document.getElementById("closeIcon");
 const infoPopup = document.getElementById("infoPopup");
@@ -6,6 +7,7 @@ const leftArrow = document.getElementById("leftArrow");
 const rightArrow = document.getElementById("rightArrow");
 let behandelingsAantal = 0;
 let behandelingenArr = [];
+
 
 const nextPage = function () {
   localStorage.setItem("behandelingen", ""+behandelingenArr+"");
@@ -30,6 +32,7 @@ closeIcon.addEventListener("click", () => {
   overlay.style.display = "none";
 });
 
+// executed when item clicked
 function itemClicked(clickedID) {
   geselecteerdeBehandeling = document.querySelector("#"+clickedID+"");
   if (geselecteerdeBehandeling.style.background != "rgb(56, 129, 72)") {

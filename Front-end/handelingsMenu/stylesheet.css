@@ -56,7 +56,7 @@ body {
   line-height: 1;
 }
 
-/*#endregion*/
+
 /*#region titleregion*/
 #title_handelingsmenu {
   display: block;
@@ -67,7 +67,7 @@ body {
   font-weight: var(--fw-reg);
 }
 
-/*#endregion*/
+
 /*#behandelingen*/
 .behandelingstitel {
   text-align: center;
@@ -127,7 +127,7 @@ div p {
   margin-block-end: 0rem;
 }
 
-/*#region InfoIcon*/
+/*InfoIcon*/
 .fa-info-circle {
   font-size: 3em;
   color: #70a6be;
@@ -143,6 +143,7 @@ div p {
   background: white;
 }
 
+/*aantal behandelingen*/
 .aantal_behandelingen {
   display: block;
   text-align: right;
@@ -157,6 +158,7 @@ div p {
   font-weight: bold;
 }
 
+/*navArrows*/
 .fa-chevron-left,
 .fa-chevron-right {
   font-size: 4em;
@@ -181,7 +183,7 @@ div p {
   justify-content: center;
 }
 
-/*#endregion*/
+/*infoPopup*/
 #infoPopup {
   width: 25%;
   height: 80%;
@@ -223,24 +225,17 @@ div p {
   cursor: pointer;
 }
 
-/*#endregion*/
+/*overlay*/
 #overlay {
   position: fixed;
-  /* Sit on top of the page content */
   display: none;
-  /* Hidden by default */
   width: 100%;
-  /* Full width (cover the whole page) */
-  height: 100%;
-  /* Full height (cover the whole page) */
+  height: 100%;  
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  /* Black background with opacity */
   z-index: 1;
-  /* Specify a stack order in case you're using a different order for other elements */
   cursor: default;
-  /* Add a pointer on hover */
 }
